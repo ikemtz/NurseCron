@@ -1,0 +1,181 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Sample API",
+    "description": "A sample application with Swagger, Swashbuckle, and API versioning.",
+    "termsOfService": "Shareware",
+    "contact": { "name": "Bill Mei", "email": "bill.mei@somewhere.com" },
+    "license": { "name": "MIT", "url": "https://opensource.org/licenses/MIT" }
+  },
+  "paths": {
+    "/api/v1/Certifications.{format}": {
+      "get": {
+        "tags": ["Certifications"],
+        "operationId": "Get",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          { "name": "format", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": { "200": { "description": "Success" } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Certifications"],
+        "operationId": "Put",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json",
+          "application/x-msgpack",
+          "application/msgpack",
+          "application/xml",
+          "text/xml",
+          "application/*+xml"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/x-msgpack",
+          "application/msgpack",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": { "$ref": "#/definitions/CertificationInsertRequest" }
+          },
+          { "name": "format", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/Certification" }
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Certifications"],
+        "operationId": "Post",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json",
+          "application/x-msgpack",
+          "application/msgpack",
+          "application/xml",
+          "text/xml",
+          "application/*+xml"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/x-msgpack",
+          "application/msgpack",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": false,
+            "schema": { "$ref": "#/definitions/CertificationUpdateRequest" }
+          },
+          { "name": "format", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/Certification" }
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Certifications"],
+        "operationId": "Delete",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/x-msgpack",
+          "application/msgpack",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+          },
+          { "name": "format", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": { "$ref": "#/definitions/Certification" }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "CertificationInsertRequest": {
+      "required": ["name"],
+      "type": "object",
+      "properties": { "name": { "type": "string" } }
+    },
+    "Certification": {
+      "type": "object",
+      "properties": {
+        "id": { "format": "uuid", "type": "string" },
+        "name": { "type": "string" },
+        "isEnabled": { "type": "boolean" },
+        "createdBy": { "type": "string" },
+        "updatedBy": { "type": "string" },
+        "createdOnUtc": { "format": "date-time", "type": "string" },
+        "updatedOnUtc": { "format": "date-time", "type": "string" },
+        "expiresOnUtc": { "format": "date-time", "type": "string" }
+      }
+    },
+    "CertificationUpdateRequest": {
+      "required": ["name"],
+      "type": "object",
+      "properties": {
+        "id": { "format": "uuid", "type": "string" },
+        "name": { "type": "string" }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "flow": "implicit",
+      "authorizationUrl": "https://nrsrx-demo.auth0.com/authorize?audience=CERT-DEV",
+      "scopes": { "openid": "required" },
+      "type": "oauth2"
+    }
+  },
+  "security": [{ "Bearer": [] }]
+}

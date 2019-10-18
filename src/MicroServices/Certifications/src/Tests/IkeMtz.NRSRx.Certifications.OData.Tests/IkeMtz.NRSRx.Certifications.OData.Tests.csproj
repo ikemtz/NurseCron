@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>b930fc77-a993-457f-9697-956b5a3ead67</UserSecretsId>
+    <IsPackable>false</IsPackable>
+    <ProjectGuid>5A01E053-B94B-4F14-8516-5848F11B9A76</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="pub\**" />
+    <Compile Remove="Unit\**" />
+    <EmbeddedResource Remove="pub\**" />
+    <EmbeddedResource Remove="Unit\**" />
+    <None Remove="pub\**" />
+    <None Remove="Unit\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.19.291.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\IkeMtz.NRSRx.Certifications.OData\IkeMtz.NRSRx.Certifications.OData.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

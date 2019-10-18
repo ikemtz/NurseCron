@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>5b2169ac-344e-4e31-b426-154109e90739</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsAnnotationResourceId>
+    <ProjectGuid>C717DECB-285D-4A08-9BB3-F22C40FC7A91</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="pub\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="pub\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="pub\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="pub\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dockerfile" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.19.291.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="1.19.291.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
+    <PackageReference Include="WebApiContrib.Core.Formatter.MessagePack" Version="2.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IkeMtz.NRSRx.Certifications.Abstraction\IkeMtz.NRSRx.Certifications.Abstraction.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+</Project>

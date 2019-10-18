@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="d1d21a62-803a-46fd-b35a-38b863f9c283" ChangeDateTime="02/04/2019 18:50:05">
+    <Property Name="ElementName" Value="[dbo].[EmployeeCertifications].[ExpiresOn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeCertifications]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExpiresOnUtc" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="58b780c8-06a9-4b35-9465-6c03e13bf467" ChangeDateTime="02/28/2019 16:42:17">
+    <Property Name="ElementName" Value="[dbo].[Employees].[LastHireDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Employees]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HireDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9efd0873-dc2d-4153-bea1-d6b289d1fa12" ChangeDateTime="02/28/2019 16:42:20">
+    <Property Name="ElementName" Value="[dbo].[Employees].[LastFireDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Employees]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FireDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="38b5eaec-e4de-4d2c-90b6-84c7e3134999" ChangeDateTime="02/28/2019 16:42:45">
+    <Property Name="ElementName" Value="[dbo].[Employees].[DoB]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Employees]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BirthDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c1c620ae-4b4c-4fe1-8d4a-db7b3901de82" ChangeDateTime="02/28/2019 16:42:58">
+    <Property Name="ElementName" Value="[dbo].[Employees].[PostalCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Employees]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Zip" />
+  </Operation>
+</Operations>

@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>5b2169ac-344e-4e31-b426-154109e90739</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsAnnotationResourceId>
+    <ProjectGuid>74A58C7B-B0BB-4483-960A-1C7C413245CA</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="pub\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="pub\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="pub\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="pub\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dockerfile" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.19.291.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="1.19.291.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="1.19.291.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="1.19.291.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
+    <PackageReference Include="WebApiContrib.Core.Formatter.MessagePack" Version="2.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IkeMtz.NRSRx.Certifications.Abstraction\IkeMtz.NRSRx.Certifications.Abstraction.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+</Project>

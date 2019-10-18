@@ -1,0 +1,305 @@
+name: 1.$(Year:yy).$(DayOfYear)$(Rev:.rr)
+resources:
+- repo: self
+variables: 
+  RestoreBuildProjects: '**/*.csproj'
+  TestProjects: '**/*Tests/*.csproj'
+jobs:
+- job: Database
+  displayName: Database build and deploy
+  pool: Hosted VS2017
+  # pool: Default
+
+  steps:
+  - task: VSBuild@1
+    displayName: 'Build solution DatabasesOnly.sln'
+    inputs:
+      solution: src\MicroServices\DatabasesOnly.sln
+
+
+  - task: PowerShell@2
+    displayName: 'Artifact SQL Dacpacs'
+    inputs:
+      targetType: filePath
+      filePath: 'src\MicroServices\artifact-dacpacs.ps1'
+      arguments: '-sourceFolder $(build.SourcesDirectory) -artifactFolder $(build.artifactstagingdirectory)'
+
+  - task: SqlAzureDacpacDeployment@1
+    displayName: 'Certifications SQL Publish'
+    inputs:
+      azureSubscription: 'NRSRx_Subscription'
+
+      ServerName: $(SqlServerName)
+
+      DatabaseName: 'nrsrx-bulid'
+
+      SqlUsername: $(SqlUserName)
+
+      SqlPassword: $(SqlPassword)
+
+      DacpacFile: '**/*.Certifications.DB.dacpac'
+
+      AdditionalArguments: '/p:AllowIncompatiblePlatform=true'
+
+
+  - task: SqlAzureDacpacDeployment@1
+    displayName: 'Competencies SQL Publish'
+    inputs:
+      azureSubscription: 'NRSRx_Subscription'
+
+      ServerName: $(SqlServerName)
+
+      DatabaseName: 'nrsrx-bulid'
+
+      SqlUsername: $(SqlUserName)
+
+      SqlPassword: $(SqlPassword)
+
+      DacpacFile: '**/*.Competencies.DB.dacpac'
+
+      AdditionalArguments: '/p:AllowIncompatiblePlatform=true'
+
+
+  - task: SqlAzureDacpacDeployment@1
+    displayName: 'Employees SQL Publish'
+    inputs:
+      azureSubscription: 'NRSRx_Subscription'
+
+      ServerName: $(SqlServerName)
+
+      DatabaseName: 'nrsrx-bulid'
+
+      SqlUsername: $(SqlUserName)
+
+      SqlPassword: $(SqlPassword)
+
+      DacpacFile: '**/*.Employees.DB.dacpac'
+
+      AdditionalArguments: '/p:AllowIncompatiblePlatform=true'
+
+
+  - task: SqlAzureDacpacDeployment@1
+    displayName: 'HealthItems SQL Publish'
+    inputs:
+      azureSubscription: 'NRSRx_Subscription'
+
+      ServerName: $(SqlServerName)
+
+      DatabaseName: 'nrsrx-bulid'
+
+      SqlUsername: $(SqlUserName)
+
+      SqlPassword: $(SqlPassword)
+
+      DacpacFile: '**/*.HealthItems.DB.dacpac'
+
+      AdditionalArguments: '/p:AllowIncompatiblePlatform=true'
+
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: dacpac_drop'
+    inputs:
+      ArtifactName: 'dacpac_drop'
+
+- job: APIs
+  displayName: Build and test API code
+  pool: Hosted VS2017
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk 2.x'
+    inputs:
+      version: 2.x
+
+
+
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+      command: restore
+
+      projects: '$(RestoreBuildProjects)'
+
+
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: 'SonarCloud IkeMtz'
+
+      organization: ikemtz
+
+      projectKey: NRSRx
+
+      projectName: NRSRx
+
+      extraProperties: |  
+       # Additional properties that will be passed to the scanner, 
+       # Put one key=value per line, example:
+       # sonar.exclusions=**/*.bin
+       sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
+       # sonar.branch.name=$(Build.SourceBranch)
+
+
+
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      projects: '$(RestoreBuildProjects)'
+
+      arguments: '--configuration $(BuildConfiguration)'
+
+
+  - task: AzureCLI@1
+    displayName: 'Pull Down Integration test config Azure CLI '
+    inputs:
+      azureSubscription: 'NRSRx_Subscription'
+
+      scriptLocation: inlineScript
+
+      inlineScript: |  
+       cd $(Build.SourcesDirectory)
+       cd .\MicroServices\Certifications\src\Tests\IkeMtz.NRSRx.Certifications.OData.Tests
+       del *.json
+       call az storage blob download --account-name nrsrx --container pipeline --name cert-appsettings.json --file appsettings.json --verbose --validate-content
+       
+       cd $(Build.SourcesDirectory)
+       cd .\MicroServices\Certifications\src\Tests\IkeMtz.NRSRx.Certifications.WebApi.Tests
+       del *.json
+       call az storage blob download --account-name nrsrx --container pipeline --name cert-appsettings.json --file appsettings.json --verbose --validate-content
+       
+
+       cd $(Build.SourcesDirectory)
+       cd .\MicroServices\Competencies\src\Tests\IkeMtz.NRSRx.Competencies.OData.Tests
+       del *.json
+       call az storage blob download --account-name nrsrx --container pipeline --name comp-appsettings.json --file appsettings.json --verbose --validate-content
+       
+       cd $(Build.SourcesDirectory)
+       cd .\MicroServices\Competencies\src\Tests\IkeMtz.NRSRx.Competencies.WebApi.Tests
+       del *.json
+       call az storage blob download --account-name nrsrx --container pipeline --name comp-appsettings.json --file appsettings.json --verbose --validate-content
+              
+       cd $(Build.SourcesDirectory)
+       cd .\MicroServices\Employees\src\Tests\IkeMtz.NRSRx.Employees.OData.Tests
+       del *.json
+       call az storage blob download --account-name nrsrx --container pipeline --name empl-appsettings.json --file appsettings.json --verbose --validate-content
+              
+       cd $(Build.SourcesDirectory)
+       cd .\MicroServices\Employees\src\Tests\IkeMtz.NRSRx.Employees.WebApi.Tests
+       del *.json
+       call az storage blob download --account-name nrsrx --container pipeline --name empl-appsettings.json --file appsettings.json --verbose --validate-content
+              
+       cd $(Build.SourcesDirectory)
+       cd .\MicroServices\HealthItems\src\Tests\IkeMtz.NRSRx.HealthItems.OData.Tests
+       del *.json
+       call az storage blob download --account-name nrsrx --container pipeline --name hlti-appsettings.json --file appsettings.json --verbose --validate-content
+              
+       cd $(Build.SourcesDirectory)
+       cd .\MicroServices\HealthItems\src\Tests\IkeMtz.NRSRx.HealthItems.WebApi.Tests
+       del *.json
+       call az storage blob download --account-name nrsrx --container pipeline --name hlti-appsettings.json --file appsettings.json --verbose --validate-content
+       
+
+      addSpnToEnvironment: true
+
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Unigration Tests'
+    inputs:
+      command: test
+
+      projects: '$(TestProjects)'
+
+      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --settings $(Build.SourcesDirectory)/test.RunSettings --filter TestCategory!=Integration'
+
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Integration Test'
+    inputs:
+      command: test
+
+      projects: '$(TestProjects)'
+
+      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --settings $(Build.SourcesDirectory)/test.RunSettings --filter TestCategory=Integration'
+
+
+  - task: PowerShell@2
+    displayName: 'Code Coverage Converter'
+    inputs:
+      targetType: filePath
+      filePath: 'coverage-converter.ps1'
+
+      arguments: '-tempFolder $(Agent.WorkFolder)/_temp -testResultsFolder $(Common.TestResultsDirectory)'
+
+
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
+
+
+  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+    displayName: 'Publish Quality Gate Result'
+
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish WebApi projects'
+    inputs:
+      command: publish
+
+      publishWebProjects: false
+
+      projects: 'src/MicroServices/**/*.WebApi/*.csproj'
+
+      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+
+      zipAfterPublish: false
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish OData projects'
+    inputs:
+      command: publish
+
+      publishWebProjects: false
+
+      projects: 'src/MicroServices/**/*.OData/*.csproj'
+
+      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+
+      zipAfterPublish: false
+
+  - task: PowerShell@2
+    displayName: 'Artifact CI/CD scripts'
+    inputs:
+      targetType: filePath
+
+      filePath: 'src/MicroServices\artifact-ci-cd-scripts.ps1'
+
+      arguments: '-sourceFolder $(build.SourcesDirectory) -artifactFolder $(build.artifactstagingdirectory)'
+
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: ApiDrop'
+    inputs:
+      ArtifactName: ApiDrop
+trigger:
+  branches:
+    include:
+    - master
+    - releases/*
+  paths:
+    include:
+    - MicroServices/*
+    - Core/*
+    exclude:
+    - Docs/*
+    - README.md
+pr:
+  branches:
+    include:
+    - master
+    - releases/*
+  paths:
+    include:
+    - MicroServices/*
+    - Core/*
+    exclude:
+    - Docs/*
+    - README.md

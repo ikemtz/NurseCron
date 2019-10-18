@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>79f0a88d-576f-4d8c-a43d-2c9f4b038bcd</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsAnnotationResourceId>
+    <ProjectGuid>2815C9D0-958D-4F29-B817-B66F37941ED6</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="pub\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="pub\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="pub\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="pub\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="BaseStartup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dockerfile" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.19.291.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="1.19.291.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="1.19.291.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="1.19.291.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IkeMtz.NRSRx.Employees.Abstraction\IkeMtz.NRSRx.Employees.Abstraction.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+</Project>

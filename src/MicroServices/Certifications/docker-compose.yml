@@ -1,0 +1,12 @@
+version: '3'
+services:
+  db:
+    build: src/IkeMtz.NRSRx.Certifications.DB/.
+    ports:
+    - "1433:1433"
+  api:
+    build: src/IkeMtz.NRSRx.Certifications.api/.
+    env_file:
+    - src/IkeMtz.NRSRx.Certifications.Api/Dockerfile.env
+    ports:
+    - "81:80"

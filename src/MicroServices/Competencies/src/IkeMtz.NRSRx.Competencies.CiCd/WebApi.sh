@@ -1,0 +1,239 @@
+#!/bin/bash
+#
+if [ -z $2 ]; then
+echo Bash shell use
+echo $0 [D,Q,U,P] {sqlAdminPassword} {subscriptionName OR subscriptionId}
+exit 1
+fi
+
+if [ $3 ]; then 
+az account set -s $3
+fi
+
+echo 'Spinning up resources for Invoices and receivables'
+# parameter variables
+export envUpper=$(echo $1 | tr a-z A-Z)
+export envLower=$(echo $1 | tr A-Z a-z)
+export sqlAdminPass=$2
+
+# Common Setup Variables
+export location="eastus"
+export planRgName=$envUpper"-Nurser"
+export appsRgName=$envUpper"-Nurser"
+export planName=$envLower"-ap-core-nrsr"
+export app1Name=$envLower"-wa-cmpa-nrsr"
+export dockerUrl="https://index.docker.io"
+
+export sqlRgName=$envUpper"-Nurser"
+export sqlSrvName=$envLower"-ss-core-nrsr"
+export sqlAdminUser=$envUpper"_NurserAdminUser"
+export newSqlUserName=$(echo $app1Name | tr - x)
+export identityProvider="https://nrsrx-demo.auth0.com/"
+
+export serviceBusRgName=$envUpper"-Nurser"
+export serviceBusNamespace=$envLower"-sb-core-nrsr"
+
+# Service specific
+export entityName="Competency"
+export swaggerClientId="RAFO6AXB5T6EawgBl6P5M5qEAd4yxD67"
+export swaggerAudience=$envUpper"-CmpA"
+export validAudiences="$envUpper-Nurser,$swaggerAudience"
+export ainName=$envLower"-ai-core-nrsr"
+export dockerImageName="ikemtz/nrsrx-competencies:webapi_latest"
+export sqlDbName=$envLower"-db-core-nrsr"
+
+# New Randomized SQL Password
+export newSqlPass=$(openssl rand -base64 48 | awk '{gsub(/[\/|+|=|;]/, "im")};1')
+
+echo Spinning up resources for $sqlRgName
+
+echo Create Sql Resource Group $sqlRgName
+export sqlRgId=$(az group create --location $location --name $sqlRgName | jq -r '. | .id')
+echo Plan Group Id: ${sqlRgId}
+echo
+
+echo Creating SQL server $sqlSrvName
+export sqlSrvId=$(az sql server create --location $location --resource-group $sqlRgName --name $sqlSrvName --admin-user $sqlAdminUser --admin-password $sqlAdminPass | jq -r '. | .id')
+echo Sql Server Id: ${sqlSrvId}
+
+echo Create Database $sqlDbName
+export sqlDbId=$(az sql db create \
+	--resource-group $sqlRgName \
+	--server $sqlSrvName \
+	--name $sqlDbName \
+	--service-objective Basic \
+     | jq -r '. | .id')
+echo Sql Database Id: ${sqlDbId}
+echo
+
+echo Create Web App Plan Resource Group $planRgName
+export planRgId=$(az group create --location $location --name $planRgName | jq -r '. | .id')
+echo Plan Group Id: ${planRgId}
+echo
+
+echo Create Web App Plan $planName
+export appPlanId=$(az appservice plan create --resource-group $planRgName --name $planName --is-linux --sku B1 | jq -r '. | .id')
+echo App Plan Id: ${appPlanId}
+echo
+
+echo Create Web Apps Resource Group $appsRgName
+export appsRgId=$(az group create --location $location --name $appsRgName | jq -r '. | .id')
+echo Apps Group Id: ${appPlanId}
+echo
+
+echo Create App Insights $ainName
+export appInsightsKey=$(az resource create \
+    --resource-group $appsRgName \
+    --resource-type "Microsoft.Insights/components" \
+    --location $location \
+    --name $ainName \
+    --properties '{"Application_Type":"web","Flow_Type":"Redfield","Request_Source":"IbizaAIExtension"}' \
+    | jq -r '. | .properties.InstrumentationKey')
+echo App Insights Key: ${appInsightsKey}
+echo
+
+# this is necessary, otherwise create web app call will fail
+rgCheck=$(az webapp list --query "[?name=='$app1Name'].{group:resourceGroup}" | jq -r '.[0].group')
+if [ $rgCheck != $appsRgName ]; then
+    echo Creating Web App $app1Name
+    app1id=$(az webapp create \
+        --name $app1Name \
+        --plan $planName \
+        --resource-group $planRgName \
+        --deployment-container-image-name $dockerImageName \
+        | jq -r '. | .id')
+    echo App Id 1: ${app1id}
+    echo
+
+    if [ $appsRgName != $planRgName ]; then
+        echo Moving Web App to $appsRgName
+        az resource move --destination-group $appsRgName --ids $app1id
+    fi
+fi
+
+echo Web App $app1Name already exists
+app1id=$(az webapp show --name $app1Name --resource-group $appsRgName | jq -r '.id')
+
+echo Configuring Web App $app1Name
+app1Config=$(az webapp config container set --name $app1Name --resource-group $appsRgName \
+    --docker-custom-image-name $dockerImageName \
+    --docker-registry-server-url $dockerUrl \
+    | jq -r '.')
+
+echo App Id 1: $app1id
+echo
+
+echo Configuring Web App InstrumentationKey $appInsightsKey
+temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings InstrumentationKey="$appInsightsKey" | jq -r '.')
+echo Configuring Web App IdentityAudiences $validAudiences
+temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings IdentityAudiences="$validAudiences" | jq -r '.')
+echo Configuring Web App IdentityProvider $identityProvider
+temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings IdentityProvider="$identityProvider" | jq -r '.')
+echo Configuring Web App SwaggerIdentityProviderUrl $identityProvider
+temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings SwaggerIdentityProviderUrl="$identityProvider" | jq -r '.')
+echo Configuring Web App SwaggerClientId $swaggerClientId
+temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings SwaggerClientId="$swaggerClientId" | jq -r '.')
+
+swagName="$swaggerAudience (Swagger Client)"
+echo Configuring Web App SwaggerAppName $swagName
+temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings SwaggerAppName="$swagName" | jq -r '.')
+
+echo Configuring Web App - Disabling Client affinity and making site HTTPS only
+temp=$(az webapp update --resource-group $appsRgName --name $app1Name --client-affinity-enabled false --https-only true)
+
+echo Configuring Web App - enabling docker CI
+temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings DOCKER_ENABLE_CI=true | jq -r '.')
+
+echo Configuring Web App - disabling FTP access - enabling alwayson
+temp=$(az webapp config set --resource-group $appsRgName --name $app1Name --ftps-state Disabled --always-on true)
+
+echo Checking existance of SqlConnectionString AppSetting
+connectionString=$(az webapp config appsettings list --resource-group $appsRgName --name $app1Name \
+    | jq '.[] | select(.name=="SqlConnectionString") | .value' \
+    | tr ' ' 'x')
+    
+# we need this check to ensure we are not overriding an existing password
+if [ -z $connectionString ]; then
+    echo 'Generating SQL Scripts'
+    createLoginQuery="CREATE LOGIN $newSqlUserName WITH PASSWORD='$newSqlPass'"
+    alterLoginQuery="ALTER LOGIN $newSqlUserName WITH PASSWORD='$newSqlPass'"
+    createUserQuery="CREATE USER $newSqlUserName FOR LOGIN $newSqlUserName WITH DEFAULT_SCHEMA = dbo"
+    addReaderRoleQuery="EXEC sp_addrolemember 'db_datareader', '$newSqlUserName'"
+    addWriterRoleQuery="EXEC sp_addrolemember 'db_datawriter', '$newSqlUserName'"
+        
+    echo Getting external IP Address
+    export ipAddress=$(curl https://ipinfo.io/ip)
+    
+    echo IP Address is: $ipAddress
+    az sql server firewall-rule create --resource-group $sqlRgName --server $sqlSrvName -n "$0 Automation Script -Delete" --start-ip-address $ipAddress --end-ip-address $ipAddress
+    az sql server firewall-rule create --resource-group $sqlRgName --server $sqlSrvName -n "Azure Resources" --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
+
+    echo 'Creating SQL User'
+    sqlcmd -S $sqlSrvName.database.windows.net -U $sqlAdminUser -P $sqlAdminPass -Q "$createLoginQuery"
+    sqlcmd -S $sqlSrvName.database.windows.net -U $sqlAdminUser -P $sqlAdminPass -Q "$alterLoginQuery"
+    sqlcmd -S $sqlSrvName.database.windows.net -U $sqlAdminUser -P $sqlAdminPass -d "$sqlDbName" -Q "$createUserQuery"
+    sqlcmd -S $sqlSrvName.database.windows.net -U $sqlAdminUser -P $sqlAdminPass -d "$sqlDbName" -Q "$addReaderRoleQuery"
+    sqlcmd -S $sqlSrvName.database.windows.net -U $sqlAdminUser -P $sqlAdminPass -d "$sqlDbName" -Q "$addWriterRoleQuery"
+    
+    connectionString=$(az sql db show-connection-string -s $sqlSrvName -n $sqlDbName -c ado.net \
+        | awk -v srch='"' -v repl="" '{sub(srch,repl,$0);print $0}' \
+        | awk -v srch='"' -v repl="" '{sub(srch,repl,$0);print $0}' \
+        | awk -v srch="<username>" -v repl="$newSqlUserName" '{sub(srch,repl,$0);print $0}' \
+        | awk -v srch="<password>" -v repl="$newSqlPass" '{sub(srch,repl,$0);print $0}')
+    
+    echo 'Setting up new connection string setting with new SQL user'
+    temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings SqlConnectionString="$connectionString" | jq -r '.')    
+    echo Sql Connection String $connectionString
+else
+    echo 'Skipping SQL User creation'
+fi
+
+echo Create ServiceBus Resource Group $serviceBusRgName
+export serviceBusRgId=$(az group create --location $location --name $serviceBusRgName | jq -r '. | .id')
+echo ServiceBus Resource Group Id: ${serviceBusRgId}
+echo
+
+echo Create ServiceBus $serviceBusNamespace
+export serviceBusId=$(az servicebus namespace create --resource-group $serviceBusRgName --name $serviceBusNamespace --location $location --sku Basic | jq -r '. | .id')
+echo ServiceBus Id: ${serviceBusId}
+echo
+
+echo Creating ServiceBus Queues
+export createdQueueId=$(az servicebus queue create --name "$entityName-Created" \
+    --resource-group $serviceBusRgName \
+    --namespace-name $serviceBusNamespace \
+    --enable-dead-lettering-on-message-expiration true \
+    --max-size 5120 --default-message-time-to-live P14D \
+    | jq -r '. | .id')
+export updatedQueueId=$(az servicebus queue create --name "$entityName-Updated" \
+    --resource-group $serviceBusRgName \
+    --namespace-name $serviceBusNamespace \
+    --enable-dead-lettering-on-message-expiration true \
+    --max-size 5120 --default-message-time-to-live P14D \
+    | jq -r '. | .id')
+export deletedQueueId=$(az servicebus queue create --name "$entityName-Deleted" \
+    --resource-group $serviceBusRgName \
+    --namespace-name $serviceBusNamespace \
+    --enable-dead-lettering-on-message-expiration true \
+    --max-size 5120 --default-message-time-to-live P14D \
+    | jq -r '. | .id')
+echo Created Queue Id: $createdQueueId
+echo Updated Queue Id: $updatedQueueId
+echo Deleted Queue Id: $deletedQueueId
+echo
+
+export sbConnectionString=$(az webapp config appsettings list --resource-group $appsRgName --name $app1Name \
+    | jq '.[] | select(.name=="QueueConnectionString") | .value' \
+    | tr ' ' 'x')
+# This is necessary as to not blow away current credentials unnecessarily
+if [ -z $sbConnectionString ]; then
+    echo Creating ServiceBus Keys
+    export sbRuleId=$(az servicebus namespace authorization-rule create --resource-group $serviceBusRgName --namespace-name $serviceBusNamespace --name "$entityName-Publisher" --rights Send | jq -r '. | .id')
+    export sbConnectionString=$(az servicebus namespace authorization-rule keys list --resource-group $serviceBusRgName --namespace-name $serviceBusNamespace --name "$entityName-Publisher" | jq -r '. | .primaryConnectionString')
+
+    temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings QueueConnectionString="$sbConnectionString" | jq -r '.')
+    echo Creating ServiceBus Rule Id: ${sbRuleId}
+    echo
+else
+    echo Skipping creation of ServiceBus keys
+fi
