@@ -1,5 +1,6 @@
 FROM ikemtz/sql_dacpac:latest as sql-temp
 ENV SA_PASSWORD=SqlDockerRocks123!
+ENV ACCEPT_EULA=Y
 
 COPY /IkeMtz.NRSRx.HealthItems.DB.dacpac /dacpac/db.dacpac
 RUN /opt/mssql/bin/sqlservr & sleep 20 \
