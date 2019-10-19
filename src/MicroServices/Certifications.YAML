@@ -85,7 +85,7 @@ jobs:
     displayName: 'Unigration Tests - Sonar'
     inputs:
       command: 'custom'
-      projects: '$(TEST_PROJECTS)'
+      projects: '$(TestProjects)'
       custom: 'test'
       arguments: '--logger trx --configuration $(BuildConfiguration) --collect "Code coverage" --results-directory $(Common.TestResultsDirectory) --no-build --no-restore --settings $(Build.SourcesDirectory)/src/MicroServices/test.RunSettings --filter TestCategory!=Integration'
 
