@@ -9,8 +9,7 @@ variables:
 jobs:
   - job: Database
     displayName: Database build and deploy
-    pool: Hosted VS2019
-    # pool: Default
+    pool: Hosted Windows 2019 with VS2019
 
     steps:
       - task: VSBuild@1
@@ -32,7 +31,7 @@ jobs:
 
   - job: APIs
     displayName: Build and test API code
-    pool: Hosted VS2019
+    pool: Hosted Windows 2019 with VS2019
 
     steps:
       - task: UseDotNet@2
