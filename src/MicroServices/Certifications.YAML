@@ -89,7 +89,7 @@ jobs:
   - task: SimondeLang.sonarcloud-buildbreaker.sonar-buildbreaker.sonarcloud-buildbreaker@1
     displayName: 'Break build on SonarCloud quality gate failure'
     inputs:
-      SonarCloud: 'MasterCorp SonarCloud Instance'
+      SonarCloud: 'SonarCloud IkeMtz'
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet publish WebApi projects'
@@ -136,3 +136,4 @@ schedules:
     branches:
       include:
       - master
+
