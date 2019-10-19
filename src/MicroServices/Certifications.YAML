@@ -43,7 +43,16 @@ jobs:
     displayName: Restore
     inputs:
       command: restore
-      projects: '$(RestoreBuildProjects)'
+      projects: '$(RestoreBuildProjects)'      
+
+  - task: bleddynrichards.Assembly-Info-Task.Assembly-Info-NetCore.Assembly-Info-NetCore@2
+    displayName: 'Set Assembly Manifest Data'
+    inputs:
+      InsertAttributes: true
+      VersionNumber: '$(Build.BuildNumber)'
+      FileVersionNumber: '$(Build.BuildNumber)'
+      InformationalVersion: '$(Build.BuildNumber)'
+      PackageVersion: '$(Build.BuildNumber)'
 
   - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
     displayName: 'Prepare analysis on SonarCloud'
@@ -70,7 +79,7 @@ jobs:
     inputs:
       command: test
       projects: '$(TestProjects)'
-      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --results-directory $(Common.TestResultsDirectory) --settings $(Build.SourcesDirectory)/src/MicroServices/test.RunSettings --no-build --no-restore --filter TestCategory!=Integration'
+      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --settings $(Build.SourcesDirectory)/src/MicroServices/test.RunSettings --no-build --no-restore --filter TestCategory!=Integration'
 
   - task: DotNetCoreCLI@2
     displayName: 'Unigration Tests - Sonar'
@@ -78,7 +87,7 @@ jobs:
       command: 'custom'
       projects: '$(TEST_PROJECTS)'
       custom: 'test'
-      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --results-directory $(Common.TestResultsDirectory) --settings $(Build.SourcesDirectory)/src/MicroServices/test.RunSettings --no-build --no-restore --filter TestCategory!=Integration --logger trx'
+      arguments: '--logger trx --configuration $(BuildConfiguration) --collect "Code coverage" --results-directory $(Common.TestResultsDirectory) --no-build --no-restore --settings $(Build.SourcesDirectory)\src\MicroServices\test.RunSettings --filter TestCategory!=Integration'
 
   - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
@@ -114,13 +123,12 @@ jobs:
     inputs:
       targetType: filePath
       filePath: 'src/MicroServices/artifact-ci-cd-scripts.ps1'
-      arguments: '-sourceFolder $(build.SourcesDirectory) -domainName $(DomainName) -artifactFolder $(build.artifactstagingdirectory)'
+      arguments: '-sourceFolder $(build.SourcesDirectory)/src/MicroServices -domainName $(DomainName) -artifactFolder $(build.artifactstagingdirectory)'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: ApiDrop'
     inputs:
       ArtifactName: ApiDrop
-
 trigger: none
 pr:
   branches:
@@ -136,4 +144,3 @@ schedules:
     branches:
       include:
       - master
-
