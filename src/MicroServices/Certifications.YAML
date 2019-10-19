@@ -50,8 +50,8 @@ jobs:
         inputs:
           SonarCloud: 'SonarCloud IkeMtz'
           organization: ikemtz
-          projectKey: Nurser_Certifications
-          projectName: Nurser_Certifications
+          projectKey: Nurser_$(DomainName)
+          projectName: Nurser_$(DomainName)
           extraProperties: |
             # Additional properties that will be passed to the scanner, 
             # Put one key=value per line, example:
@@ -63,27 +63,33 @@ jobs:
         displayName: Build
         inputs:
           projects: '$(RestoreBuildProjects)'
-          arguments: '--configuration $(BuildConfiguration)'
+          arguments: '--configuration $(BuildConfiguration) --no-restore'
 
       - task: DotNetCoreCLI@2
         displayName: 'Unigration Tests'
         inputs:
           command: test
           projects: '$(TestProjects)'
-          arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --settings $(Build.SourcesDirectory)/test.RunSettings --filter TestCategory!=Integration'
+          arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --results-directory $(Common.TestResultsDirectory) --settings $(Build.SourcesDirectory)/src/MicroServices/test.RunSettings --no-build --no-restore --filter TestCategory!=Integration'
 
-      - task: PowerShell@2
-        displayName: 'Code Coverage Converter'
+      - task: DotNetCoreCLI@2
+        displayName: 'Unigration Tests - Sonar'
         inputs:
-          targetType: filePath
-          filePath: 'coverage-converter.ps1'
-          arguments: '-tempFolder $(Agent.WorkFolder)/_temp -testResultsFolder $(Common.TestResultsDirectory)'
+          command: 'custom'
+          projects: '$(TEST_PROJECTS)'
+          custom: 'test'
+          arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --results-directory $(Common.TestResultsDirectory) --settings $(Build.SourcesDirectory)/src/MicroServices/test.RunSettings --no-build --no-restore --filter TestCategory!=Integration --logger trx'
 
       - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
         displayName: 'Run Code Analysis'
 
       - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
         displayName: 'Publish Quality Gate Result'
+
+      - task: SimondeLang.sonarcloud-buildbreaker.sonar-buildbreaker.sonarcloud-buildbreaker@1
+        displayName: 'Break build on SonarCloud quality gate failure'
+        inputs:
+          SonarCloud: 'MasterCorp SonarCloud Instance'
 
       - task: DotNetCoreCLI@2
         displayName: 'dotnet publish WebApi projects'
@@ -108,12 +114,13 @@ jobs:
         inputs:
           targetType: filePath
           filePath: 'src/MicroServices/artifact-ci-cd-scripts.ps1'
-          arguments: '-sourceFolder $(build.SourcesDirectory) -artifactFolder $(build.artifactstagingdirectory)'
+          arguments: '-sourceFolder $(build.SourcesDirectory) -domainName $(DomainName) -artifactFolder $(build.artifactstagingdirectory)'
 
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: ApiDrop'
         inputs:
           ArtifactName: ApiDrop
+
 trigger: none
 pr:
   branches:
