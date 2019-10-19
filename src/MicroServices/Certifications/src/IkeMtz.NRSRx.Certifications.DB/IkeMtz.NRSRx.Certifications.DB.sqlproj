@@ -65,6 +65,7 @@
     <None Include="Dockerfile" />
     <None Include="LocalPublish.publish.xml" />
     <None Include="build.ps1" />
+    <None Include="CI.Dockerfile" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Certifications.sql" />

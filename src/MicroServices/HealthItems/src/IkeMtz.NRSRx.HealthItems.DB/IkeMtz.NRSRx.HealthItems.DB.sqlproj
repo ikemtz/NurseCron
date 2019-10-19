@@ -66,6 +66,7 @@
     <None Include="LocalPublish.publish.xml" />
     <None Include="LocalCompare.scmp" />
     <None Include=".dockerignore" />
+    <None Include="CI.Dockerfile" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\HealthItems.sql" />

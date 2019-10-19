@@ -116,6 +116,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\.dockerignore = ..\.dockerignore
 		..\.editorconfig = ..\.editorconfig
 		..\.gitignore = ..\.gitignore
+		MicroServices\artifact-ci-cd-scripts.ps1 = MicroServices\artifact-ci-cd-scripts.ps1
+		MicroServices\artifact-dacpacs.ps1 = MicroServices\artifact-dacpacs.ps1
 		..\coverage-converter.ps1 = ..\coverage-converter.ps1
 		..\docker-compose.yml = ..\docker-compose.yml
 		..\LICENSE = ..\LICENSE
@@ -123,6 +125,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 		..\sonarqube-create-project-guids.ps1 = ..\sonarqube-create-project-guids.ps1
 		..\test.RunSettings = ..\test.RunSettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YAML Build Definitions", "YAML Build Definitions", "{B6A40D0A-AEF2-4C54-BC61-982D84A4B24E}"
+	ProjectSection(SolutionItems) = preProject
+		MicroServices\Certifications.YAML = MicroServices\Certifications.YAML
+		MicroServices\Competencies.YAML = MicroServices\Competencies.YAML
+		MicroServices\Employees.YAML = MicroServices\Employees.YAML
+		MicroServices\HealthItems.YAML = MicroServices\HealthItems.YAML
 	EndProjectSection
 EndProject
 Global

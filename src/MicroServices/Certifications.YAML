@@ -22,7 +22,7 @@ jobs:
     inputs:
       targetType: filePath
       filePath: 'src/MicroServices/artifact-dacpacs.ps1'
-      arguments: '-sourceFolder $(build.SourcesDirectory) -artifactFolder $(build.artifactstagingdirectory)'
+      arguments: '-sourceFolder $(build.SourcesDirectory)/src/MicroServices/$(DomainName) -artifactFolder $(build.artifactstagingdirectory)'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: dacpac_drop'

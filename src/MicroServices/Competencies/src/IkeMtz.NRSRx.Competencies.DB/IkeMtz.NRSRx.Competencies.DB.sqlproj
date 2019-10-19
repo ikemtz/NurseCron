@@ -67,6 +67,7 @@
     <None Include="LocalCompare.scmp" />
     <None Include=".dockerignore" />
     <None Include="build.ps1" />
+    <None Include="CI.Dockerfile" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Competencies.sql" />

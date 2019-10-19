@@ -64,6 +64,7 @@
   <ItemGroup>
     <None Include="Dockerfile" />
     <None Include="LocalPublish.publish.xml" />
+    <None Include="CI.Dockerfile" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Employees.sql" />
