@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
     <ProjectGuid>2107D4C0-79BF-4103-B97C-01F1904259B7</ProjectGuid>
   </PropertyGroup>
@@ -13,9 +13,8 @@
     <None Remove="Unit\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.19.291.2" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.19.363.9" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Certifications.Abstraction.Models;
+using IkeMtz.NRSRx.Certifications.Abstraction.Models;
 using IkeMtz.NRSRx.Certifications.OData.Data;
 using IkeMtz.NRSRx.Core.OData;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace IkeMtz.NRSRx.Certifications.OData
 {
-    public class Startup : CoreODataStartup
+  public class Startup : CoreODataStartup
     {
         public override string MicroServiceTitle => $"NRSRx {nameof(Certification)} OData Microservice";
         public override Assembly StartupAssembly => typeof(Startup).Assembly;

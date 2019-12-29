@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Competencies.Abstraction.Models;
+using IkeMtz.NRSRx.Competencies.Abstraction.Models;
 using IkeMtz.NRSRx.Competencies.OData;
 using IkeMtz.NRSRx.Competencies.Tests.Unigration;
 using IkeMtz.NRSRx.Core.Unigration;
@@ -9,28 +9,25 @@ using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.OData
 {
-    [TestClass]
-    public class SwaggerTests : BaseUnigrationTests
+  [TestClass]
+  public class SwaggerTests : BaseUnigrationTests
+  {
+    [TestMethod]
+    [TestCategory("Unigration")]
+    public async Task GetSwaggerIndexPageTest()
     {
-        [TestMethod]
-        [TestCategory("Unigration")]
-        public async Task GetSwaggerIndexPageTest()
-        {
-            using (var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()))
-            {
-                await SwaggerUnitTests.TestHtmlPage(srv);
-            }
-        }
-
-        [TestMethod]
-        [TestCategory("Unigration")]
-        public async Task GetSwaggerJsonTest()
-        {
-            using (var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()))
-            {
-                var doc = await SwaggerUnitTests.TestJsonDoc(srv);
-                Assert.AreEqual($"NRSRx {nameof(Competency)} {nameof(OData)} Microservice", doc.Info.Title);
-            }
-        }
+      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>());
+      var html = await SwaggerUnitTests.TestHtmlPageAsync(srv);
+      Assert.IsNotNull(html);
     }
+
+    [TestMethod]
+    [TestCategory("Unigration")]
+    public async Task GetSwaggerJsonTest()
+    {
+      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>());
+      var doc = await SwaggerUnitTests.TestJsonDocAsync(srv);
+      Assert.AreEqual($"NRSRx {nameof(Competency)} {nameof(OData)} Microservice", doc.Info.Title);
+    }
+  }
 }

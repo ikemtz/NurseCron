@@ -9,6 +9,6 @@
     <None Remove="pub\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="1.19.291.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="1.19.363.9" />
   </ItemGroup>
 </Project>
