@@ -14,7 +14,7 @@
     <None Remove="Unit\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.19.363.10" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.19.365.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
   </ItemGroup>

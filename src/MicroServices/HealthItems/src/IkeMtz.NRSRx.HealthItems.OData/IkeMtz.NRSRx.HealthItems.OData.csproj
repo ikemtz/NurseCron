@@ -30,8 +30,8 @@
     <None Include="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.19.363.10" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="1.19.363.10" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.19.365.1" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="1.19.365.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
     <PackageReference Include="WebApiContrib.Core.Formatter.MessagePack" Version="2.1.0" />

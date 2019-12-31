@@ -12,71 +12,67 @@ using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.Employees.Tests.Unigration.OData
 {
-    [TestClass]
-    public partial class EmployeesTests : BaseUnigrationTests
+  [TestClass]
+  public partial class EmployeesTests : BaseUnigrationTests
+  {
+    [TestMethod]
+    [TestCategory("Unigration")]
+    public async Task GetEnabledEmployeesTest()
     {
-        [TestMethod]
-        [TestCategory("Unigration")]
-        public async Task GetEnabledEmployeesTest()
-        {
-            var objA = new Employee()
+      var objA = new Employee()
+      {
+        Id = Guid.NewGuid(),
+        FirstName = "Test",
+        IsEnabled = true,
+        BirthDate = DateTime.Today.AddYears(-20),
+        CreatedOnUtc = DateTime.UtcNow,
+      };
+      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
+          .ConfigureTestServices(x =>
             {
-                Id = Guid.NewGuid(),
-                FirstName = "Test",
-                IsEnabled = true,
-                BirthDate = DateTime.Today.AddYears(-20),
-                CreatedOnUtc = DateTime.UtcNow,
-            };
-            using (var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
-                .ConfigureTestServices(x =>
-                  {
-                      ExecuteOnContext<EmployeesContext>(x, db =>
-                      {
-                          db.Employees.Add(objA);
-                      });
-                  })
-             ))
-            {
-                var client = srv.CreateClient();
-                GenerateAuthHeader(client, GenerateTestToken());
-
-                var resp = await client.GetStringAsync("odata/v1/Employees?$count=true");
-
-                TestContext.WriteLine($"Server Reponse: {resp}");
-                var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
-                Assert.AreEqual(objA.CreatedOnUtc, envelope.Value.First().CreatedOnUtc.ToUniversalTime());
-            }
-        }
-        [TestMethod]
-        [TestCategory("Unigration")]
-        public async Task HideDisabledEmployeesTest()
-        {
-            var objA = new Employee()
-            {
-                Id = Guid.NewGuid(),
-                FirstName = "Test",
-                IsEnabled = false
-            };
-            using (var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
-                .ConfigureTestServices(x =>
-                {
-                    ExecuteOnContext<EmployeesContext>(x, db =>
+              ExecuteOnContext<EmployeesContext>(x, db =>
                     {
-                        db.Employees.Add(objA);
+                      db.Employees.Add(objA);
                     });
-                })
-             ))
-            {
-                var client = srv.CreateClient();
-                GenerateAuthHeader(client, GenerateTestToken());
+            })
+       );
+      var client = srv.CreateClient();
+      GenerateAuthHeader(client, GenerateTestToken());
 
-                var resp = await client.GetAsync("odata/v1/Employees?$count=true");
+      var resp = await client.GetStringAsync("odata/v1/Employees?$count=true");
 
-                var objB = await DeserializeResponseAsync<ODataEnvelope<Employee>>(resp);
-
-                Assert.AreEqual(0, objB.Value.Count());
-            }
-        }
-
+      TestContext.WriteLine($"Server Reponse: {resp}");
+      var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
+      Assert.AreEqual(objA.CreatedOnUtc, envelope.Value.First().CreatedOnUtc.ToUniversalTime());
     }
+    [TestMethod]
+    [TestCategory("Unigration")]
+    public async Task HideDisabledEmployeesTest()
+    {
+      var objA = new Employee()
+      {
+        Id = Guid.NewGuid(),
+        FirstName = "Test",
+        IsEnabled = false
+      };
+      using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
+          .ConfigureTestServices(x =>
+          {
+            ExecuteOnContext<EmployeesContext>(x, db =>
+                  {
+                    db.Employees.Add(objA);
+                  });
+          })
+       );
+      var client = srv.CreateClient();
+      GenerateAuthHeader(client, GenerateTestToken());
+
+      var resp = await client.GetAsync("odata/v1/Employees?$count=true");
+
+      var objB = await DeserializeResponseAsync<ODataEnvelope<Employee>>(resp);
+
+      Assert.AreEqual(0, objB.Value.Count());
+    }
+
+  }
 }

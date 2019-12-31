@@ -1,9 +1,11 @@
+using IkeMtz.NRSRx.Core.Models;
 using IkeMtz.NRSRx.Core.Unigration;
 using IkeMtz.NRSRx.Core.Unigration.Swagger;
 using IkeMtz.NRSRx.HealthItems.Models;
 using IkeMtz.NRSRx.HealthItems.OData;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.OData
@@ -26,6 +28,8 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>());
       var doc = await SwaggerUnitTests.TestJsonDocAsync(srv);
+      Assert.IsTrue(doc.Components.Schemas.ContainsKey(nameof(HealthItem)));
+      Assert.IsTrue(doc.Components.Schemas.Any(a => a.Key.Contains(nameof(ODataEnvelope<HealthItem>))));
       Assert.AreEqual($"NRSRx {nameof(HealthItem)} {nameof(OData)} Microservice", doc.Info.Title);
     }
   }
