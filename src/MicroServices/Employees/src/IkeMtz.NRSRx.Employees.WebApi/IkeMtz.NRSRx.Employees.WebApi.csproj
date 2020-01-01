@@ -33,10 +33,10 @@
     <None Include="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.19.365.1" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="1.19.365.1" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="1.19.365.1" />
-    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="1.19.365.1" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.20.1.1" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="1.20.1.1" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="1.20.1.1" />
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="1.20.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
   </ItemGroup>
   <ItemGroup>
