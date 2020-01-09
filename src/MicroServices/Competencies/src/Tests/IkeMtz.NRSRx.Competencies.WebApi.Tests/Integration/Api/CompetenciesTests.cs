@@ -45,7 +45,7 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Integration.WebApi
             using (var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>()))
             {
                 var client = srv.CreateClient();
-                GenerateAuthHeader(client, await GenerateTokenAsync());
+                GenerateAuthHeader(client, GenerateTestToken());
 
                 var resp = await client.PutAsJsonAsync("api/v1/Competencies.json", objA);
                 resp.EnsureSuccessStatusCode();
@@ -75,7 +75,7 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Integration.WebApi
             using (var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>()))
             {
                 var client = srv.CreateClient();
-                GenerateAuthHeader(client, await GenerateTokenAsync());
+                GenerateAuthHeader(client, GenerateTestToken());
 
                 var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", new CompetencyInsertRequest(objA));
                 resp.EnsureSuccessStatusCode();
@@ -111,7 +111,7 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Integration.WebApi
             using (var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>()))
             {
                 var client = srv.CreateClient();
-                GenerateAuthHeader(client, await GenerateTokenAsync());
+                GenerateAuthHeader(client, GenerateTestToken());
 
                 var resp = await client.PostAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
                 Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
@@ -132,7 +132,7 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Integration.WebApi
             using (var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>()))
             {
                 var client = srv.CreateClient();
-                GenerateAuthHeader(client, await GenerateTokenAsync());
+                GenerateAuthHeader(client, GenerateTestToken());
 
                 var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", new CompetencyInsertRequest(objA));
                 resp.EnsureSuccessStatusCode();
@@ -155,7 +155,7 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Integration.WebApi
             using (var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>()))
             {
                 var client = srv.CreateClient();
-                GenerateAuthHeader(client, await GenerateTokenAsync());
+                GenerateAuthHeader(client, GenerateTestToken());
                 //Delete
                 var resp = await client.DeleteAsync($"api/v1/Competencies.json?id={Guid.NewGuid()}");
                 Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);

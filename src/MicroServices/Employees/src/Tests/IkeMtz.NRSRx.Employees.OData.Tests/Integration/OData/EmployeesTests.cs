@@ -19,7 +19,7 @@ namespace IkeMtz.NRSRx.Employees.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, await GenerateTokenAsync());
+      GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$count=true");
       TestContext.WriteLine($"Server Reponse: {resp}");
@@ -39,7 +39,7 @@ namespace IkeMtz.NRSRx.Employees.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, await GenerateTokenAsync());
+      GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$count=true&$expand=Certifications");
       TestContext.WriteLine($"Server Reponse: {resp}");

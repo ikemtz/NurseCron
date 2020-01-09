@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.Certifications.Tests.Integration.OData
@@ -20,7 +21,7 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, await GenerateTokenAsync());
+      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
 
       var resp = await client.GetStringAsync("odata/v1/Certifications?$count=true");
       TestContext.WriteLine($"Server Reponse: {resp}");
@@ -41,7 +42,7 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, await GenerateTokenAsync());
+      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
 
       var resp = await client.GetAsync("odata/v1/certifications?$select=id&top=1&$count=true");
 
@@ -56,7 +57,7 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, await GenerateTokenAsync());
+      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
 
       var resp = await client.GetAsync("odata/v1/certifications?filter=createdOnUtc%20gt%202019-01-02T00%3A00%3A00Z&$top=1&$count=true");
 
@@ -65,7 +66,7 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Integration.OData
 
       Assert.IsTrue(Math.Max(1, objB.Value.Count()) <= 1);
 
-      Assert.AreEqual(DateTime.UtcNow.Year, objB.Value.FirstOrDefault()?.CreatedOnUtc.Year);
+      Assert.IsTrue(2019 <= objB.Value.FirstOrDefault()?.CreatedOnUtc.Year);
     }
   }
 }

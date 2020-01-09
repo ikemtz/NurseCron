@@ -19,7 +19,7 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, await GenerateTokenAsync());
+      GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.GetStringAsync($"odata/v1/{nameof(Competencies)}?$count=true");
       TestContext.WriteLine($"Server Reponse: {resp}");
