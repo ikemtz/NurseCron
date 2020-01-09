@@ -1,0 +1,10 @@
+**/obj/**
+**/obj
+**/*.Tests.WebApi/**
+**/*.Tests.OData/**
+**/*.cs
+**/*.sql
+**/node_modules/**
+**/*.Orchestration.*/**
+**/*.jfm
+**/*.dbmdl

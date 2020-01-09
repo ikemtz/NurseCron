@@ -14,7 +14,6 @@ LABEL author="@IkeMtz"
 ENV SA_PASSWORD=SqlDockerRocks123! \
     ACCEPT_EULA=Y
 EXPOSE 1433
-COPY --from=sql-temp /var/opt/mssql/data/emplDb_Primary.ldf /var/opt/mssql/data/emplDb_Primary.ldf
-COPY --from=sql-temp /var/opt/mssql/data/emplDb_Primary.mdf /var/opt/mssql/data/emplDb_Primary.mdf
-RUN /opt/mssql/bin/sqlservr & sleep 20 \
-    && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P SqlDockerRocks123! -d Master -Q "CREATE DATABASE[emplDb]ON(FILENAME='/var/opt/mssql/data/emplDb_Primary.mdf'),(FILENAME='/var/opt/mssql/data/emplDb_Primary.ldf')FOR ATTACH"
+
+COPY --from=sql-temp /var/opt/mssql/data/*.ldf /var/opt/mssql/data/
+COPY --from=sql-temp /var/opt/mssql/data/*.mdf /var/opt/mssql/data/

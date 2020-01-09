@@ -121,6 +121,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		MicroServices\artifact-ci-cd-scripts.ps1 = MicroServices\artifact-ci-cd-scripts.ps1
 		MicroServices\artifact-dacpacs.ps1 = MicroServices\artifact-dacpacs.ps1
 		..\coverage-converter.ps1 = ..\coverage-converter.ps1
+		MicroServices\DB.Dockerfile = MicroServices\DB.Dockerfile
 		..\docker-compose.yml = ..\docker-compose.yml
 		docker-compose.yml = docker-compose.yml
 		..\LICENSE = ..\LICENSE
