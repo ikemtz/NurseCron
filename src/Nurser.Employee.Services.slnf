@@ -1,0 +1,13 @@
+{
+  "solution": {
+    "path": "Nurser.Services.sln",
+    "projects": [
+      "MicroServices\\Employees\\src\\IkeMtz.NRSRx.Employees.Abstraction\\IkeMtz.NRSRx.Employees.Abstraction.csproj",
+      "MicroServices\\Employees\\src\\IkeMtz.NRSRx.Employees.DB\\IkeMtz.NRSRx.Employees.DB.sqlproj",
+      "MicroServices\\Employees\\src\\IkeMtz.NRSRx.Employees.OData\\IkeMtz.NRSRx.Employees.OData.csproj",
+      "MicroServices\\Employees\\src\\IkeMtz.NRSRx.Employees.WebApi\\IkeMtz.NRSRx.Employees.WebApi.csproj",
+      "MicroServices\\Employees\\src\\Tests\\IkeMtz.NRSRx.Employees.OData.Tests\\IkeMtz.NRSRx.Employees.OData.Tests.csproj",
+      "MicroServices\\Employees\\src\\Tests\\IkeMtz.NRSRx.Employees.WebApi.Tests\\IkeMtz.NRSRx.Employees.WebApi.Tests.csproj"
+    ]
+  }
+}
