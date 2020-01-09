@@ -4,7 +4,7 @@ ENV SA_PASSWORD=SqlDockerRocks123! \
 
 COPY /IkeMtz.NRSRx.Certifications.DB.dacpac /dacpac/db.dacpac
 RUN /opt/mssql/bin/sqlservr & sleep 20 \
-    && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/db.dacpac /TargetDatabaseName:certDb /p:BlockOnPossibleDataLoss=false \
+    && /opt/mssql-tools/bin/sqlpackage/sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/db.dacpac /TargetDatabaseName:certDb /p:BlockOnPossibleDataLoss=false \
     && sleep 20 \
     && pkill sqlservr && sleep 10 \
     && rm -rf /dacpac
