@@ -4,7 +4,7 @@ ENV SA_PASSWORD=SqlDockerRocks123! \
 
 COPY /bin/Debug/IkeMtz.NRSRx.HealthItems.DB.dacpac /dacpac/db.dacpac
 RUN /opt/mssql/bin/sqlservr & sleep 20 \
-    && dotnet /opt/mssql-tools/bin/sqlpackage/sqlpackage.dll /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/db.dacpac /TargetDatabaseName:hlthDb /p:BlockOnPossibleDataLoss=false \
+    && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/db.dacpac /TargetDatabaseName:hlthDb /p:BlockOnPossibleDataLoss=false \
     && sleep 20 \
     && pkill sqlservr && sleep 10 \
     && rm -rf /dacpac
