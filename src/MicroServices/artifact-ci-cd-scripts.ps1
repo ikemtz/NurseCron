@@ -24,6 +24,6 @@ Copy-Item "$($_.FullName)" "$($artifactFolder)\$($_.Name)" -Recurse -Verbose -Fo
 
 Get-ChildItem $sourceFolder -Filter *.CiCd -Directory -Recurse | 
 Foreach-Object { 
-Write-Host "Shell Script: $($_.FullName)";
+Write-Host "Common CiCd Target Folder: $($_.FullName)";
 Copy-Item "$sourceFolder\Common.CiCd\*" "$($_.FullName)\" -Verbose -Force;
 }
