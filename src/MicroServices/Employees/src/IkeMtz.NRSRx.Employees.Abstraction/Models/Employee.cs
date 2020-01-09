@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace IkeMtz.NRSRx.Employees.Models
@@ -24,8 +24,8 @@ namespace IkeMtz.NRSRx.Employees.Models
         public DateTimeOffset CreatedOnUtc { get; set; }
         public DateTimeOffset? UpdatedOnUtc { get; set; }
         public virtual ICollection<EmployeeCertification> Certifications { get; set; }
-        public virtual ICollection<Competency> Competencies { get; set; }
-        public virtual ICollection<HealthItem> HealthItems { get; set; }
+        public virtual ICollection<EmployeeCompetency> Competencies { get; set; }
+        public virtual ICollection<EmployeeHealthItem> HealthItems { get; set; }
         public Guid Id { get; set; }
     }
 }

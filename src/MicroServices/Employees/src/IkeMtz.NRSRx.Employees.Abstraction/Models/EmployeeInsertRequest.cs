@@ -37,8 +37,8 @@ namespace IkeMtz.NRSRx.Employees.Models
         public string Email { get; set; }
         public ICollection<EmployeeCertification> Certifications { get; set; }
 
-        public ICollection<Competency> Competencies { get; set; }
-        public ICollection<HealthItem> HealthItems { get; set; }
+        public ICollection<EmployeeCompetency> Competencies { get; set; }
+        public ICollection<EmployeeHealthItem> HealthItems { get; set; }
         public DateTime? HireDate { get; set; }
         public string AddressLine1 { get; set; }
         public string City { get; set; }

@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [dbo].[EmployeeCertifications]
 (
-	[Id] INT IDENTITY(1,1)  NOT NULL PRIMARY KEY,
-    [EmployeeId] UNIQUEIDENTIFIER NOT NULL,    
-    [CertificationId] UNIQUEIDENTIFIER NOT NULL,    
-    [CertificationName] NVARCHAR(250) NOT NULL, 
+    [Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    [EmployeeId] UNIQUEIDENTIFIER NOT NULL,
+    [CertificationId] UNIQUEIDENTIFIER NOT NULL,
+    [CertificationName] NVARCHAR(250) NOT NULL,
     [ExpiresOnUtc] DATETIMEOFFSET NULL,
 )
 GO

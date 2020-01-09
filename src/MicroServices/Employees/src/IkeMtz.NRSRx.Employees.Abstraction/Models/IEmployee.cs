@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Core.Models;
+using IkeMtz.NRSRx.Core.Models;
 using System.Collections.Generic;
 
 namespace IkeMtz.NRSRx.Employees.Models
@@ -16,7 +16,7 @@ namespace IkeMtz.NRSRx.Employees.Models
         string Zip { get; set; }
         string Photo { get; set; }
         ICollection<EmployeeCertification> Certifications { get; set; }
-        ICollection<Competency> Competencies { get; set; }
-        ICollection<HealthItem> HealthItems { get; set; }
+        ICollection<EmployeeCompetency> Competencies { get; set; }
+        ICollection<EmployeeHealthItem> HealthItems { get; set; }
     }
 }

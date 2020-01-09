@@ -1,5 +1,6 @@
 FROM ikemtz/sql_dacpac:latest as sql-temp
-ENV SA_PASSWORD=SqlDockerRocks123!
+ENV SA_PASSWORD=SqlDockerRocks123! \
+    ACCEPT_EULA=Y
 
 #Copy dacpacs
 COPY /Certifications/src/IkeMtz.NRSRx.Certifications.DB/bin/Debug/IkeMtz.NRSRx.Certifications.DB.dacpac /dacpac/certDb.dacpac
@@ -21,8 +22,8 @@ RUN /opt/mssql/bin/sqlservr & sleep 20 \
 
 FROM mcr.microsoft.com/mssql/server
 LABEL author="@IkeMtz"
-ENV ACCEPT_EULA=Y
-ENV SA_PASSWORD=SqlDockerRocks123!
+ENV SA_PASSWORD=SqlDockerRocks123! \
+    ACCEPT_EULA=Y
 EXPOSE 1433
 COPY --from=sql-temp /var/opt/mssql/data/NRSRx_Primary.ldf /var/opt/mssql/data/NRSRx_Primary.ldf
 COPY --from=sql-temp /var/opt/mssql/data/NRSRx_Primary.mdf /var/opt/mssql/data/NRSRx_Primary.mdf

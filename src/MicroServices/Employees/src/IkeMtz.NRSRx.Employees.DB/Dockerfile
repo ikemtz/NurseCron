@@ -1,5 +1,6 @@
 FROM ikemtz/sql_dacpac:latest as sql-temp
-ENV SA_PASSWORD=SqlDockerRocks123!
+ENV SA_PASSWORD=SqlDockerRocks123! \
+    ACCEPT_EULA=Y
 
 COPY /bin/Debug/IkeMtz.NRSRx.Employees.DB.dacpac /dacpac/db.dacpac
 COPY /LocalPublish.publish.xml /dacpac/pub.xml

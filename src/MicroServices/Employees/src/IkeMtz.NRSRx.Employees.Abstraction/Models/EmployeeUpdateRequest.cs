@@ -47,8 +47,8 @@ namespace IkeMtz.NRSRx.Employees.Models
         public DateTime? BirthDate { get; set; }
         public ICollection<EmployeeCertification> Certifications { get; set; }
 
-        public ICollection<Competency> Competencies { get; set; }
-        public ICollection<HealthItem> HealthItems { get; set; }
+        public ICollection<EmployeeCompetency> Competencies { get; set; }
+        public ICollection<EmployeeHealthItem> HealthItems { get; set; }
         public DateTime? FireDate { get; set; }
         public bool IsEnabled { get; set; }
 
