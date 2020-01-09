@@ -157,13 +157,6 @@ if [ -z $connectionString ]; then
     alterLoginQuery="ALTER LOGIN $newSqlUserName WITH PASSWORD='$newSqlPass'"
     createUserQuery="CREATE USER $newSqlUserName FOR LOGIN $newSqlUserName WITH DEFAULT_SCHEMA = dbo"
     addRoleQuery="EXEC sp_addrolemember 'db_datareader', '$newSqlUserName'"
-    
-    echo Getting external IP Address
-    export ipAddress=$(curl https://ipinfo.io/ip)
-    
-    echo IP Address is: $ipAddress
-    az sql server firewall-rule create --resource-group $sqlRgName --server $sqlSrvName -n "$0 Automation Script -Delete" --start-ip-address $ipAddress --end-ip-address $ipAddress
-    az sql server firewall-rule create --resource-group $sqlRgName --server $sqlSrvName -n "Azure Resources" --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 
     echo 'Creating SQL User'
     sqlcmd -S $sqlSrvName.database.windows.net -U $sqlAdminUser -P $sqlAdminPass -Q "$createLoginQuery"
@@ -183,3 +176,5 @@ if [ -z $connectionString ]; then
 else
     echo 'Skipping SQL User creation'
 fi
+
+bash ./restart-web-app.sh

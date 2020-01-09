@@ -33,8 +33,9 @@ export identityProvider="https://nrsrx-demo.auth0.com/"
 export serviceBusRgName=$envUpper"-Nurser"
 export serviceBusNamespace=$envLower"-sb-core-nrsr"
 
-# Service specific
-export entityName="Certification"
+# Service specific 
+export entityTypes=( "Certification" )
+export eventTypes=( "Created" "Updated" "Deleted" )
 export swaggerClientId="pIvS9gx3454OZZPkJ5xEUPtht0vcq4vw"
 export swaggerAudience=$envUpper"-CrtA"
 export validAudiences="$envUpper-Nurser,$swaggerAudience"
@@ -160,13 +161,6 @@ if [ -z $connectionString ]; then
     createUserQuery="CREATE USER $newSqlUserName FOR LOGIN $newSqlUserName WITH DEFAULT_SCHEMA = dbo"
     addReaderRoleQuery="EXEC sp_addrolemember 'db_datareader', '$newSqlUserName'"
     addWriterRoleQuery="EXEC sp_addrolemember 'db_datawriter', '$newSqlUserName'"
-        
-    echo Getting external IP Address
-    export ipAddress=$(curl https://ipinfo.io/ip)
-    
-    echo IP Address is: $ipAddress
-    az sql server firewall-rule create --resource-group $sqlRgName --server $sqlSrvName -n "$0 Automation Script -Delete" --start-ip-address $ipAddress --end-ip-address $ipAddress
-    az sql server firewall-rule create --resource-group $sqlRgName --server $sqlSrvName -n "Azure Resources" --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 
     echo 'Creating SQL User'
     sqlcmd -S $sqlSrvName.database.windows.net -U $sqlAdminUser -P $sqlAdminPass -Q "$createLoginQuery"
@@ -188,52 +182,13 @@ else
     echo 'Skipping SQL User creation'
 fi
 
-echo Create ServiceBus Resource Group $serviceBusRgName
-export serviceBusRgId=$(az group create --location $location --name $serviceBusRgName | jq -r '. | .id')
-echo ServiceBus Resource Group Id: ${serviceBusRgId}
-echo
+bash ./service-bus-spin-up.sh
+for entity in "${entityTypes[@]}"
+do
+  for eventType in "${eventTypes[@]}"
+  do
+    bash ./service-bus-queue-publisher-spin-up.sh $entity $eventType
+  done
+done
 
-echo Create ServiceBus $serviceBusNamespace
-export serviceBusId=$(az servicebus namespace create --resource-group $serviceBusRgName --name $serviceBusNamespace --location $location --sku Basic | jq -r '. | .id')
-echo ServiceBus Id: ${serviceBusId}
-echo
-
-echo Creating ServiceBus Queues
-export createdQueueId=$(az servicebus queue create --name "$entityName-Created" \
-    --resource-group $serviceBusRgName \
-    --namespace-name $serviceBusNamespace \
-    --enable-dead-lettering-on-message-expiration true \
-    --max-size 5120 --default-message-time-to-live P14D \
-    | jq -r '. | .id')
-export updatedQueueId=$(az servicebus queue create --name "$entityName-Updated" \
-    --resource-group $serviceBusRgName \
-    --namespace-name $serviceBusNamespace \
-    --enable-dead-lettering-on-message-expiration true \
-    --max-size 5120 --default-message-time-to-live P14D \
-    | jq -r '. | .id')
-export deletedQueueId=$(az servicebus queue create --name "$entityName-Deleted" \
-    --resource-group $serviceBusRgName \
-    --namespace-name $serviceBusNamespace \
-    --enable-dead-lettering-on-message-expiration true \
-    --max-size 5120 --default-message-time-to-live P14D \
-    | jq -r '. | .id')
-echo Created Queue Id: $createdQueueId
-echo Updated Queue Id: $updatedQueueId
-echo Deleted Queue Id: $deletedQueueId
-echo
-
-export sbConnectionString=$(az webapp config appsettings list --resource-group $appsRgName --name $app1Name \
-    | jq '.[] | select(.name=="QueueConnectionString") | .value' \
-    | tr ' ' 'x')
-# This is necessary as to not blow away current credentials unnecessarily
-if [ -z $sbConnectionString ]; then
-    echo Creating ServiceBus Keys
-    export sbRuleId=$(az servicebus namespace authorization-rule create --resource-group $serviceBusRgName --namespace-name $serviceBusNamespace --name "$entityName-Publisher" --rights Send | jq -r '. | .id')
-    export sbConnectionString=$(az servicebus namespace authorization-rule keys list --resource-group $serviceBusRgName --namespace-name $serviceBusNamespace --name "$entityName-Publisher" | jq -r '. | .primaryConnectionString')
-
-    temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings QueueConnectionString="$sbConnectionString" | jq -r '.')
-    echo Creating ServiceBus Rule Id: ${sbRuleId}
-    echo
-else
-    echo Skipping creation of ServiceBus keys
-fi
+bash ./restart-web-app.sh

@@ -21,3 +21,9 @@ Foreach-Object {
 Write-Host "CI/CD Directory: $($_.Name)";
 Copy-Item "$($_.FullName)" "$($artifactFolder)\$($_.Name)" -Recurse -Verbose -Force;
 }
+
+Get-ChildItem $sourceFolder -Filter *.CiCd -Directory -Recurse | 
+Foreach-Object { 
+Write-Host "Shell Script: $($_.FullName)";
+Copy-Item "$sourceFolder\Common.CiCd\*" "$($_.FullName)\" -Verbose -Force;
+}
