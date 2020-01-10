@@ -1,10 +1,11 @@
-﻿using IkeMtz.NRSRx.Core.WebApi;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Employees.Models;
 using IkeMtz.NRSRx.Employees.WebApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace IkeMtz.NRSRx.Employees.WebApi
 {
@@ -22,11 +23,13 @@ namespace IkeMtz.NRSRx.Employees.WebApi
       services.AddScoped<IEmployeesContext, EmployeesContext>();
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupPublishers(IServiceCollection services)
     {
       services.AddServiceBusQueuePublishers<Employee>();
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services

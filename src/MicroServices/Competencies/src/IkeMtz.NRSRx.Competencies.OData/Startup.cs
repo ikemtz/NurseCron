@@ -1,10 +1,11 @@
-﻿using IkeMtz.NRSRx.Competencies.Abstraction.Models;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using IkeMtz.NRSRx.Competencies.Abstraction.Models;
 using IkeMtz.NRSRx.Competencies.OData.Data;
 using IkeMtz.NRSRx.Core.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace IkeMtz.NRSRx.Competencies.OData
 {
@@ -16,6 +17,7 @@ namespace IkeMtz.NRSRx.Competencies.OData
     {
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services

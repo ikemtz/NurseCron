@@ -1,10 +1,11 @@
-﻿using IkeMtz.NRSRx.Core.WebApi;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.HealthItems.Models;
 using IkeMtz.NRSRx.HealthItems.WebApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace IkeMtz.NRSRx.HealthItems.WebApi
 {
@@ -17,6 +18,7 @@ namespace IkeMtz.NRSRx.HealthItems.WebApi
     {
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services
@@ -29,6 +31,7 @@ namespace IkeMtz.NRSRx.HealthItems.WebApi
       services.AddScoped<IHealthItemsContext, HealthItemsContext>();
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupPublishers(IServiceCollection services)
     {
       services.AddServiceBusQueuePublishers<HealthItem>();

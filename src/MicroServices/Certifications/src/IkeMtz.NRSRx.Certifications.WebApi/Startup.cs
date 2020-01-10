@@ -1,10 +1,11 @@
-﻿using IkeMtz.NRSRx.Certifications.Abstraction.Models;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using IkeMtz.NRSRx.Certifications.Abstraction.Models;
 using IkeMtz.NRSRx.Certifications.WebApi.Data;
 using IkeMtz.NRSRx.Core.WebApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace IkeMtz.NRSRx.Certifications.WebApi
 {
@@ -22,11 +23,13 @@ namespace IkeMtz.NRSRx.Certifications.WebApi
       services.AddScoped<ICertificationsContext, CertificationsContext>();
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupPublishers(IServiceCollection services)
     {
       services.AddServiceBusQueuePublishers<Certification>();
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services

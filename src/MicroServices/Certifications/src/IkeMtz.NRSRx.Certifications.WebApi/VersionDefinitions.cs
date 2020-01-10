@@ -1,5 +1,6 @@
 using IkeMtz.NRSRx.Core.Web;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace IkeMtz.NRSRx.Certifications
 {
@@ -7,6 +8,7 @@ namespace IkeMtz.NRSRx.Certifications
   {
     public const string V1_0 = "1.0";
 
+    [ExcludeFromCodeCoverage]
     public IEnumerable<string> Versions => new[] { V1_0 };
   }
 }

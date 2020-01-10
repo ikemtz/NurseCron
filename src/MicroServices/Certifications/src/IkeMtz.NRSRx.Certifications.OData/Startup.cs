@@ -1,10 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using IkeMtz.NRSRx.Certifications.Abstraction.Models;
 using IkeMtz.NRSRx.Certifications.OData.Data;
 using IkeMtz.NRSRx.Core.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace IkeMtz.NRSRx.Certifications.OData
 {
@@ -22,6 +23,7 @@ namespace IkeMtz.NRSRx.Certifications.OData
       services.AddScoped<ICertificationsContext, CertificationsContext>();
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services

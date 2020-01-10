@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using IkeMtz.NRSRx.Competencies.Abstraction.Models;
 using IkeMtz.NRSRx.Competencies.WebApi.Data;
@@ -16,6 +17,7 @@ namespace IkeMtz.NRSRx.Competencies.WebApi
     {
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services
@@ -28,6 +30,7 @@ namespace IkeMtz.NRSRx.Competencies.WebApi
       services.AddScoped<ICompetenciesContext, CompetenciesContext>();
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupPublishers(IServiceCollection services)
     {
       services.AddServiceBusQueuePublishers<Competency>();

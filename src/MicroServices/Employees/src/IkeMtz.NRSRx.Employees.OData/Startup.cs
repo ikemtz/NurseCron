@@ -1,10 +1,11 @@
-﻿using IkeMtz.NRSRx.Core.OData;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using IkeMtz.NRSRx.Core.OData;
 using IkeMtz.NRSRx.Employees.Models;
 using IkeMtz.NRSRx.Employees.OData.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace IkeMtz.NRSRx.Employees.OData
 {
@@ -22,6 +23,7 @@ namespace IkeMtz.NRSRx.Employees.OData
       services.AddScoped<IEmployeesContext, EmployeesContext>();
     }
 
+    [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services
