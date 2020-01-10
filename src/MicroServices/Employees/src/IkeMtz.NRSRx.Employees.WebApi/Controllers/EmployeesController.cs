@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace IkeMtz.NRSRx.Employees.WebApi.Controllers
 {
   [Route("api/v{version:apiVersion}/[controller].{format}"), FormatFilter]
-  [ApiVersion(ApiVersionDefinitions.v1_0)]
+  [ApiVersion(VersionDefinitions.V1_0)]
   [ApiController]
   public class EmployeesController : ControllerBase
   {

@@ -11,7 +11,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace IkeMtz.NRSRx.HealthItems.OData.Controllers.V1
 {
-  [ApiVersion(VersionDefinitions.v1_0)]
+  [ApiVersion(VersionDefinitions.V1_0)]
   [Authorize]
   [ODataRoutePrefix(nameof(HealthItems))]
   public class HealthItemsController : ODataController

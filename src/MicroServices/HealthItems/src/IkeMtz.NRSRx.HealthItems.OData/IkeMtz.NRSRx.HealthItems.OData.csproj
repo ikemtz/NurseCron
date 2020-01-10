@@ -24,6 +24,9 @@
     <None Remove="Dockerfile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\IkeMtz.NRSRx.HealthItems.WebApi\VersionDefinitions.cs" Link="VersionDefinitions.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Dockerfile" />
   </ItemGroup>
   <ItemGroup>

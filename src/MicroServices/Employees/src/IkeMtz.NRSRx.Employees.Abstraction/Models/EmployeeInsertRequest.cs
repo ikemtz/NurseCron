@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,25 +8,6 @@ namespace IkeMtz.NRSRx.Employees.Models
   {
     public EmployeeInsertRequest()
     {
-    }
-
-    public EmployeeInsertRequest(Employee value)
-    {
-      this.FirstName = value.FirstName;
-      this.LastName = value.LastName;
-      this.Email = value.Email;
-      this.Certifications = value.Certifications;
-      this.Competencies = value.Competencies;
-      this.HealthItems = value.HealthItems;
-      this.BirthDate = value.BirthDate;
-      this.HireDate = value.HireDate;
-      this.AddressLine1 = value.AddressLine1;
-      this.City = value.City;
-      this.State = value.State;
-      this.Zip = value.Zip;
-      this.HomePhone = value.HomePhone;
-      this.MobilePhone = value.MobilePhone;
-      this.Photo = value.Photo;
     }
 
     [Required]

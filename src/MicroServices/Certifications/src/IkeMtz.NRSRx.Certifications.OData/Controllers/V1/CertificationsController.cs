@@ -12,7 +12,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace IkeMtz.NRSRx.Certifications.OData.Controllers.V1
 {
-  [ApiVersion(VersionDefinitions.v1_0)]
+  [ApiVersion(VersionDefinitions.V1_0)]
   [Authorize]
   [ODataRoutePrefix(nameof(Certifications))]
   public class CertificationsController : ODataController

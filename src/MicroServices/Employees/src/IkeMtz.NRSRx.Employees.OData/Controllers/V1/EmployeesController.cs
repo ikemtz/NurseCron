@@ -12,7 +12,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 namespace IkeMtz.NRSRx.Employees.OData.Controllers.V1
 {
   //TODO: Need to re-add Authorize attribute
-  [ApiVersion(VersionDefinitions.v1_0)]
+  [ApiVersion(VersionDefinitions.V1_0)]
   [ODataRoutePrefix(nameof(Employees))]
   public class EmployeesController : ODataController
   {

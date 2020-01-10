@@ -68,6 +68,11 @@ jobs:
         sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
         # sonar.branch.name=$(Build.SourceBranch)
 
+  - task: VSBuild@1
+    displayName: 'Build solution DB Project'
+    inputs:
+      solution: src/MicroServices/$(DomainName)/**.sqlproj
+
   - task: DotNetCoreCLI@2
     displayName: Build
     inputs:
@@ -129,7 +134,16 @@ jobs:
     displayName: 'Publish Artifact: ApiDrop'
     inputs:
       ArtifactName: ApiDrop
-trigger: none
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/MicroServices/$(DomainName)/*
+
 pr:
   branches:
     include:

@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 namespace IkeMtz.NRSRx.Competencies.WebApi.V1.Controllers
 {
   [Route("api/v{version:apiVersion}/[controller].{format}"), FormatFilter]
-  [ApiVersion(ApiVersionDefinitions.v1_0)]
+  [ApiVersion(VersionDefinitions.V1_0)]
   [ApiController]
   public class CompetenciesController : ControllerBase
   {
