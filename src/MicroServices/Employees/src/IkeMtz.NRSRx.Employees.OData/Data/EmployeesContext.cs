@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Employees.Models;
+using IkeMtz.NRSRx.Employees.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace IkeMtz.NRSRx.Employees.OData.Data
@@ -13,5 +13,9 @@ namespace IkeMtz.NRSRx.Employees.OData.Data
     public virtual DbSet<Employee> Employees { get; set; }
 
     public virtual DbSet<EmployeeCertification> EmployeeCertifications { get; set; }
+
+    public virtual DbSet<EmployeeCompetency> EmployeeCompetencies { get; set; }
+
+    public virtual DbSet<EmployeeHealthItem> EmployeeHealthItems { get; set; }
   }
 }

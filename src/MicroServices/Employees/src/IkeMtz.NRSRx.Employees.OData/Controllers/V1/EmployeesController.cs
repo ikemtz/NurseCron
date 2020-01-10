@@ -1,18 +1,18 @@
+using System.Linq;
 using IkeMtz.NRSRx.Core.Models;
 using IkeMtz.NRSRx.Employees.Models;
 using IkeMtz.NRSRx.Employees.OData.Data;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using static Microsoft.AspNet.OData.Query.AllowedQueryOptions;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace IkeMtz.NRSRx.Employees.OData.Controllers.V1
 {
+  //TODO: Need to re-add Authorize attribute
   [ApiVersion(VersionDefinitions.v1_0)]
-  [Authorize]
   [ODataRoutePrefix(nameof(Employees))]
   public class EmployeesController : ODataController
   {
@@ -27,9 +27,13 @@ namespace IkeMtz.NRSRx.Employees.OData.Controllers.V1
     [ODataRoute]
     [ProducesResponseType(typeof(ODataEnvelope<Employee>), Status200OK)]
     [EnableQuery(MaxTop = 100, AllowedQueryOptions = All)]
-    public IActionResult Get()
+    public IQueryable Get()
     {
-      return Ok(_ctx.Employees.Where(t => t.IsEnabled));
+      return _ctx.Employees
+        .Include(t => t.Certifications)
+        .Include(t => t.Competencies)
+        .Include(t => t.HealthItems)
+        .Where(t => t.IsEnabled);
     }
   }
 }
