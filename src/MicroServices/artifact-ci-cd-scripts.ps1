@@ -7,7 +7,7 @@ param (
 Get-ChildItem $sourceFolder -Filter *$domainName.CiCd -Directory -Recurse | 
 Foreach-Object { 
 Write-Host "Common CiCd Target Folder: $($_.FullName)";
-Copy-Item "$sourceFolder\Common.CiCd\*" "$($_.FullName)\" -Verbose -Force;
+Copy-Item "$sourceFolder\Common_CiCd\*" "$($_.FullName)\" -Verbose -Force;
 }
 
 Get-ChildItem $sourceFolder -Filter Docker*CI -Recurse | 
