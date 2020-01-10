@@ -9,20 +9,20 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration
 {
-    public class UnigrationWebApiTestStartup : CoreWebApiUnigrationTestStartup<Startup>
+  public class UnigrationWebApiTestStartup : CoreWebApiUnigrationTestStartup<Startup>
+  {
+    public UnigrationWebApiTestStartup(IConfiguration configuration) : base(new Startup(configuration))
     {
-        public UnigrationWebApiTestStartup(IConfiguration configuration) : base(new Startup(configuration))
-        {
-        }
-
-        public override void SetupDatabase(IServiceCollection services, string connectionString)
-        {
-            services.SetupTestDbContext<HealthItemsContext>();
-        }
-
-        public override void SetupPublishers(IServiceCollection services)
-        {
-            new PublisherIntegrationTester<HealthItem, Message>().RegisterDependencies(services);
-        }
     }
+
+    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    {
+      services.SetupTestDbContext<HealthItemsContext>();
+    }
+
+    public override void SetupPublishers(IServiceCollection services)
+    {
+      new PublisherIntegrationTester<HealthItem, Message>().RegisterDependencies(services);
+    }
+  }
 }

@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IkeMtz.NRSRx.HealthItems.OData.Configuration
 {
-    public class HealthItemConfiguration : IModelConfiguration
+  public class HealthItemConfiguration : IModelConfiguration
+  {
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
     {
-        public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
-        {
-            ODataConfigurationBuilder<HealthItem>.EntitySetBuilder(builder);
-        }
+      ODataConfigurationBuilder<HealthItem>.EntitySetBuilder(builder);
     }
+  }
 }

@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IkeMtz.NRSRx.Certifications.OData.Configuration
 {
-    public class CertificationConfiguration : IModelConfiguration
+  public class CertificationConfiguration : IModelConfiguration
+  {
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
     {
-        public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
-        {
-            ODataConfigurationBuilder<Certification>.EntitySetBuilder(builder);
-        }
+      ODataConfigurationBuilder<Certification>.EntitySetBuilder(builder);
     }
+  }
 }

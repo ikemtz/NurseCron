@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IkeMtz.NRSRx.Certifications.WebApi.Data
 {
-    public partial class CertificationsContext : AuditableDbContext, ICertificationsContext
+  public partial class CertificationsContext : AuditableDbContext, ICertificationsContext
+  {
+    public CertificationsContext(DbContextOptions<CertificationsContext> options, IHttpContextAccessor httpContextAccessor)
+        : base(options, httpContextAccessor)
     {
-        public CertificationsContext(DbContextOptions<CertificationsContext> options, IHttpContextAccessor httpContextAccessor)
-            : base(options, httpContextAccessor)
-        {
-        }
-
-        public virtual DbSet<Certification> Certifications { get; set; }
     }
+
+    public virtual DbSet<Certification> Certifications { get; set; }
+  }
 }

@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IkeMtz.NRSRx.HealthItems.OData.Data
 {
-    public partial class HealthItemsContext : DbContext, IHealthItemsContext
+  public partial class HealthItemsContext : DbContext, IHealthItemsContext
+  {
+    public HealthItemsContext(DbContextOptions<HealthItemsContext> options)
+        : base(options)
     {
-        public HealthItemsContext(DbContextOptions<HealthItemsContext> options)
-            : base(options)
-        {
-        }
-
-        public virtual DbSet<HealthItem> HealthItems { get; set; }
     }
+
+    public virtual DbSet<HealthItem> HealthItems { get; set; }
+  }
 }

@@ -1,9 +1,9 @@
-*.dbmdl
-*.jfm
-*.scmp
-
-*.sqlproj
-*.user
-
-\obj
+*.dbmdl 
+*.jfm 
+*.scmp 
+ 
+*.sqlproj 
+*.user 
+ 
+\obj 
 \dbo

@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IkeMtz.NRSRx.HealthItems.WebApi.Data
 {
-    public partial class HealthItemsContext : AuditableDbContext, IHealthItemsContext
+  public partial class HealthItemsContext : AuditableDbContext, IHealthItemsContext
+  {
+    public HealthItemsContext(DbContextOptions<HealthItemsContext> options, IHttpContextAccessor httpContextAccessor)
+        : base(options, httpContextAccessor)
     {
-        public HealthItemsContext(DbContextOptions<HealthItemsContext> options, IHttpContextAccessor httpContextAccessor)
-            : base(options, httpContextAccessor)
-        {
-        }
-
-        public virtual DbSet<HealthItem> HealthItems { get; set; }
     }
+
+    public virtual DbSet<HealthItem> HealthItems { get; set; }
+  }
 }

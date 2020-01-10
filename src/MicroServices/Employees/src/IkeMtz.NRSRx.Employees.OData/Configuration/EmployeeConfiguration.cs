@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IkeMtz.NRSRx.Employees.OData.Configuration
 {
-    public class EmployeeConfiguration : IModelConfiguration
+  public class EmployeeConfiguration : IModelConfiguration
+  {
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
     {
-        public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
-        {
-            ODataConfigurationBuilder<Employee>.EntitySetBuilder(builder);
-        }
+      ODataConfigurationBuilder<Employee>.EntitySetBuilder(builder);
     }
+  }
 }

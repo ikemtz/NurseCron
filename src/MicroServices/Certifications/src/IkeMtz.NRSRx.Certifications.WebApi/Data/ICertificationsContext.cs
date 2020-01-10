@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IkeMtz.NRSRx.Certifications.WebApi.Data
 {
-    public interface ICertificationsContext : IAuditableDbContext
-    {
-        DbSet<Certification> Certifications { get; set; }
-    }
+  public interface ICertificationsContext : IAuditableDbContext
+  {
+    DbSet<Certification> Certifications { get; set; }
+  }
 }

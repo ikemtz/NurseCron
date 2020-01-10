@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Threading.Tasks;
 using IkeMtz.NRSRx.Competencies.Abstraction.Models;
 using IkeMtz.NRSRx.Competencies.OData;
 using IkeMtz.NRSRx.Competencies.Tests.Unigration;
@@ -6,8 +8,6 @@ using IkeMtz.NRSRx.Core.Unigration;
 using IkeMtz.NRSRx.Core.Unigration.Swagger;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.OData
 {

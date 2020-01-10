@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Threading.Tasks;
 using IkeMtz.NRSRx.Competencies.Abstraction.Models;
 using IkeMtz.NRSRx.Competencies.OData;
 using IkeMtz.NRSRx.Core.Models;
@@ -5,8 +7,6 @@ using IkeMtz.NRSRx.Core.Unigration;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.Competencies.Tests.Integration.OData
 {

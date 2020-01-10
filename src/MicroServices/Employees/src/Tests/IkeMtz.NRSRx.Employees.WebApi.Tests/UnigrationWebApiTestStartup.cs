@@ -9,21 +9,21 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IkeMtz.NRSRx.Employees.Tests
 {
-    public class UnigrationWebApiTestStartup : CoreWebApiUnigrationTestStartup<Startup>
+  public class UnigrationWebApiTestStartup : CoreWebApiUnigrationTestStartup<Startup>
+  {
+    public UnigrationWebApiTestStartup(IConfiguration configuration) : base(new Startup(configuration))
     {
-        public UnigrationWebApiTestStartup(IConfiguration configuration) : base(new Startup(configuration))
-        {
-        }
-
-        public override void SetupDatabase(IServiceCollection services, string connectionString)
-        {
-            services.SetupTestDbContext<EmployeesContext>();
-        }
-
-        public override void SetupPublishers(IServiceCollection services)
-        {
-            var pubTester = new PublisherIntegrationTester<Employee, Message>();
-            pubTester.RegisterDependencies(services);
-        }
     }
+
+    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    {
+      services.SetupTestDbContext<EmployeesContext>();
+    }
+
+    public override void SetupPublishers(IServiceCollection services)
+    {
+      var pubTester = new PublisherIntegrationTester<Employee, Message>();
+      pubTester.RegisterDependencies(services);
+    }
+  }
 }

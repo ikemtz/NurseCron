@@ -8,25 +8,25 @@ using System.Reflection;
 
 namespace IkeMtz.NRSRx.HealthItems.OData
 {
-    public class Startup : CoreODataStartup
+  public class Startup : CoreODataStartup
+  {
+    public override string MicroServiceTitle => $"NRSRx {nameof(HealthItem)} OData Microservice";
+    public override Assembly StartupAssembly => typeof(Startup).Assembly;
+
+    public Startup(IConfiguration configuration) : base(configuration)
     {
-        public override string MicroServiceTitle => $"NRSRx {nameof(HealthItem)} OData Microservice";
-        public override Assembly StartupAssembly => typeof(Startup).Assembly;
-
-        public Startup(IConfiguration configuration) : base(configuration)
-        {
-        }
-
-        public override void SetupDatabase(IServiceCollection services, string connectionString)
-        {
-            services
-            .AddDbContext<HealthItemsContext>(x => x.UseSqlServer(connectionString))
-            .AddEntityFrameworkSqlServer();
-        }
-
-        public override void SetupMiscDependencies(IServiceCollection services)
-        {
-            services.AddScoped<IHealthItemsContext, HealthItemsContext>();
-        }
     }
+
+    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    {
+      services
+      .AddDbContext<HealthItemsContext>(x => x.UseSqlServer(connectionString))
+      .AddEntityFrameworkSqlServer();
+    }
+
+    public override void SetupMiscDependencies(IServiceCollection services)
+    {
+      services.AddScoped<IHealthItemsContext, HealthItemsContext>();
+    }
+  }
 }

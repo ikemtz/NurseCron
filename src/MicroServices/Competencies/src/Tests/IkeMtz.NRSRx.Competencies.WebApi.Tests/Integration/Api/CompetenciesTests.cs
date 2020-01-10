@@ -1,3 +1,6 @@
+using System;
+using System.Net;
+using System.Threading.Tasks;
 using IkeMtz.NRSRx.Competencies.Abstraction.Models;
 using IkeMtz.NRSRx.Competencies.WebApi;
 using IkeMtz.NRSRx.Competencies.WebApi.Data;
@@ -6,9 +9,6 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using System;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.Competencies.Tests.Integration.WebApi
 {

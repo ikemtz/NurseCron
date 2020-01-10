@@ -7,15 +7,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IkeMtz.NRSRx.Employees.Tests
 {
-    public class UnigrationODataTestStartup : CoreODataUnigrationTestStartup<Startup, EmployeeConfiguration>
+  public class UnigrationODataTestStartup : CoreODataUnigrationTestStartup<Startup, EmployeeConfiguration>
+  {
+    public UnigrationODataTestStartup(IConfiguration configuration) : base(new Startup(configuration))
     {
-        public UnigrationODataTestStartup(IConfiguration configuration) : base(new Startup(configuration))
-        {
-        }
-
-        public override void SetupDatabase(IServiceCollection services, string connectionString)
-        {
-            services.SetupTestDbContext<EmployeesContext>();
-        }
     }
+
+    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    {
+      services.SetupTestDbContext<EmployeesContext>();
+    }
+  }
 }

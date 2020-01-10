@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using IkeMtz.NRSRx.Core.Models;
 using IkeMtz.NRSRx.Core.Unigration;
 using IkeMtz.NRSRx.Employees.Models;
@@ -6,9 +9,6 @@ using IkeMtz.NRSRx.Employees.OData.Data;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.Employees.Tests.Unigration.OData
 {

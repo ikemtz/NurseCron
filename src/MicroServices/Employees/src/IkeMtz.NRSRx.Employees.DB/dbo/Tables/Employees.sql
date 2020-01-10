@@ -24,7 +24,6 @@
     CONSTRAINT [PK_Employees] PRIMARY KEY ([Id])
 );
 
-
 GO
 
 CREATE UNIQUE INDEX [UIX_Employees_Name] ON [dbo].[Employees] ([FirstName], [LastName])
