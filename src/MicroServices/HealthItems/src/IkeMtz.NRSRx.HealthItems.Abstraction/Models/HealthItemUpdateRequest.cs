@@ -1,20 +1,12 @@
-﻿using IkeMtz.NRSRx.Core.Models;
-using IkeMtz.NRSRx.Core.Models.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
+using IkeMtz.NRSRx.Core.Models;
+using IkeMtz.NRSRx.Core.Models.Validation;
 
 namespace IkeMtz.NRSRx.HealthItems.Models
 {
   public class HealthItemUpdateRequest : IIdentifiable
   {
-    public HealthItemUpdateRequest()
-    { }
-    public HealthItemUpdateRequest(HealthItem item)
-    {
-      Id = item.Id;
-      Name = item.Name;
-    }
-
     [RequiredNonDefault]
     public Guid Id { get; set; }
 

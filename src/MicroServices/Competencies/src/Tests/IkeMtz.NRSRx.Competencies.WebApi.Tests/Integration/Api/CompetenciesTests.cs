@@ -72,13 +72,13 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", new CompetencyInsertRequest(objA));
+      var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Competency>(resp);
 
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      resp = await client.PostAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", new CompetencyUpdateRequest(objA));
+      resp = await client.PostAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Competency>(resp);
 
@@ -125,7 +125,7 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", new CompetencyInsertRequest(objA));
+      var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Competency>(resp);
       //Delete 

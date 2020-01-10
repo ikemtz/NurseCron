@@ -1,15 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace IkeMtz.NRSRx.HealthItems.Models
 {
   public class HealthItemInsertRequest
   {
-    public HealthItemInsertRequest() { }
-    public HealthItemInsertRequest(HealthItem value)
-    {
-      this.Name = value.Name;
-    }
-
     [Required]
     public string Name { get; set; }
 

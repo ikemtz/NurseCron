@@ -139,7 +139,7 @@ namespace IkeMtz.NRSRx.Employees.Tests.Integration.Api
                         CertificationName  = Guid.NewGuid().ToString(),
                     }
                 };
-      resp = await client.PostAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", new EmployeeUpdateRequest(objA));
+      resp = await client.PostAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Employee>(resp);
 

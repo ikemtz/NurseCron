@@ -72,13 +72,13 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", new HealthItemInsertRequest(objA));
+      var resp = await client.PutAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<HealthItem>(resp);
 
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      resp = await client.PostAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", new HealthItemUpdateRequest(objA));
+      resp = await client.PostAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<HealthItem>(resp);
 
@@ -125,7 +125,7 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", new HealthItemInsertRequest(objA));
+      var resp = await client.PutAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<HealthItem>(resp);
       //Delete 

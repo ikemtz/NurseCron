@@ -7,14 +7,6 @@ namespace IkeMtz.NRSRx.Certifications.Abstraction.Models
 {
   public class CertificationUpdateRequest : IIdentifiable
   {
-    public CertificationUpdateRequest()
-    { }
-    public CertificationUpdateRequest(Certification cert)
-    {
-      Id = cert.Id;
-      Name = cert.Name;
-    }
-
     [RequiredNonDefault]
     public Guid Id { get; set; }
     [Required]

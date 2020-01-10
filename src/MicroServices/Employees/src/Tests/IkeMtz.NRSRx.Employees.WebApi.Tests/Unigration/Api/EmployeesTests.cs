@@ -84,7 +84,7 @@ namespace IkeMtz.NRSRx.Employees.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
       //Update
       objA.FirstName = Guid.NewGuid().ToString();
-      var resp = await client.PostAsJsonAsync($"api/v1/Employees.json?id={objA.Id}", new EmployeeUpdateRequest(objA));
+      var resp = await client.PostAsJsonAsync($"api/v1/Employees.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<Employee>(resp);
 
       Assert.AreEqual("Integration Tester", result.UpdatedBy);

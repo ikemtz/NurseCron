@@ -81,7 +81,7 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      var resp = await client.PostAsJsonAsync($"api/v1/certifications.json?id={objA.Id}", new CertificationUpdateRequest(objA));
+      var resp = await client.PostAsJsonAsync($"api/v1/certifications.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<Certification>(resp);
 
       Assert.AreEqual("Integration Tester", result.UpdatedBy);

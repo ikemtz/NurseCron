@@ -1,34 +1,13 @@
-﻿using IkeMtz.NRSRx.Core.Models;
-using IkeMtz.NRSRx.Core.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using IkeMtz.NRSRx.Core.Models;
+using IkeMtz.NRSRx.Core.Models.Validation;
 
 namespace IkeMtz.NRSRx.Employees.Models
 {
   public class EmployeeUpdateRequest : IIdentifiable
   {
-    public EmployeeUpdateRequest()
-    { }
-    public EmployeeUpdateRequest(Employee value)
-    {
-      this.Id = value.Id;
-      this.FirstName = value.FirstName;
-      this.LastName = value.LastName;
-      this.Email = value.Email;
-      this.Certifications = value.Certifications;
-      this.Competencies = value.Competencies;
-      this.HealthItems = value.HealthItems;
-      this.BirthDate = value.BirthDate;
-      this.HireDate = value.HireDate;
-      this.AddressLine1 = value.AddressLine1;
-      this.City = value.City;
-      this.State = value.State;
-      this.Zip = value.Zip;
-      this.HomePhone = value.HomePhone;
-      this.MobilePhone = value.MobilePhone;
-      this.Photo = value.Photo;
-    }
     [RequiredNonDefault]
     public Guid Id { get; set; }
     [Required]

@@ -76,13 +76,13 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Integration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/Certifications.json?id={objA.Id}", new CertificationInsertRequest(objA));
+      var resp = await client.PutAsJsonAsync($"api/v1/Certifications.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Certification>(resp);
 
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      resp = await client.PostAsJsonAsync($"api/v1/Certifications.json?id={objA.Id}", new CertificationUpdateRequest(objA));
+      resp = await client.PostAsJsonAsync($"api/v1/Certifications.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Certification>(resp);
 
@@ -131,7 +131,7 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Integration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/Certifications.json?id={objA.Id}", new CertificationInsertRequest(objA));
+      var resp = await client.PutAsJsonAsync($"api/v1/Certifications.json?id={objA.Id}", objA);
       resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Certification>(resp);
       //Delete 

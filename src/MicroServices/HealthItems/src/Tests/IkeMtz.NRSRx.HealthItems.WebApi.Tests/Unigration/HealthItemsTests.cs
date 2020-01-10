@@ -80,7 +80,7 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      var resp = await client.PostAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", new HealthItemUpdateRequest(objA));
+      var resp = await client.PostAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<HealthItem>(resp);
 
       Assert.AreEqual("Integration Tester", result.UpdatedBy);
