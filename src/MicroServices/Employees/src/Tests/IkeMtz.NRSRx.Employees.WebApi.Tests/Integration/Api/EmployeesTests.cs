@@ -41,19 +41,47 @@ namespace IkeMtz.NRSRx.Employees.Tests.Integration.Api
         FirstName = Guid.NewGuid().ToString(),
         LastName = Guid.NewGuid().ToString(),
         Email = $"{Guid.NewGuid()}@email.com",
-        Certifications = new EmployeeCertification[] {
-                    new EmployeeCertification()
+        Certifications = new[] {
+                    new EmployeeCertification
                     {
                         CertificationId = Guid.NewGuid(),
                         CertificationName  = Guid.NewGuid().ToString(),
                     },
-                     new EmployeeCertification()
+                     new EmployeeCertification
                     {
                         CertificationId = Guid.NewGuid(),
                         CertificationName  = Guid.NewGuid().ToString(),
-                        ExpiresOnUtc = DateTime.UtcNow.AddDays(14)
+                        ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
                     },
-                }
+                },
+        Competencies = new[] {
+                    new EmployeeCompetency
+                    {
+                        CompetencyId = Guid.NewGuid(),
+                        CompetencyName  = Guid.NewGuid().ToString(),
+                    },
+                     new EmployeeCompetency
+                    {
+                        CompetencyId = Guid.NewGuid(),
+                        CompetencyName  = Guid.NewGuid().ToString(),
+                        ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
+                        IsEnabled = true
+                    },
+                },
+        HealthItems = new[] {
+                    new EmployeeHealthItem
+                    {
+                        HealthItemId = Guid.NewGuid(),
+                        HealthItemName  = Guid.NewGuid().ToString(),
+                    },
+                     new EmployeeHealthItem
+                    {
+                        HealthItemId = Guid.NewGuid(),
+                        HealthItemName  = Guid.NewGuid().ToString(),
+                        ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
+                        IsEnabled = true
+                    },
+                },
       };
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>());
       var client = srv.CreateClient();
