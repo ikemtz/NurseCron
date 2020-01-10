@@ -5,6 +5,7 @@ CREATE TABLE [dbo].[EmployeeHealthItems]
     [HealthItemId] UNIQUEIDENTIFIER NOT NULL,
     [HealthItemName] NVARCHAR(250) NOT NULL,
     [ExpiresOnUtc] DATETIMEOFFSET NULL,
+    [IsEnabled] BIT NOT NULL, 
 )
 GO
 

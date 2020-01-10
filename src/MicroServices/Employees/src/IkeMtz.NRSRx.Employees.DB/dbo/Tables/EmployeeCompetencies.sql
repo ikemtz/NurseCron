@@ -5,6 +5,7 @@ CREATE TABLE [dbo].[EmployeeCompetencies]
     [CompetencyId] UNIQUEIDENTIFIER NOT NULL,
     [CompetencyName] NVARCHAR(250) NOT NULL,
     [ExpiresOnUtc] DATETIMEOFFSET NULL,
+    [IsEnabled] BIT NOT NULL, 
 )
 GO
 

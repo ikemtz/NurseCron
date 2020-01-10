@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Core.EntityFramework;
+using IkeMtz.NRSRx.Core.EntityFramework;
 using IkeMtz.NRSRx.Employees.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +17,8 @@ namespace IkeMtz.NRSRx.Employees.WebApi.Data
 
     public virtual DbSet<EmployeeCertification> EmployeeCertifications { get; set; }
 
+    public virtual DbSet<EmployeeCompetency> EmployeeCompetencies { get; set; }
 
-
+    public virtual DbSet<EmployeeHealthItem> EmployeeHealthItems { get; set; }
   }
 }
