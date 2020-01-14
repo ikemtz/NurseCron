@@ -22,7 +22,7 @@ namespace IkeMtz.NRSRx.HealthItems.OData
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services
-      .AddDbContext<HealthItemsContext>(x => x.UseSqlServer(connectionString))
+      .AddDbContextPool<HealthItemsContext>(x => x.UseSqlServer(connectionString))
       .AddEntityFrameworkSqlServer();
     }
 

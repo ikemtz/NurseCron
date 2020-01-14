@@ -27,7 +27,7 @@ namespace IkeMtz.NRSRx.Employees.OData
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services
-      .AddDbContext<EmployeesContext>(x => x.UseSqlServer(connectionString))
+      .AddDbContextPool<EmployeesContext>(x => x.UseSqlServer(connectionString))
       .AddEntityFrameworkSqlServer();
     }
   }

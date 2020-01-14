@@ -27,7 +27,7 @@ namespace IkeMtz.NRSRx.Certifications.OData
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services
-      .AddDbContext<CertificationsContext>(x => x.UseSqlServer(connectionString))
+      .AddDbContextPool<CertificationsContext>(x => x.UseSqlServer(connectionString))
       .AddEntityFrameworkSqlServer();
     }
   }

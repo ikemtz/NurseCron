@@ -21,7 +21,7 @@ namespace IkeMtz.NRSRx.Competencies.OData
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services
-      .AddDbContext<CompetenciesContext>(x => x.UseSqlServer(connectionString))
+      .AddDbContextPool<CompetenciesContext>(x => x.UseSqlServer(connectionString))
       .AddEntityFrameworkSqlServer();
     }
 
