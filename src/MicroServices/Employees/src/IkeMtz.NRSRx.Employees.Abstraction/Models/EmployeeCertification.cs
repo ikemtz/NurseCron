@@ -1,10 +1,11 @@
-﻿using System;
+using System;
+using IkeMtz.NRSRx.Core.Models;
 
 namespace IkeMtz.NRSRx.Employees.Models
 {
-  public partial class EmployeeCertification
+  public partial class EmployeeCertification : IIdentifiable
   {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public Guid EmployeeId { get; set; }
     public Guid CertificationId { get; set; }
     public string CertificationName { get; set; }

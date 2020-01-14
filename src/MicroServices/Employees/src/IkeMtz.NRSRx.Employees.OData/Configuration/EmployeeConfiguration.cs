@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Core.OData;
+using IkeMtz.NRSRx.Core.OData;
 using IkeMtz.NRSRx.Employees.Models;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +10,9 @@ namespace IkeMtz.NRSRx.Employees.OData.Configuration
     public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
     {
       ODataConfigurationBuilder<Employee>.EntitySetBuilder(builder);
+      ODataConfigurationBuilder<EmployeeCertification>.EntitySetBuilder(builder);
+      ODataConfigurationBuilder<EmployeeCompetency>.EntitySetBuilder(builder);
+      ODataConfigurationBuilder<EmployeeHealthItem>.EntitySetBuilder(builder);
     }
   }
 }

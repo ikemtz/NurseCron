@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[EmployeeCertifications]
+CREATE TABLE [dbo].[EmployeeCertifications]
 (
-    [Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
     [EmployeeId] UNIQUEIDENTIFIER NOT NULL,
     [CertificationId] UNIQUEIDENTIFIER NOT NULL,
     [CertificationName] NVARCHAR(250) NOT NULL,
