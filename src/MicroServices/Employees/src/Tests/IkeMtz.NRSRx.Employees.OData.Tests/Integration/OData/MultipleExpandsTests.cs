@@ -27,7 +27,7 @@ namespace IkeMtz.NRSRx.Employees.OData.Tests.Integration.OData
       var dbContext = srv.GetDbContext<EmployeesContext>();
       var dbItems = await dbContext.Employees
         .Include(t => t.Competencies)
-        .Include(t=> t.Certifications)
+        .Include(t => t.Certifications)
         .Take(5)
         .ToListAsync();
       Assert.IsNotNull(dbItems);
@@ -104,5 +104,36 @@ namespace IkeMtz.NRSRx.Employees.OData.Tests.Integration.OData
         Assert.IsTrue(t.IsEnabled);
       });
     }
+
+    [TestMethod]
+    [TestCategory("Integration")]
+    public async Task GetEmployees_CompsAndCertsAndHltItems_Test()
+    {
+      using var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>());
+      var client = srv.CreateClient();
+      GenerateAuthHeader(client, GenerateTestToken());
+
+      //Equivalent EfQuery -- THIS WORKS
+      var dbContext = srv.GetDbContext<EmployeesContext>();
+      var dbItems = await dbContext.Employees
+        .Include(t => t.Certifications)
+        .Include(t => t.HealthItems)
+        .Take(5)
+        .ToListAsync();
+      Assert.IsNotNull(dbItems);
+
+      //Equivalent OData Query -- This doesn't
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=Competencies,Certifications,HealthItems");
+      TestContext.WriteLine($"Server Reponse: {resp}");
+      var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
+      Assert.AreEqual(envelope.Count, envelope.Value.Count());
+      envelope.Value.ToList().ForEach(t =>
+      {
+        Assert.IsNotNull(t.CreatedBy);
+        Assert.IsNotNull(t.CreatedOnUtc);
+        Assert.IsTrue(t.IsEnabled);
+      });
+    }
+
   }
 }
