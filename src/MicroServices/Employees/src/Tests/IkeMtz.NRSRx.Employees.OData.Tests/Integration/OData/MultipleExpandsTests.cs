@@ -116,6 +116,7 @@ namespace IkeMtz.NRSRx.Employees.OData.Tests.Integration.OData
       //Equivalent EfQuery -- THIS WORKS
       var dbContext = srv.GetDbContext<EmployeesContext>();
       var dbItems = await dbContext.Employees
+        .Include(t => t.Competencies)
         .Include(t => t.Certifications)
         .Include(t => t.HealthItems)
         .Take(5)
