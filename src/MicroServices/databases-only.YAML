@@ -49,7 +49,7 @@ jobs:
         Get-ChildItem $sourceFolder -Filter *.dacpac -Recurse | 
           Foreach-Object { 
             Write-Host "DacPac File: $($_.Name)";
-            Copy-Item "$($_.FullName)" "$($artifactFolder)\" -Verbose -Force;
+            Copy-Item "$($_.FullName)" "$(build.artifactstagingdirectory)\" -Verbose -Force;
           }
 
   - task: PublishBuildArtifacts@1
