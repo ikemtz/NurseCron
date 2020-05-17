@@ -1,0 +1,67 @@
+name: 1.$(Year:yy).$(DayOfYear)$(Rev:.rr)
+resources:
+  - repo: self
+variables:
+  DB_PROJECTS: '**/*.sqlproj'
+
+jobs:
+- job: Database
+  displayName: Database build and deploy
+  pool: Hosted Windows 2019 with VS2019
+
+  steps:
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: 'SonarCloud IkeMtz'
+      organization: ikemtz
+      projectKey: Nurser_Databases
+      projectName: Nurser_Databases
+      extraProperties: |
+       # Additional properties that will be passed to the scanner, 
+       # Put one key=value per line, example:
+       # sonar.cs.vstest.reportsPaths=$(Agent.WorkFolder)/_temp/*.trx
+       # sonar.branch.name=$(System.PullRequest.SourceBranch)
+       # sonar.branch.target=$(System.PullRequest.TargetBranch)
+
+  - task: VSBuild@1
+    displayName: 'Build solution DB Project'
+    inputs:
+      solution: $(DB_PROJECTS)
+
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
+
+  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+    displayName: 'Publish Quality Gate Result'
+
+  - task: SimondeLang.sonarcloud-buildbreaker.sonar-buildbreaker.sonarcloud-buildbreaker@1
+    displayName: 'Break build on SonarCloud quality gate failure'
+    inputs:
+      SonarCloud: 'SonarCloud IkeMtz'
+
+  - task: PowerShell@2
+    displayName: 'Artifact SQL Dacpacs'
+    inputs:
+      targetType: filePath
+      filePath: 'src/MicroServices/artifact-dacpacs.ps1'
+      arguments: '-sourceFolder $(build.SourcesDirectory) -artifactFolder $(build.artifactstagingdirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: dacpac_drop'
+    inputs:
+      ArtifactName: 'dacpac_drop'
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - **/*.sql
+
+pr:
+  paths:
+    include:
+    - **/*.sql

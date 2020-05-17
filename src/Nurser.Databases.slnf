@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "path": "Nurser.Services.sln",
+    "projects": [
+      "MicroServices\\Certifications\\src\\IkeMtz.NRSRx.Certifications.DB\\IkeMtz.NRSRx.Certifications.DB.sqlproj",
+      "MicroServices\\Competencies\\src\\IkeMtz.NRSRx.Competencies.DB\\IkeMtz.NRSRx.Competencies.DB.sqlproj",
+      "MicroServices\\Employees\\src\\IkeMtz.NRSRx.Employees.DB\\IkeMtz.NRSRx.Employees.DB.sqlproj",
+      "MicroServices\\HealthItems\\src\\IkeMtz.NRSRx.HealthItems.DB\\IkeMtz.NRSRx.HealthItems.DB.sqlproj"
+    ]
+  }
+}

@@ -135,6 +135,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YAML Build Definitions", "Y
 	ProjectSection(SolutionItems) = preProject
 		MicroServices\Certifications.YAML = MicroServices\Certifications.YAML
 		MicroServices\Competencies.YAML = MicroServices\Competencies.YAML
+		MicroServices\databases-only.YAML = MicroServices\databases-only.YAML
 		MicroServices\Employees.YAML = MicroServices\Employees.YAML
 		MicroServices\HealthItems.YAML = MicroServices\HealthItems.YAML
 	EndProjectSection
