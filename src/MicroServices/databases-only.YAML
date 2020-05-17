@@ -39,6 +39,7 @@ jobs:
     displayName: 'Break build on SonarCloud quality gate failure'
     inputs:
       SonarCloud: 'SonarCloud IkeMtz'
+      organization: 'ikemtz'
 
   - task: PowerShell@2
     displayName: 'Artifact SQL Dacpacs'
