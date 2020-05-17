@@ -58,10 +58,18 @@ trigger:
     include:
     - master
   paths:
-    include:
-    - **/*.sql
+    include:     
+    #  You can generate this list using this linux command:
+    #  find . -type d -name "*.DB" | sed -e 's/DB/DB\/\*/' | sed -e 's/.\//- /'
+    - src/MicroServices/Certifications/src/IkeMtz.NRSRx.Certifications.DB/*
+    - src/MicroServices/Competencies/src/IkeMtz.NRSRx.Competencies.DB/*
+    - src/MicroServices/Employees/src/IkeMtz.NRSRx.Employees.DB/*
+    - src/MicroServices/HealthItems/src/IkeMtz.NRSRx.HealthItems.DB/* 
 
 pr:
   paths:
     include:
-    - **/*.sql
+    - src/MicroServices/Certifications/src/IkeMtz.NRSRx.Certifications.DB/*
+    - src/MicroServices/Competencies/src/IkeMtz.NRSRx.Competencies.DB/*
+    - src/MicroServices/Employees/src/IkeMtz.NRSRx.Employees.DB/*
+    - src/MicroServices/HealthItems/src/IkeMtz.NRSRx.HealthItems.DB/*
