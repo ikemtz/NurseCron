@@ -42,11 +42,15 @@ jobs:
       organization: 'ikemtz'
 
   - task: PowerShell@2
-    displayName: 'Artifact SQL Dacpacs'
     inputs:
-      targetType: filePath
-      filePath: 'src/MicroServices/artifact-dacpacs.ps1'
-      arguments: '-sourceFolder $(build.SourcesDirectory) -artifactFolder $(build.artifactstagingdirectory)'
+      targetType: 'inline'
+      script: |
+        Copy-Item "src/MicroServices/DB.Ci.Dockerfile" "$(build.artifactstagingdirectory)\" -Verbose -Force;
+        Get-ChildItem $sourceFolder -Filter *.dacpac -Recurse | 
+          Foreach-Object { 
+            Write-Host "DacPac File: $($_.Name)";
+            Copy-Item "$($_.FullName)" "$($artifactFolder)\" -Verbose -Force;
+          }
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: dacpac_drop'
