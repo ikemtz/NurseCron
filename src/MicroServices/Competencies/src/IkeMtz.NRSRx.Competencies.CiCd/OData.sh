@@ -34,7 +34,7 @@ export swaggerClientId="RAFO6AXB5T6EawgBl6P5M5qEAd4yxD67"
 export swaggerAudience=$envUpper"-CmpO"
 export validAudiences="$envUpper-Nurser,$swaggerAudience"
 export ainName=$envLower"-ai-core-nrsr"
-export dockerImageName="ikemtz/nrsrx-competencies:odata_latest"
+export dockerImageName="ikemtz/nurse-cron-competencies:odata_latest"
 export sqlDbName=$envLower"-db-core-nrsr"
 
 # New Randomized SQL Password
