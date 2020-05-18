@@ -142,7 +142,7 @@ trigger:
     - master
   paths:
     include:
-    - src/MicroServices/$(DomainName)/*
+    - src/MicroServices/Competencies/*
 
 pr:
   branches:
@@ -150,7 +150,7 @@ pr:
     - master
   paths:
     include:
-    - src/MicroServices/$(DomainName)/*
+    - src/MicroServices/Competencies/*
 
 schedules:
   - cron: '0 0 * * Sun'
