@@ -5,6 +5,7 @@ using IkeMtz.NRSRx.Competencies.Abstraction.Models;
 using IkeMtz.NRSRx.Competencies.WebApi;
 using IkeMtz.NRSRx.Competencies.WebApi.Data;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.WebApi;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,8 +29,8 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Unigration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
 
-      var obj = JsonConvert.DeserializeObject<dynamic>(result);
-      Assert.AreEqual("NRSRx Competency API Microservice Controller", obj.name.ToString());
+      var obj = JsonConvert.DeserializeObject<PingResult>(result);
+        Assert.AreEqual("NRSRx Competency API Microservice Controller", obj.Name);
     }
 
     [TestMethod]
@@ -48,7 +49,6 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Unigration.Api
 
       var result = await DeserializeResponseAsync<Competency>(resp);
       Assert.AreEqual(objA.Name, result.Name);
-      Assert.IsTrue(result.IsEnabled);
       Assert.AreEqual("Integration Tester", result.CreatedBy);
 
       var ctx = srv.GetDbContext<CompetenciesContext>();
@@ -68,13 +68,13 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Unigration.Api
         IsEnabled = true,
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-          .ConfigureTestServices(x =>
-           {
-             ExecuteOnContext<CompetenciesContext>(x, db =>
-                   {
-                     db.Competencies.Add(objA);
-                   });
-           })
+        .ConfigureTestServices(x =>
+          {
+            ExecuteOnContext<CompetenciesContext>(x, db =>
+            {
+              _ = db.Competencies.Add(objA);
+            });
+          })
        );
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
@@ -122,13 +122,13 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Unigration.Api
         IsEnabled = true,
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-          .ConfigureTestServices(x =>
+        .ConfigureTestServices(x =>
+        {
+          ExecuteOnContext<CompetenciesContext>(x, db =>
           {
-            ExecuteOnContext<CompetenciesContext>(x, db =>
-                  {
-                    db.Competencies.Add(objA);
-                  });
-          })
+            _ = db.Competencies.Add(objA);
+          });
+        })
        );
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());

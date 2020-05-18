@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Employees.Models;
 using IkeMtz.NRSRx.Employees.WebApi;
 using IkeMtz.NRSRx.Employees.WebApi.Data;
@@ -28,8 +29,8 @@ namespace IkeMtz.NRSRx.Employees.Tests.Unigration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
 
-      var obj = JsonConvert.DeserializeObject<dynamic>(result);
-      Assert.AreEqual("NRSRx Employee API Microservice Controller", obj.name.ToString());
+      var obj = JsonConvert.DeserializeObject<PingResult>(result);
+      Assert.AreEqual("NRSRx Employee API Microservice Controller", obj.Name);
     }
 
     [TestMethod]
@@ -47,10 +48,9 @@ namespace IkeMtz.NRSRx.Employees.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.PutAsJsonAsync("api/v1/Employees.json", objA);
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Employee>(resp);
       Assert.AreEqual(objA.FirstName, result.FirstName);
-      Assert.IsTrue(result.IsEnabled);
       Assert.AreEqual("Integration Tester", result.CreatedBy);
 
       var ctx = srv.GetDbContext<EmployeesContext>();
@@ -72,13 +72,13 @@ namespace IkeMtz.NRSRx.Employees.Tests.Unigration.Api
         IsEnabled = true,
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-          .ConfigureTestServices(x =>
+        .ConfigureTestServices(x =>
+        {
+          ExecuteOnContext<EmployeesContext>(x, db =>
           {
-            ExecuteOnContext<EmployeesContext>(x, db =>
-                  {
-                    db.Employees.Add(objA);
-                  });
-          })
+            _ = db.Employees.Add(objA);
+          });
+        })
        );
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
@@ -129,13 +129,13 @@ namespace IkeMtz.NRSRx.Employees.Tests.Unigration.Api
         IsEnabled = true,
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-          .ConfigureTestServices(x =>
+        .ConfigureTestServices(x =>
+        {
+          ExecuteOnContext<EmployeesContext>(x, db =>
           {
-            ExecuteOnContext<EmployeesContext>(x, db =>
-                  {
-                    db.Employees.Add(objA);
-                  });
-          })
+            _ = db.Employees.Add(objA);
+          });
+        })
        );
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());

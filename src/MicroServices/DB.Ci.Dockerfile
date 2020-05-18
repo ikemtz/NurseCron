@@ -3,7 +3,7 @@ ENV SA_PASSWORD=SqlDockerRocks123! \
     ACCEPT_EULA=Y
 
 #Copy dacpacs
-COPY /* /dacpac/
+COPY /*.dacpac /dacpac/
 
 RUN sqlservr & sleep 20 \
     && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/certDb.dacpac /TargetDatabaseName:certDb /p:BlockOnPossibleDataLoss=false \

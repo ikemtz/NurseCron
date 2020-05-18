@@ -3,10 +3,10 @@ ENV SA_PASSWORD=SqlDockerRocks123! \
     ACCEPT_EULA=Y
 
 #Copy dacpacs
-COPY /Certifications/src/IkeMtz.NRSRx.Certifications.DB/bin/Debug/certDb.dacpac /dacpac/certDb.dacpac
-COPY /Competencies/src/IkeMtz.NRSRx.Competencies.DB/bin/Debug/compDb.dacpac /dacpac/compDb.dacpac
-COPY /Employees/src/IkeMtz.NRSRx.Employees.DB/bin/Debug/emplDb.dacpac /dacpac/emplDb.dacpac
-COPY /HealthItems/src/IkeMtz.NRSRx.HealthItems.DB/bin/Debug/hltiDb.dacpac /dacpac/hltiDb.dacpac
+COPY /Certifications/src/IkeMtz.NRSRx.Certifications.DB/bin/Debug/*.dacpac /dacpac/
+COPY /Competencies/src/IkeMtz.NRSRx.Competencies.DB/bin/Debug/*.dacpac /dacpac/
+COPY /Employees/src/IkeMtz.NRSRx.Employees.DB/bin/Debug/*.dacpac /dacpac/
+COPY /HealthItems/src/IkeMtz.NRSRx.HealthItems.DB/bin/Debug/*.dacpac /dacpac/
 
 #Copy publish.xml
 COPY /Certifications/src/IkeMtz.NRSRx.Certifications.DB/LocalPublish.publish.xml /dacpac/pub.xml

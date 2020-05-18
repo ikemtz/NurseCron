@@ -5,6 +5,7 @@ using IkeMtz.NRSRx.Certifications.Abstraction.Models;
 using IkeMtz.NRSRx.Certifications.WebApi;
 using IkeMtz.NRSRx.Certifications.WebApi.Data;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.WebApi;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,8 +29,8 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Unigration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
 
-      var obj = JsonConvert.DeserializeObject<dynamic>(result);
-      Assert.AreEqual("NRSRx Certification API Microservice Controller", obj.name.ToString());
+      var obj = JsonConvert.DeserializeObject<PingResult>(result);
+      Assert.AreEqual("NRSRx Certification API Microservice Controller", obj.Name);
     }
 
     [TestMethod]
@@ -48,7 +49,6 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Unigration.Api
 
       var result = await DeserializeResponseAsync<Certification>(resp);
       Assert.AreEqual(objA.Name, result.Name);
-      Assert.IsTrue(result.IsEnabled);
       Assert.AreEqual("Integration Tester", result.CreatedBy);
 
       var dbContext = apiSrv.GetDbContext<CertificationsContext>();
@@ -72,9 +72,9 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Unigration.Api
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<CertificationsContext>(x, db =>
-                  {
-                    db.Certifications.Add(objA);
-                  });
+            {
+              _ = db.Certifications.Add(objA);
+            });
           })
        );
       var client = srv.CreateClient();
@@ -140,9 +140,9 @@ namespace IkeMtz.NRSRx.Certifications.Tests.Unigration.Api
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<CertificationsContext>(x, db =>
-                  {
-                    db.Certifications.Add(objA);
-                  });
+            {
+              _ = db.Certifications.Add(objA);
+            });
           })
        );
       var client = srv.CreateClient();

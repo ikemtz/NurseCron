@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Certifications.Abstraction.Models;
+using IkeMtz.NRSRx.Certifications.Abstraction.Models;
 using IkeMtz.NRSRx.Certifications.WebApi;
 using IkeMtz.NRSRx.Certifications.WebApi.Data;
 using IkeMtz.NRSRx.Core.Unigration;
@@ -22,7 +22,7 @@ namespace IkeMtz.NRSRx.Certifications.Tests
 
     public override void SetupPublishers(IServiceCollection services)
     {
-      var pubTester = new PublisherIntegrationTester<Certification, Message>();
+      var pubTester = new PublisherUnigrationTester<Certification, Message>();
       pubTester.RegisterDependencies(services);
     }
   }

@@ -1,4 +1,8 @@
-﻿using IkeMtz.NRSRx.Certifications.Abstraction.Models;
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using IkeMtz.NRSRx.Certifications.Abstraction.Models;
 using IkeMtz.NRSRx.Certifications.WebApi.Data;
 using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Events;
@@ -6,8 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
 
 namespace IkeMtz.NRSRx.Certifications.WebApi.Controllers
 {
@@ -33,12 +35,13 @@ namespace IkeMtz.NRSRx.Certifications.WebApi.Controllers
     }
 
     [HttpGet]
+    [ProducesResponseType(200, Type = typeof(PingResult))]
     public ActionResult Get(ApiVersion apiVersion)
     {
-      var result = new
+      var result = new PingResult(apiVersion)
       {
         Name = $"NRSRx {nameof(Certification)} API Microservice Controller",
-        Version = apiVersion
+        Build = this.GetBuildNumber()
       };
       return Ok(result);
     }
@@ -51,8 +54,8 @@ namespace IkeMtz.NRSRx.Certifications.WebApi.Controllers
     public async Task<ActionResult> Put([FromBody] CertificationInsertRequest value)
     {
       var obj = value.ToCertification();
-      await _ctx.Certifications.AddAsync(obj);
-      await _ctx.SaveChangesAsync();
+      _ = await _ctx.Certifications.AddAsync(obj);
+      _ = await _ctx.SaveChangesAsync();
       await _createdPublisher.PublishAsync(obj);
       return Ok(obj);
     }
@@ -75,7 +78,7 @@ namespace IkeMtz.NRSRx.Certifications.WebApi.Controllers
         return NotFound($"{nameof(Certification)} Not Found");
       }
       value.UpdateCertification(obj);
-      await _ctx.SaveChangesAsync();
+      _ = await _ctx.SaveChangesAsync();
       await _updatedPublisher.PublishAsync(obj);
       return Ok(obj);
     }
@@ -92,7 +95,7 @@ namespace IkeMtz.NRSRx.Certifications.WebApi.Controllers
         return NotFound($"{nameof(Certification)} Not Found");
       }
       obj.IsEnabled = false;
-      await _ctx.SaveChangesAsync();
+      _ = await _ctx.SaveChangesAsync();
       await _deletedPublisher.PublishAsync(obj);
       return Ok(obj);
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace IkeMtz.NRSRx.Employees.Models
 {
-  public interface IEmployee : IAuditable, IIdentifiable, IDisableable
+  public interface IEmployee : IAuditable, IIdentifiable
   {
     string LastName { get; set; }
     string FirstName { get; set; }

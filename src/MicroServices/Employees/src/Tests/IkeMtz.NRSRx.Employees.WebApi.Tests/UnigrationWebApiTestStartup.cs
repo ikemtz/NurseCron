@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration;
 using IkeMtz.NRSRx.Core.Unigration.WebApi;
 using IkeMtz.NRSRx.Employees.Models;
 using IkeMtz.NRSRx.Employees.WebApi;
@@ -22,7 +22,7 @@ namespace IkeMtz.NRSRx.Employees.Tests
 
     public override void SetupPublishers(IServiceCollection services)
     {
-      var pubTester = new PublisherIntegrationTester<Employee, Message>();
+      var pubTester = new PublisherUnigrationTester<Employee, Message>();
       pubTester.RegisterDependencies(services);
     }
   }
