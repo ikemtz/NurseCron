@@ -8,7 +8,7 @@ variables:
 
 jobs:
 - job: Database
-  displayName: Database build and deploy
+  displayName: Database build and package
   pool: Hosted Windows 2019 with VS2019
 
   steps:
@@ -142,7 +142,7 @@ trigger:
     - master
   paths:
     include:
-    - src/MicroServices/$(DomainName)/*
+    - src/MicroServices/Competencies/*
 
 pr:
   branches:
@@ -150,7 +150,7 @@ pr:
     - master
   paths:
     include:
-    - src/MicroServices/$(DomainName)/*
+    - src/MicroServices/Competencies/*
 
 schedules:
   - cron: '0 0 * * Sun'

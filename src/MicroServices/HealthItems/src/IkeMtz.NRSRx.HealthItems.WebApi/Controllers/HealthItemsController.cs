@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Core.WebApi;
+using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Events;
 using IkeMtz.NRSRx.HealthItems.Models;
 using IkeMtz.NRSRx.HealthItems.WebApi.Data;
@@ -33,12 +33,13 @@ namespace IkeMtz.NRSRx.HealthItems.WebApi.Controllers
     }
 
     [HttpGet]
+    [ProducesResponseType(200, Type = typeof(PingResult))]
     public ActionResult Get(ApiVersion apiVersion)
     {
-      var result = new
+      var result = new PingResult(apiVersion)
       {
         Name = $"NRSRx {nameof(HealthItem)} API Microservice Controller",
-        Version = apiVersion
+        Build = this.GetBuildNumber()
       };
       return Ok(result);
     }
@@ -52,11 +53,12 @@ namespace IkeMtz.NRSRx.HealthItems.WebApi.Controllers
     public async Task<ActionResult> Put([FromBody] HealthItemInsertRequest value)
     {
       var obj = value.ToHealthItem();
-      await _ctx.HealthItems.AddAsync(obj);
-      await _ctx.SaveChangesAsync();
-      await _createdPublisher.PublishAsync(obj);
+      _ = _ctx.HealthItems.Add(obj);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _createdPublisher.PublishAsync(obj);
+      }
       return Ok(obj);
-
     }
 
     // POST api/competencies
@@ -77,10 +79,11 @@ namespace IkeMtz.NRSRx.HealthItems.WebApi.Controllers
         return NotFound($"{nameof(HealthItem)} Not Found");
       }
       value.UpdateHealthItem(obj);
-      await _ctx.SaveChangesAsync();
-      await _updatedPublisher.PublishAsync(obj);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _updatedPublisher.PublishAsync(obj);
+      }
       return Ok(obj);
-
     }
 
     // DELETE api/certifications
@@ -95,8 +98,10 @@ namespace IkeMtz.NRSRx.HealthItems.WebApi.Controllers
         return NotFound($"{nameof(HealthItem)} Not Found");
       }
       obj.IsEnabled = false;
-      await _ctx.SaveChangesAsync();
-      await _deletedPublisher.PublishAsync(obj);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _deletedPublisher.PublishAsync(obj);
+      }
       return Ok(obj);
     }
 

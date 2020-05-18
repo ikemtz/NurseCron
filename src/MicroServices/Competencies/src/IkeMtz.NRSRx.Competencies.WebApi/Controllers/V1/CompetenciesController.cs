@@ -34,12 +34,13 @@ namespace IkeMtz.NRSRx.Competencies.WebApi.V1.Controllers
     }
 
     [HttpGet]
+    [ProducesResponseType(200, Type = typeof(PingResult))]
     public ActionResult Get(ApiVersion apiVersion)
     {
-      var result = new
+      var result = new PingResult(apiVersion)
       {
         Name = $"NRSRx {nameof(Competency)} API Microservice Controller",
-        Version = apiVersion
+        Build = this.GetBuildNumber()
       };
       return Ok(result);
     }
@@ -53,9 +54,11 @@ namespace IkeMtz.NRSRx.Competencies.WebApi.V1.Controllers
     public async Task<ActionResult> Put([FromBody] CompetencyInsertRequest value)
     {
       var comp = value.ToCompetency();
-      await _ctx.Competencies.AddAsync(comp);
-      await _ctx.SaveChangesAsync();
-      await _createdPublisher.PublishAsync(comp);
+      _ = await _ctx.Competencies.AddAsync(comp);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _createdPublisher.PublishAsync(comp);
+      }
       return Ok(comp);
 
     }
@@ -79,8 +82,10 @@ namespace IkeMtz.NRSRx.Competencies.WebApi.V1.Controllers
         return NotFound($"{nameof(Competency)} Not Found");
       }
       value.UpdateCompetency(comp);
-      await _ctx.SaveChangesAsync();
-      await _updatedPublisher.PublishAsync(comp);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _updatedPublisher.PublishAsync(comp);
+      }
       return Ok(comp);
     }
 
@@ -96,8 +101,10 @@ namespace IkeMtz.NRSRx.Competencies.WebApi.V1.Controllers
         return NotFound($"{nameof(Competency)} Not Found");
       }
       comp.IsEnabled = false;
-      await _ctx.SaveChangesAsync();
-      await _deletedPublisher.PublishAsync(comp);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _deletedPublisher.PublishAsync(comp);
+      }
       return Ok(comp);
     }
   }

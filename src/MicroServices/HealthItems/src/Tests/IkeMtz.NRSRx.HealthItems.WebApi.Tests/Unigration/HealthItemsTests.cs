@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.HealthItems.Models;
 using IkeMtz.NRSRx.HealthItems.WebApi;
 using IkeMtz.NRSRx.HealthItems.WebApi.Data;
@@ -27,8 +28,8 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.Api
 
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
-      var obj = JsonConvert.DeserializeObject<dynamic>(result);
-      Assert.AreEqual("NRSRx HealthItem API Microservice Controller", obj.name.ToString());
+      var obj = JsonConvert.DeserializeObject<PingResult>(result);
+      Assert.AreEqual("NRSRx HealthItem API Microservice Controller", obj.Name);
     }
 
     [TestMethod]
@@ -47,7 +48,7 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.Api
 
       var result = await DeserializeResponseAsync<HealthItem>(resp);
       Assert.AreEqual(objA.Name, result.Name);
-      Assert.IsTrue(result.IsEnabled);
+
       Assert.AreEqual("Integration Tester", result.CreatedBy);
 
       var ctx = srv.GetDbContext<HealthItemsContext>();
@@ -68,13 +69,13 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.Api
         IsEnabled = true,
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-          .ConfigureTestServices(x =>
-              {
-                ExecuteOnContext<HealthItemsContext>(x, db =>
-                      {
-                        db.HealthItems.Add(objA);
-                      });
-              })
+        .ConfigureTestServices(x =>
+        {
+          ExecuteOnContext<HealthItemsContext>(x, db =>
+          {
+            _ = db.HealthItems.Add(objA);
+          });
+        })
        );
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
@@ -123,13 +124,13 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration.Api
         IsEnabled = true,
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
-          .ConfigureTestServices(x =>
+        .ConfigureTestServices(x =>
+        {
+          ExecuteOnContext<HealthItemsContext>(x, db =>
           {
-            ExecuteOnContext<HealthItemsContext>(x, db =>
-                  {
-                    db.HealthItems.Add(objA);
-                  });
-          })
+            _ = db.HealthItems.Add(objA);
+          });
+        })
        );
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());

@@ -22,7 +22,7 @@ namespace IkeMtz.NRSRx.Competencies.Tests.Unigration
 
     public override void SetupPublishers(IServiceCollection services)
     {
-      var pubTester = new PublisherIntegrationTester<Competency, Message>();
+      var pubTester = new PublisherUnigrationTester<Competency, Message>();
       pubTester.RegisterDependencies(services);
     }
   }

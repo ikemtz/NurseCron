@@ -1,8 +1,8 @@
-﻿using IkeMtz.NRSRx.Core.Models;
+using IkeMtz.NRSRx.Core.Models;
 
 namespace IkeMtz.NRSRx.Competencies.Abstraction
 {
-  public interface ICompetency : IAuditable, IIdentifiable, IDisableable
+  public interface ICompetency : IAuditable, IIdentifiable
   {
     string Name { get; }
   }

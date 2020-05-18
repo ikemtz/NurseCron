@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration;
 using IkeMtz.NRSRx.Core.Unigration.WebApi;
 using IkeMtz.NRSRx.HealthItems.Models;
 using IkeMtz.NRSRx.HealthItems.WebApi;
@@ -22,7 +22,7 @@ namespace IkeMtz.NRSRx.HealthItems.Tests.Unigration
 
     public override void SetupPublishers(IServiceCollection services)
     {
-      new PublisherIntegrationTester<HealthItem, Message>().RegisterDependencies(services);
+      new PublisherUnigrationTester<HealthItem, Message>().RegisterDependencies(services);
     }
   }
 }

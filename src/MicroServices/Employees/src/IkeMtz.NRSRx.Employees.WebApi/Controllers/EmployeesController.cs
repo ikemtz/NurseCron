@@ -1,4 +1,4 @@
-﻿using IkeMtz.NRSRx.Core.WebApi;
+using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Employees.Models;
 using IkeMtz.NRSRx.Employees.WebApi.Data;
 using IkeMtz.NRSRx.Events;
@@ -33,12 +33,13 @@ namespace IkeMtz.NRSRx.Employees.WebApi.Controllers
     }
 
     [HttpGet]
+    [ProducesResponseType(200, Type = typeof(PingResult))]
     public ActionResult Get(ApiVersion apiVersion)
     {
-      var result = new
+      var result = new PingResult(apiVersion)
       {
         Name = $"NRSRx {nameof(Employee)} API Microservice Controller",
-        Version = apiVersion
+        Build = this.GetBuildNumber()
       };
       return Ok(result);
     }
@@ -51,9 +52,11 @@ namespace IkeMtz.NRSRx.Employees.WebApi.Controllers
     public async Task<ActionResult> Put([FromBody] EmployeeInsertRequest value)
     {
       var obj = value.ToEmployee();
-      await _ctx.Employees.AddAsync(obj);
-      await _ctx.SaveChangesAsync();
-      await _createdPublisher.PublishAsync(obj);
+      _ = _ctx.Employees.Add(obj);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _createdPublisher.PublishAsync(obj);
+      }
       return Ok(obj);
     }
 
@@ -75,8 +78,10 @@ namespace IkeMtz.NRSRx.Employees.WebApi.Controllers
         return NotFound($"{nameof(Employee)} Not Found");
       }
       value.UpdateEmployee(obj);
-      await _ctx.SaveChangesAsync();
-      await _updatedPublisher.PublishAsync(obj);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _updatedPublisher.PublishAsync(obj);
+      }
       return Ok(obj);
     }
 
@@ -92,10 +97,11 @@ namespace IkeMtz.NRSRx.Employees.WebApi.Controllers
         return NotFound($"{nameof(Employee)} Not Found");
       }
       obj.IsEnabled = false;
-      await _ctx.SaveChangesAsync();
-      await _deletedPublisher.PublishAsync(obj);
+      if (0 < await _ctx.SaveChangesAsync())
+      {
+        await _deletedPublisher.PublishAsync(obj);
+      }
       return Ok(obj);
     }
-
   }
 }

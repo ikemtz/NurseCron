@@ -14,9 +14,9 @@
     <None Remove="Unit\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.16.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.138.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\IkeMtz.NRSRx.Certifications.OData\IkeMtz.NRSRx.Certifications.OData.csproj" />
