@@ -134,6 +134,15 @@ jobs:
     displayName: 'Publish Artifact: ApiDrop'
     inputs:
       ArtifactName: ApiDrop
+      
+  - task: GitTag@5
+    inputs:
+      workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
+      tagUser: 'ikemtz'
+      tagEmail: 'ikemtz@outlook.com'
+      tag: 'hlti-$(Build.BuildNumber)'
+      tagMessage: 'hlti-$(Build.BuildNumber)'
+      useLightweightTags: true  
 
 trigger:
   batch: true
