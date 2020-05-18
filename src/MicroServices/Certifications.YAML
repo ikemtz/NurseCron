@@ -34,6 +34,9 @@ jobs:
   pool: Hosted Windows 2019 with VS2019
 
   steps:
+  - checkout: self
+    persistCredentials: true
+
   - task: UseDotNet@2
     displayName: 'Use .NET Core sdk 3.1.x'
     inputs:
@@ -134,6 +137,15 @@ jobs:
     displayName: 'Publish Artifact: ApiDrop'
     inputs:
       ArtifactName: ApiDrop
+      
+  - task: GitTag@5
+    inputs:
+      workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
+      tagUser: 'ikemtz'
+      tagEmail: 'ikemtz@outlook.com'
+      tag: 'cert-$(Build.BuildNumber)'
+      tagMessage: 'cert-$(Build.BuildNumber)'
+      useLightweightTags: true  
 
 trigger:
   batch: true
