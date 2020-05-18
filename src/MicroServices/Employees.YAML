@@ -34,6 +34,9 @@ jobs:
   pool: Hosted Windows 2019 with VS2019
 
   steps:
+  - checkout: self
+    persistCredentials: true
+
   - task: UseDotNet@2
     displayName: 'Use .NET Core sdk 3.1.x'
     inputs:
