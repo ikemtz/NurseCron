@@ -139,7 +139,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YAML Build Definitions", "Y
 		MicroServices\databases-only.YAML = MicroServices\databases-only.YAML
 		MicroServices\Employees.YAML = MicroServices\Employees.YAML
 		MicroServices\HealthItems.YAML = MicroServices\HealthItems.YAML
+		MicroServices\Units.YAML = MicroServices\Units.YAML
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Units", "Units", "{BF4A3D96-AD03-4359-8772-C19CD024F05F}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IkeMtz.NRSRx.Units.DB", "MicroServices\Units\src\IkeMtz.NRSRx.Units.DB\IkeMtz.NRSRx.Units.DB.sqlproj", "{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -251,6 +256,12 @@ Global
 		{5BE67A45-57E8-4467-B578-BCFCE68C3919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BE67A45-57E8-4467-B578-BCFCE68C3919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BE67A45-57E8-4467-B578-BCFCE68C3919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -288,6 +299,7 @@ Global
 		{409FFF3F-E884-4060-AFE6-5A93BF2B846D} = {2979B905-349F-4D35-8106-A2B052841516}
 		{85E36BE4-F10D-4EBD-BFF8-DB8F35C283A0} = {D755C236-979F-4000-9AFA-548A08AA2321}
 		{676F46EB-738B-4F54-80C3-D17F16BECBBE} = {10DDB691-9A4D-4DBC-84DE-AECCF08C399F}
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {588544EC-C030-4E92-80D1-FCA2B9CE8B96}
