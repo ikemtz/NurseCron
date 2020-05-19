@@ -5,10 +5,10 @@ CREATE TABLE [Units](
 	[RoomCount] [decimal](4, 2) NOT NULL,
 	[CreatedBy] [nvarchar](250) NOT NULL,
 	[UpdatedBy] [nvarchar](250) NULL,
-	[DeletedBy] [nvarchar](250) NULL,
+	[DisabledBy] [nvarchar](250) NULL,
 	[CreatedOnUtc] [datetimeoffset](7) NOT NULL,
 	[UpdatedOnUtc] [datetimeoffset](7) NULL,
-	[DeletedOnUtc] [datetimeoffset](7) NULL,
+	[DisabledOnUtc] [datetimeoffset](7) NULL,
  CONSTRAINT [PK_Units] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
