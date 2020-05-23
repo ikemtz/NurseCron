@@ -1,11 +1,11 @@
 version: '3' 
 services: 
   db: 
-    build: src/IkeMtz.NRSRx.Employees.DB/. 
+    build: src/NurseCron.Employees.DB/. 
     ports: 
      - "1433:1433" 
   api: 
-    build: src/IkeMtz.NRSRx.Employees.api/. 
+    build: src/NurseCron.Employees.api/. 
     environment: 
     - IdentityProvider=https://ikemtz.auth0.com/ 
     - IdentityAudiences=NRSRx-Local-Docker 

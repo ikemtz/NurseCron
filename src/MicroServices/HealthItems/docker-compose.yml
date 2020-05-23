@@ -1,12 +1,12 @@
 version: '3'
 services:
   db:
-    build: src/IkeMtz.NRSRx.HealthItems.DB/.
+    build: src/NurseCron.HealthItems.DB/.
     ports:
      - "1433:1433"
   api:
-    build: src/IkeMtz.NRSRx.HealthItems.api/.
+    build: src/NurseCron.HealthItems.api/.
     env_file:
-    - src/IkeMtz.NRSRx.HealthItems.Api/Dockerfile.env
+    - src/NurseCron.HealthItems.Api/Dockerfile.env
     ports:
     - "83:80"

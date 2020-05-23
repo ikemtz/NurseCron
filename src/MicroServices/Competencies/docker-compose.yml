@@ -1,12 +1,12 @@
 version: '3'
 services:
   db:
-    build: src/IkeMtz.NRSRx.Competencies.DB/.
+    build: src/NurseCron.Competencies.DB/.
     ports:
      - "1433:1433"
   api:
-    build: src/IkeMtz.NRSRx.Competencies.api/.
+    build: src/NurseCron.Competencies.api/.
     env_file:
-    - src/IkeMtz.NRSRx.Competencies.Api/Dockerfile.env
+    - src/NurseCron.Competencies.Api/Dockerfile.env
     ports:
     - "82:80"
