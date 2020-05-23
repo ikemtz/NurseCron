@@ -15,8 +15,8 @@ jobs:
     inputs:
       SonarCloud: 'SonarCloud IkeMtz'
       organization: ikemtz
-      projectKey: Nurser_Databases
-      projectName: Nurser_Databases
+      projectKey: NurseCRON_Databases
+      projectName: NurseCRON_Databases
       extraProperties: |
        # Additional properties that will be passed to the scanner, 
        # Put one key=value per line, example:

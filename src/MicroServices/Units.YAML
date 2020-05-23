@@ -62,8 +62,8 @@ jobs:
     inputs:
       SonarCloud: 'SonarCloud IkeMtz'
       organization: ikemtz
-      projectKey: Nurser_$(DomainName)
-      projectName: Nurser_$(DomainName)
+      projectKey: NurseCRON_$(DomainName)
+      projectName: NurseCRON_$(DomainName)
       extraProperties: |
         # Additional properties that will be passed to the scanner, 
         # Put one key=value per line, example:
@@ -108,14 +108,14 @@ jobs:
       SonarCloud: 'SonarCloud IkeMtz'
       organization: 'ikemtz'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet publish WebApi projects'
-    inputs:
-      command: publish
-      publishWebProjects: false
-      projects: 'src/MicroServices/$(DomainName)/**/*.WebApi/*.csproj'
-      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-      zipAfterPublish: false
+#  - task: DotNetCoreCLI@2
+#    displayName: 'dotnet publish WebApi projects'
+#    inputs:
+#      command: publish
+#      publishWebProjects: false
+#      projects: 'src/MicroServices/$(DomainName)/**/*.WebApi/*.csproj'
+#      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+#      zipAfterPublish: false
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet publish OData projects'
