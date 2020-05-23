@@ -2,7 +2,7 @@ name: 1.$(Year:yy).$(DayOfYear)$(Rev:.rr)
 resources:
   - repo: self
 variables:
-  DomainName: 'Units'
+  DomainName: 'Schedules'
   RestoreBuildProjects: 'src/MicroServices/$(DomainName)/**/*.csproj'
   TestProjects: 'src/MicroServices/$(DomainName)/**/*Tests/*.csproj'
 
@@ -143,8 +143,8 @@ jobs:
       workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
       tagUser: 'ikemtz'
       tagEmail: 'ikemtz@outlook.com'
-      tag: 'unit-$(Build.BuildNumber)'
-      tagMessage: 'unit-$(Build.BuildNumber)'
+      tag: 'schd-$(Build.BuildNumber)'
+      tagMessage: 'schd-$(Build.BuildNumber)'
       useLightweightTags: true  
 
 trigger:
@@ -154,7 +154,7 @@ trigger:
     - master
   paths:
     include:
-    - src/MicroServices/Units/*
+    - src/MicroServices/Schedules/*
 
 pr:
   branches:
@@ -162,7 +162,7 @@ pr:
     - master
   paths:
     include:
-    - src/MicroServices/Units/*
+    - src/MicroServices/Schedules/*
 
 schedules:
   - cron: '0 0 * * Sun'

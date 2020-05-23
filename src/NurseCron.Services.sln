@@ -139,6 +139,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YAML Build Definitions", "Y
 		MicroServices\databases-only.YAML = MicroServices\databases-only.YAML
 		MicroServices\Employees.YAML = MicroServices\Employees.YAML
 		MicroServices\HealthItems.YAML = MicroServices\HealthItems.YAML
+		MicroServices\Schedules.YAML = MicroServices\Schedules.YAML
 		MicroServices\Units.YAML = MicroServices\Units.YAML
 	EndProjectSection
 EndProject
