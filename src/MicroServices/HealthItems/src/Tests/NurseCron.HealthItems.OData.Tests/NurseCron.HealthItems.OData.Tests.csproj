@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <ProjectGuid>D2F2D6A6-7847-41C0-A08C-031FEA30ADD3</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="pub\**" />
+    <Compile Remove="Unit\**" />
+    <EmbeddedResource Remove="pub\**" />
+    <EmbeddedResource Remove="Unit\**" />
+    <None Remove="pub\**" />
+    <None Remove="Unit\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.138.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NurseCron.HealthItems.OData\NurseCron.HealthItems.OData.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

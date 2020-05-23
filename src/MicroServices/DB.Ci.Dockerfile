@@ -10,6 +10,8 @@ RUN sqlservr & sleep 20 \
     && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/compDb.dacpac /TargetDatabaseName:compDb /p:BlockOnPossibleDataLoss=false \
     && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/emplDb.dacpac /TargetDatabaseName:emplDb /p:BlockOnPossibleDataLoss=false \
     && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/hltiDb.dacpac /TargetDatabaseName:hltiDb /p:BlockOnPossibleDataLoss=false \
+    && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/unitDb.dacpac /TargetDatabaseName:unitDb /p:BlockOnPossibleDataLoss=false \
+    && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/schdDb.dacpac /TargetDatabaseName:schdDb /p:BlockOnPossibleDataLoss=false \
     && sleep 20 \
     && pkill sqlservr && sleep 10 \
     && sudo rm -rf /dacpac

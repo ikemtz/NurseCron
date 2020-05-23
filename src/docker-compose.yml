@@ -7,7 +7,7 @@ services:
     ports:
     - "1433:1433"
   cert-api:
-    build: MicroServices/Certifications/src/IkeMtz.NRSRx.Certifications.api/.
+    build: MicroServices/Certifications/src/NurseCron.Certifications.api/.
     environment:
     - IdentityProvider=https://ikemtz.auth0.com/
     - IdentityAudiences=NRSRx-Local-Docker
@@ -19,7 +19,7 @@ services:
     ports:
     - "81:80"
   comp-api:
-    build: MicroServices/Competencies/src/IkeMtz.NRSRx.Competencies.api/.
+    build: MicroServices/Competencies/src/NurseCron.Competencies.api/.
     environment:
     - IdentityProvider=https://ikemtz.auth0.com/
     - IdentityAudiences=NRSRx-Local-Docker
@@ -31,7 +31,7 @@ services:
     ports:
     - "82:80"
   empl-api:
-    build: MicroServices/Employees/src/IkeMtz.NRSRx.Employees.api/.
+    build: MicroServices/Employees/src/NurseCron.Employees.api/.
     environment:
     - IdentityProvider=https://ikemtz.auth0.com/
     - IdentityAudiences=NRSRx-Local-Docker
@@ -43,7 +43,7 @@ services:
     ports:
     - "83:80"
   hlth-api:
-    build: MicroServices/HealthItems/src/IkeMtz.NRSRx.HealthItems.api/.
+    build: MicroServices/HealthItems/src/NurseCron.HealthItems.api/.
     environment:
     - IdentityProvider=https://ikemtz.auth0.com/
     - IdentityAudiences=NRSRx-Local-Docker

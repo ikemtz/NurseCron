@@ -1,9 +1,8 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Certifications.Abstraction", "MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.Abstraction\IkeMtz.NRSRx.Certifications.Abstraction.csproj", "{5E8843BA-9520-40F5-B7A3-34D68355BC8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Certifications.Abstraction", "MicroServices\Certifications\src\NurseCron.Certifications.Abstraction\NurseCron.Certifications.Abstraction.csproj", "{5E8843BA-9520-40F5-B7A3-34D68355BC8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Certifications", "Certifications", "{9C864118-B78B-467D-965A-90055890BCCB}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,19 +10,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Certifications", "Certifica
 		MicroServices\Certifications\docker-compose.yml = MicroServices\Certifications\docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IkeMtz.NRSRx.Certifications.DB", "MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.DB\IkeMtz.NRSRx.Certifications.DB.sqlproj", "{3F531713-7DAA-4C7F-B1A0-72929CD2BE5C}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NurseCron.Certifications.DB", "MicroServices\Certifications\src\NurseCron.Certifications.DB\NurseCron.Certifications.DB.sqlproj", "{3F531713-7DAA-4C7F-B1A0-72929CD2BE5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Certifications.OData", "MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.OData\IkeMtz.NRSRx.Certifications.OData.csproj", "{C717DECB-285D-4A08-9BB3-F22C40FC7A91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Certifications.OData", "MicroServices\Certifications\src\NurseCron.Certifications.OData\NurseCron.Certifications.OData.csproj", "{C717DECB-285D-4A08-9BB3-F22C40FC7A91}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Certifications.WebApi", "MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.WebApi\IkeMtz.NRSRx.Certifications.WebApi.csproj", "{74A58C7B-B0BB-4483-960A-1C7C413245CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Certifications.WebApi", "MicroServices\Certifications\src\NurseCron.Certifications.WebApi\NurseCron.Certifications.WebApi.csproj", "{74A58C7B-B0BB-4483-960A-1C7C413245CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6CC5B4D8-E091-4603-AD51-42AA3C26A5AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Certifications.OData.Tests", "MicroServices\Certifications\src\Tests\IkeMtz.NRSRx.Certifications.OData.Tests\IkeMtz.NRSRx.Certifications.OData.Tests.csproj", "{5A01E053-B94B-4F14-8516-5848F11B9A76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Certifications.OData.Tests", "MicroServices\Certifications\src\Tests\NurseCron.Certifications.OData.Tests\NurseCron.Certifications.OData.Tests.csproj", "{5A01E053-B94B-4F14-8516-5848F11B9A76}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Certifications.WebApi.Tests", "MicroServices\Certifications\src\Tests\IkeMtz.NRSRx.Certifications.WebApi.Tests\IkeMtz.NRSRx.Certifications.WebApi.Tests.csproj", "{E212233E-A777-48BC-8F3B-0465CBF2B691}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Certifications.WebApi.Tests", "MicroServices\Certifications\src\Tests\NurseCron.Certifications.WebApi.Tests\NurseCron.Certifications.WebApi.Tests.csproj", "{E212233E-A777-48BC-8F3B-0465CBF2B691}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Competencies.Abstraction", "MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.Abstraction\IkeMtz.NRSRx.Competencies.Abstraction.csproj", "{17EEFA0E-DD5F-4CE0-A6E5-8CD12687BD67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Competencies.Abstraction", "MicroServices\Competencies\src\NurseCron.Competencies.Abstraction\NurseCron.Competencies.Abstraction.csproj", "{17EEFA0E-DD5F-4CE0-A6E5-8CD12687BD67}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Competencies", "Competencies", "{2979B905-349F-4D35-8106-A2B052841516}"
 	ProjectSection(SolutionItems) = preProject
@@ -31,19 +30,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Competencies", "Competencie
 		MicroServices\Competencies\docker-compose.yml = MicroServices\Competencies\docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IkeMtz.NRSRx.Competencies.DB", "MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.DB\IkeMtz.NRSRx.Competencies.DB.sqlproj", "{01CABD48-C114-41A3-BCD6-71FB4A05782D}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NurseCron.Competencies.DB", "MicroServices\Competencies\src\NurseCron.Competencies.DB\NurseCron.Competencies.DB.sqlproj", "{01CABD48-C114-41A3-BCD6-71FB4A05782D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Competencies.OData", "MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.OData\IkeMtz.NRSRx.Competencies.OData.csproj", "{A743F331-EABF-46CE-97E3-B4C58EEA9D0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Competencies.OData", "MicroServices\Competencies\src\NurseCron.Competencies.OData\NurseCron.Competencies.OData.csproj", "{A743F331-EABF-46CE-97E3-B4C58EEA9D0D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Competencies.WebApi", "MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.WebApi\IkeMtz.NRSRx.Competencies.WebApi.csproj", "{8BE1DBFE-8B4F-46B2-8110-CB3DF13C6FA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Competencies.WebApi", "MicroServices\Competencies\src\NurseCron.Competencies.WebApi\NurseCron.Competencies.WebApi.csproj", "{8BE1DBFE-8B4F-46B2-8110-CB3DF13C6FA3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BA040A95-E642-4510-9C8D-710393BDA55F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Competencies.OData.Tests", "MicroServices\Competencies\src\Tests\IkeMtz.NRSRx.Competencies.OData.Tests\IkeMtz.NRSRx.Competencies.OData.Tests.csproj", "{E2D5C977-84A7-4036-A161-6A1E6F96DF46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Competencies.OData.Tests", "MicroServices\Competencies\src\Tests\NurseCron.Competencies.OData.Tests\NurseCron.Competencies.OData.Tests.csproj", "{E2D5C977-84A7-4036-A161-6A1E6F96DF46}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Competencies.WebApi.Tests", "MicroServices\Competencies\src\Tests\IkeMtz.NRSRx.Competencies.WebApi.Tests\IkeMtz.NRSRx.Competencies.WebApi.Tests.csproj", "{5934E763-0AB9-4F2E-8273-1308C0183768}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Competencies.WebApi.Tests", "MicroServices\Competencies\src\Tests\NurseCron.Competencies.WebApi.Tests\NurseCron.Competencies.WebApi.Tests.csproj", "{5934E763-0AB9-4F2E-8273-1308C0183768}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Employees.Abstraction", "MicroServices\Employees\src\IkeMtz.NRSRx.Employees.Abstraction\IkeMtz.NRSRx.Employees.Abstraction.csproj", "{74E97900-1E74-4E0E-9C88-F0DB8F54B719}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Employees.Abstraction", "MicroServices\Employees\src\NurseCron.Employees.Abstraction\NurseCron.Employees.Abstraction.csproj", "{74E97900-1E74-4E0E-9C88-F0DB8F54B719}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Employees", "Employees", "{D755C236-979F-4000-9AFA-548A08AA2321}"
 	ProjectSection(SolutionItems) = preProject
@@ -51,19 +50,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Employees", "Employees", "{
 		MicroServices\Employees\docker-compose.yml = MicroServices\Employees\docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IkeMtz.NRSRx.Employees.DB", "MicroServices\Employees\src\IkeMtz.NRSRx.Employees.DB\IkeMtz.NRSRx.Employees.DB.sqlproj", "{B5DA0D84-D7DE-4887-8A02-807806AEBCE1}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NurseCron.Employees.DB", "MicroServices\Employees\src\NurseCron.Employees.DB\NurseCron.Employees.DB.sqlproj", "{B5DA0D84-D7DE-4887-8A02-807806AEBCE1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Employees.OData", "MicroServices\Employees\src\IkeMtz.NRSRx.Employees.OData\IkeMtz.NRSRx.Employees.OData.csproj", "{D3239AAA-8D99-4919-B457-3BADDF19823A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Employees.OData", "MicroServices\Employees\src\NurseCron.Employees.OData\NurseCron.Employees.OData.csproj", "{D3239AAA-8D99-4919-B457-3BADDF19823A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Employees.WebApi", "MicroServices\Employees\src\IkeMtz.NRSRx.Employees.WebApi\IkeMtz.NRSRx.Employees.WebApi.csproj", "{2815C9D0-958D-4F29-B817-B66F37941ED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Employees.WebApi", "MicroServices\Employees\src\NurseCron.Employees.WebApi\NurseCron.Employees.WebApi.csproj", "{2815C9D0-958D-4F29-B817-B66F37941ED6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2E950FF1-9AA1-48CF-9250-52185E2461CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Employees.OData.Tests", "MicroServices\Employees\src\Tests\IkeMtz.NRSRx.Employees.OData.Tests\IkeMtz.NRSRx.Employees.OData.Tests.csproj", "{2107D4C0-79BF-4103-B97C-01F1904259B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Employees.OData.Tests", "MicroServices\Employees\src\Tests\NurseCron.Employees.OData.Tests\NurseCron.Employees.OData.Tests.csproj", "{2107D4C0-79BF-4103-B97C-01F1904259B7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Employees.WebApi.Tests", "MicroServices\Employees\src\Tests\IkeMtz.NRSRx.Employees.WebApi.Tests\IkeMtz.NRSRx.Employees.WebApi.Tests.csproj", "{79C4570A-2AD3-40B5-9354-3FFB65E0DC08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Employees.WebApi.Tests", "MicroServices\Employees\src\Tests\NurseCron.Employees.WebApi.Tests\NurseCron.Employees.WebApi.Tests.csproj", "{79C4570A-2AD3-40B5-9354-3FFB65E0DC08}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.HealthItems.Abstraction", "MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.Abstraction\IkeMtz.NRSRx.HealthItems.Abstraction.csproj", "{93F82AF2-C1E7-4F04-8183-DE773CD8B107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.HealthItems.Abstraction", "MicroServices\HealthItems\src\NurseCron.HealthItems.Abstraction\NurseCron.HealthItems.Abstraction.csproj", "{93F82AF2-C1E7-4F04-8183-DE773CD8B107}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HealthItems", "HealthItems", "{10DDB691-9A4D-4DBC-84DE-AECCF08C399F}"
 	ProjectSection(SolutionItems) = preProject
@@ -71,44 +70,44 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HealthItems", "HealthItems"
 		MicroServices\HealthItems\docker-compose.yml = MicroServices\HealthItems\docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IkeMtz.NRSRx.HealthItems.DB", "MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.DB\IkeMtz.NRSRx.HealthItems.DB.sqlproj", "{D35A352E-951E-4935-90CA-6740C994F0A6}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NurseCron.HealthItems.DB", "MicroServices\HealthItems\src\NurseCron.HealthItems.DB\NurseCron.HealthItems.DB.sqlproj", "{D35A352E-951E-4935-90CA-6740C994F0A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.HealthItems.OData", "MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.OData\IkeMtz.NRSRx.HealthItems.OData.csproj", "{37657BA2-8988-46F9-9813-2D97A9C841AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.HealthItems.OData", "MicroServices\HealthItems\src\NurseCron.HealthItems.OData\NurseCron.HealthItems.OData.csproj", "{37657BA2-8988-46F9-9813-2D97A9C841AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.HealthItems.WebApi", "MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.WebApi\IkeMtz.NRSRx.HealthItems.WebApi.csproj", "{1495E9B2-D997-4749-BE58-B08F304AF84E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.HealthItems.WebApi", "MicroServices\HealthItems\src\NurseCron.HealthItems.WebApi\NurseCron.HealthItems.WebApi.csproj", "{1495E9B2-D997-4749-BE58-B08F304AF84E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FC4EDE61-BA93-4BAA-B6CC-99A4520CA4ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.HealthItems.OData.Tests", "MicroServices\HealthItems\src\Tests\IkeMtz.NRSRx.HealthItems.OData.Tests\IkeMtz.NRSRx.HealthItems.OData.Tests.csproj", "{D2F2D6A6-7847-41C0-A08C-031FEA30ADD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.HealthItems.OData.Tests", "MicroServices\HealthItems\src\Tests\NurseCron.HealthItems.OData.Tests\NurseCron.HealthItems.OData.Tests.csproj", "{D2F2D6A6-7847-41C0-A08C-031FEA30ADD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.HealthItems.WebApi.Tests", "MicroServices\HealthItems\src\Tests\IkeMtz.NRSRx.HealthItems.WebApi.Tests\IkeMtz.NRSRx.HealthItems.WebApi.Tests.csproj", "{5BE67A45-57E8-4467-B578-BCFCE68C3919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.HealthItems.WebApi.Tests", "MicroServices\HealthItems\src\Tests\NurseCron.HealthItems.WebApi.Tests\NurseCron.HealthItems.WebApi.Tests.csproj", "{5BE67A45-57E8-4467-B578-BCFCE68C3919}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CiCd", "CiCd", "{32CC49D6-A6AB-4F34-B499-31C26330F559}"
 	ProjectSection(SolutionItems) = preProject
-		MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.CiCd\OData.sh = MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.CiCd\OData.sh
-		MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.CiCd\startup.ps1 = MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.CiCd\startup.ps1
-		MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.CiCd\WebApi.sh = MicroServices\Certifications\src\IkeMtz.NRSRx.Certifications.CiCd\WebApi.sh
+		MicroServices\Certifications\src\NurseCron.Certifications.CiCd\OData.sh = MicroServices\Certifications\src\NurseCron.Certifications.CiCd\OData.sh
+		MicroServices\Certifications\src\NurseCron.Certifications.CiCd\startup.ps1 = MicroServices\Certifications\src\NurseCron.Certifications.CiCd\startup.ps1
+		MicroServices\Certifications\src\NurseCron.Certifications.CiCd\WebApi.sh = MicroServices\Certifications\src\NurseCron.Certifications.CiCd\WebApi.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CiCd", "CiCd", "{409FFF3F-E884-4060-AFE6-5A93BF2B846D}"
 	ProjectSection(SolutionItems) = preProject
-		MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.CiCd\OData.sh = MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.CiCd\OData.sh
-		MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.CiCd\startup.ps1 = MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.CiCd\startup.ps1
-		MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.CiCd\WebApi.sh = MicroServices\Competencies\src\IkeMtz.NRSRx.Competencies.CiCd\WebApi.sh
+		MicroServices\Competencies\src\NurseCron.Competencies.CiCd\OData.sh = MicroServices\Competencies\src\NurseCron.Competencies.CiCd\OData.sh
+		MicroServices\Competencies\src\NurseCron.Competencies.CiCd\startup.ps1 = MicroServices\Competencies\src\NurseCron.Competencies.CiCd\startup.ps1
+		MicroServices\Competencies\src\NurseCron.Competencies.CiCd\WebApi.sh = MicroServices\Competencies\src\NurseCron.Competencies.CiCd\WebApi.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CiCd", "CiCd", "{85E36BE4-F10D-4EBD-BFF8-DB8F35C283A0}"
 	ProjectSection(SolutionItems) = preProject
-		MicroServices\Employees\src\IkeMtz.NRSRx.Employees.CiCd\OData.sh = MicroServices\Employees\src\IkeMtz.NRSRx.Employees.CiCd\OData.sh
-		MicroServices\Employees\src\IkeMtz.NRSRx.Employees.CiCd\startup.ps1 = MicroServices\Employees\src\IkeMtz.NRSRx.Employees.CiCd\startup.ps1
-		MicroServices\Employees\src\IkeMtz.NRSRx.Employees.CiCd\WebApi.sh = MicroServices\Employees\src\IkeMtz.NRSRx.Employees.CiCd\WebApi.sh
+		MicroServices\Employees\src\NurseCron.Employees.CiCd\OData.sh = MicroServices\Employees\src\NurseCron.Employees.CiCd\OData.sh
+		MicroServices\Employees\src\NurseCron.Employees.CiCd\startup.ps1 = MicroServices\Employees\src\NurseCron.Employees.CiCd\startup.ps1
+		MicroServices\Employees\src\NurseCron.Employees.CiCd\WebApi.sh = MicroServices\Employees\src\NurseCron.Employees.CiCd\WebApi.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CiCd", "CiCd", "{676F46EB-738B-4F54-80C3-D17F16BECBBE}"
 	ProjectSection(SolutionItems) = preProject
-		MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.CiCd\OData.sh = MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.CiCd\OData.sh
-		MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.CiCd\startup.ps1 = MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.CiCd\startup.ps1
-		MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.CiCd\WebApi.sh = MicroServices\HealthItems\src\IkeMtz.NRSRx.HealthItems.CiCd\WebApi.sh
+		MicroServices\HealthItems\src\NurseCron.HealthItems.CiCd\OData.sh = MicroServices\HealthItems\src\NurseCron.HealthItems.CiCd\OData.sh
+		MicroServices\HealthItems\src\NurseCron.HealthItems.CiCd\startup.ps1 = MicroServices\HealthItems\src\NurseCron.HealthItems.CiCd\startup.ps1
+		MicroServices\HealthItems\src\NurseCron.HealthItems.CiCd\WebApi.sh = MicroServices\HealthItems\src\NurseCron.HealthItems.CiCd\WebApi.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7737A076-9E88-4AE1-8EDF-2E5FE485D18E}"
@@ -123,6 +122,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\coverage-converter.ps1 = ..\coverage-converter.ps1
 		MicroServices\DB.Ci.Dockerfile = MicroServices\DB.Ci.Dockerfile
 		MicroServices\DB.Dockerfile = MicroServices\DB.Dockerfile
+		..\tools\DbContext-Scaffolding.txt = ..\tools\DbContext-Scaffolding.txt
 		..\docker-compose.yml = ..\docker-compose.yml
 		docker-compose.yml = docker-compose.yml
 		..\LICENSE = ..\LICENSE
@@ -139,7 +139,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YAML Build Definitions", "Y
 		MicroServices\databases-only.YAML = MicroServices\databases-only.YAML
 		MicroServices\Employees.YAML = MicroServices\Employees.YAML
 		MicroServices\HealthItems.YAML = MicroServices\HealthItems.YAML
+		MicroServices\Units.YAML = MicroServices\Units.YAML
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Units", "Units", "{BF4A3D96-AD03-4359-8772-C19CD024F05F}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NurseCron.Units.DB", "MicroServices\Units\src\NurseCron.Units.DB\NurseCron.Units.DB.sqlproj", "{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Units.OData", "MicroServices\Units\src\NurseCron.Units.OData\NurseCron.Units.OData.csproj", "{C107A6A6-0253-4627-92EE-0EC4308CCAAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Units.Abstraction", "MicroServices\Units\src\NurseCron.Units.Abstraction\NurseCron.Units.Abstraction.csproj", "{3CAA934F-17DC-4AF9-89D0-41985672EC96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8C90BE53-C5AB-4600-9FA1-867E360EB5BB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCronUnits.OData.Tests", "MicroServices\Units\src\Tests\NurseCronUnits.OData.Tests\NurseCronUnits.OData.Tests.csproj", "{9089D713-9C12-443F-ACA4-D81CD57E0B72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schedules", "Schedules", "{0F8E48AB-8BD9-4EE3-BE05-4D65BEC034A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Services.Schedules.Abstraction", "MicroServices\Schedules\src\NurseCron.Services.Schedules.Abstraction\NurseCron.Services.Schedules.Abstraction.csproj", "{777F41B2-2F1C-4CDE-B960-9B87BFEBB731}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Services.Schedules.OData", "MicroServices\Schedules\src\NurseCron.Services.Schedules.OData\NurseCron.Services.Schedules.OData.csproj", "{0FB9CAE7-00F1-4AD7-8DDE-D077BDE79206}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NurseCron.Schedules.DB", "MicroServices\Schedules\src\NurseCron.Schedules.DB\NurseCron.Schedules.DB.sqlproj", "{AFF966D4-5826-4DF8-9268-306F23C969A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NurseCron.Services.Schedules.OData.Tests", "MicroServices\Schedules\src\Tests\NurseCron.Services.Schedules.OData.Tests\NurseCron.Services.Schedules.OData.Tests.csproj", "{27C0B225-AC54-45B6-BDC0-0DAD400414A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{032DDB15-C329-43D2-8BDD-0191C9A36372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -251,6 +276,42 @@ Global
 		{5BE67A45-57E8-4467-B578-BCFCE68C3919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BE67A45-57E8-4467-B578-BCFCE68C3919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BE67A45-57E8-4467-B578-BCFCE68C3919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{777F41B2-2F1C-4CDE-B960-9B87BFEBB731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{777F41B2-2F1C-4CDE-B960-9B87BFEBB731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{777F41B2-2F1C-4CDE-B960-9B87BFEBB731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{777F41B2-2F1C-4CDE-B960-9B87BFEBB731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FB9CAE7-00F1-4AD7-8DDE-D077BDE79206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB9CAE7-00F1-4AD7-8DDE-D077BDE79206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB9CAE7-00F1-4AD7-8DDE-D077BDE79206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB9CAE7-00F1-4AD7-8DDE-D077BDE79206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF966D4-5826-4DF8-9268-306F23C969A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF966D4-5826-4DF8-9268-306F23C969A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF966D4-5826-4DF8-9268-306F23C969A7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AFF966D4-5826-4DF8-9268-306F23C969A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF966D4-5826-4DF8-9268-306F23C969A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF966D4-5826-4DF8-9268-306F23C969A7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{27C0B225-AC54-45B6-BDC0-0DAD400414A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C0B225-AC54-45B6-BDC0-0DAD400414A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C0B225-AC54-45B6-BDC0-0DAD400414A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C0B225-AC54-45B6-BDC0-0DAD400414A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -288,6 +349,16 @@ Global
 		{409FFF3F-E884-4060-AFE6-5A93BF2B846D} = {2979B905-349F-4D35-8106-A2B052841516}
 		{85E36BE4-F10D-4EBD-BFF8-DB8F35C283A0} = {D755C236-979F-4000-9AFA-548A08AA2321}
 		{676F46EB-738B-4F54-80C3-D17F16BECBBE} = {10DDB691-9A4D-4DBC-84DE-AECCF08C399F}
+		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
+		{8C90BE53-C5AB-4600-9FA1-867E360EB5BB} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72} = {8C90BE53-C5AB-4600-9FA1-867E360EB5BB}
+		{777F41B2-2F1C-4CDE-B960-9B87BFEBB731} = {0F8E48AB-8BD9-4EE3-BE05-4D65BEC034A0}
+		{0FB9CAE7-00F1-4AD7-8DDE-D077BDE79206} = {0F8E48AB-8BD9-4EE3-BE05-4D65BEC034A0}
+		{AFF966D4-5826-4DF8-9268-306F23C969A7} = {0F8E48AB-8BD9-4EE3-BE05-4D65BEC034A0}
+		{27C0B225-AC54-45B6-BDC0-0DAD400414A0} = {032DDB15-C329-43D2-8BDD-0191C9A36372}
+		{032DDB15-C329-43D2-8BDD-0191C9A36372} = {0F8E48AB-8BD9-4EE3-BE05-4D65BEC034A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {588544EC-C030-4E92-80D1-FCA2B9CE8B96}

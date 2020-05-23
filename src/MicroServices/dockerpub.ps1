@@ -1,11 +1,11 @@
 Set-Location $PSScriptRoot 
-Set-Location .\Certifications\src\IkeMtz.NRSRx.Certifications.Api\ 
+Set-Location .\Certifications\src\NurseCron.Certifications.Api\ 
 .\pub.ps1 
-Set-Location ..\..\..\Competencies\src\IkeMtz.NRSRx.Competencies.Api\ 
+Set-Location ..\..\..\Competencies\src\NurseCron.Competencies.Api\ 
 .\pub.ps1 
-Set-Location ..\..\..\HealthItems\src\IkeMtz.NRSRx.HealthItems.Api\ 
+Set-Location ..\..\..\HealthItems\src\NurseCron.HealthItems.Api\ 
 .\pub.ps1 
-Set-Location ..\..\..\Employees\src\IkeMtz.NRSRx.Employees.Api\ 
+Set-Location ..\..\..\Employees\src\NurseCron.Employees.Api\ 
 .\pub.ps1 
 Set-Location ..\..\..\..\NRSRx.UI\nx\ 
 .\pub.ps1 

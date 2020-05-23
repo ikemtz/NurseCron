@@ -3,19 +3,24 @@ ENV SA_PASSWORD=SqlDockerRocks123! \
     ACCEPT_EULA=Y
 
 #Copy dacpacs
-COPY /Certifications/src/IkeMtz.NRSRx.Certifications.DB/bin/Debug/*.dacpac /dacpac/
-COPY /Competencies/src/IkeMtz.NRSRx.Competencies.DB/bin/Debug/*.dacpac /dacpac/
-COPY /Employees/src/IkeMtz.NRSRx.Employees.DB/bin/Debug/*.dacpac /dacpac/
-COPY /HealthItems/src/IkeMtz.NRSRx.HealthItems.DB/bin/Debug/*.dacpac /dacpac/
+COPY /Certifications/src/NurseCron.Certifications.DB/bin/Debug/*.dacpac /dacpac/
+COPY /Competencies/src/NurseCron.Competencies.DB/bin/Debug/*.dacpac /dacpac/
+COPY /Employees/src/NurseCron.Employees.DB/bin/Debug/*.dacpac /dacpac/
+COPY /HealthItems/src/NurseCron.HealthItems.DB/bin/Debug/*.dacpac /dacpac/
+COPY /Units/src/NurseCron.Units.DB/bin/Debug/*.dacpac /dacpac/
+COPY /Schedules/src/NurseCron.Schedules.DB/bin/Debug/*.dacpac /dacpac/
+
 
 #Copy publish.xml
-COPY /Certifications/src/IkeMtz.NRSRx.Certifications.DB/LocalPublish.publish.xml /dacpac/pub.xml
+COPY /Certifications/src/NurseCron.Certifications.DB/LocalPublish.publish.xml /dacpac/pub.xml
 
 RUN /opt/mssql/bin/sqlservr & sleep 20 \
     && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/certDb.dacpac /TargetDatabaseName:certDb /p:BlockOnPossibleDataLoss=false \
     && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/compDb.dacpac /TargetDatabaseName:compDb /p:BlockOnPossibleDataLoss=false \
     && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/emplDb.dacpac /TargetDatabaseName:emplDb /p:BlockOnPossibleDataLoss=false \
     && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/hltiDb.dacpac /TargetDatabaseName:hltiDb /p:BlockOnPossibleDataLoss=false \
+    && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/unitDb.dacpac /TargetDatabaseName:unitDb /p:BlockOnPossibleDataLoss=false \
+    && sqlpackage /Action:Publish /TargetServerName:localhost /TargetUser:SA /TargetPassword:$SA_PASSWORD /SourceFile:/dacpac/schdDb.dacpac /TargetDatabaseName:schdDb /p:BlockOnPossibleDataLoss=false \
     && sleep 20 \
     && pkill sqlservr && sleep 10 \
     && sudo rm -rf /dacpac
