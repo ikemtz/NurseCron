@@ -123,6 +123,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\coverage-converter.ps1 = ..\coverage-converter.ps1
 		MicroServices\DB.Ci.Dockerfile = MicroServices\DB.Ci.Dockerfile
 		MicroServices\DB.Dockerfile = MicroServices\DB.Dockerfile
+		..\tools\DbContext-Scaffolding.txt = ..\tools\DbContext-Scaffolding.txt
 		..\docker-compose.yml = ..\docker-compose.yml
 		docker-compose.yml = docker-compose.yml
 		..\LICENSE = ..\LICENSE
@@ -145,6 +146,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Units", "Units", "{BF4A3D96-AD03-4359-8772-C19CD024F05F}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IkeMtz.NRSRx.Units.DB", "MicroServices\Units\src\IkeMtz.NRSRx.Units.DB\IkeMtz.NRSRx.Units.DB.sqlproj", "{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Units.OData", "MicroServices\Units\src\IkeMtz.NRSRx.Units.OData\IkeMtz.NRSRx.Units.OData.csproj", "{C107A6A6-0253-4627-92EE-0EC4308CCAAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IkeMtz.NRSRx.Units.Abstraction", "MicroServices\Units\src\IkeMtz.NRSRx.Units.Abstraction\IkeMtz.NRSRx.Units.Abstraction.csproj", "{3CAA934F-17DC-4AF9-89D0-41985672EC96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8C90BE53-C5AB-4600-9FA1-867E360EB5BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IkeMtz.NRSRxUnits.OData.Tests", "MicroServices\Units\src\Tests\IkeMtz.NRSRxUnits.OData.Tests\IkeMtz.NRSRxUnits.OData.Tests.csproj", "{9089D713-9C12-443F-ACA4-D81CD57E0B72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -262,6 +271,18 @@ Global
 		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -300,6 +321,10 @@ Global
 		{85E36BE4-F10D-4EBD-BFF8-DB8F35C283A0} = {D755C236-979F-4000-9AFA-548A08AA2321}
 		{676F46EB-738B-4F54-80C3-D17F16BECBBE} = {10DDB691-9A4D-4DBC-84DE-AECCF08C399F}
 		{E63520EA-AA59-4C21-ACDF-5B3F9FE4EF2E} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
+		{C107A6A6-0253-4627-92EE-0EC4308CCAAE} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
+		{3CAA934F-17DC-4AF9-89D0-41985672EC96} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
+		{8C90BE53-C5AB-4600-9FA1-867E360EB5BB} = {BF4A3D96-AD03-4359-8772-C19CD024F05F}
+		{9089D713-9C12-443F-ACA4-D81CD57E0B72} = {8C90BE53-C5AB-4600-9FA1-867E360EB5BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {588544EC-C030-4E92-80D1-FCA2B9CE8B96}
