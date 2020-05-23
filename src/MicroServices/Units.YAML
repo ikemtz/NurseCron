@@ -1,0 +1,172 @@
+name: 1.$(Year:yy).$(DayOfYear)$(Rev:.rr)
+resources:
+  - repo: self
+variables:
+  DomainName: 'Units'
+  RestoreBuildProjects: 'src/MicroServices/$(DomainName)/**/*.csproj'
+  TestProjects: 'src/MicroServices/$(DomainName)/**/*Tests/*.csproj'
+
+jobs:
+- job: Database
+  displayName: Database build and package
+  pool: Hosted Windows 2019 with VS2019
+
+  steps:
+  - task: VSBuild@1
+    displayName: 'Build solution DB Project'
+    inputs:
+      solution: src/MicroServices/$(DomainName)/**.sqlproj
+
+  - task: PowerShell@2
+    displayName: 'Artifact SQL Dacpacs'
+    inputs:
+      targetType: filePath
+      filePath: 'src/MicroServices/artifact-dacpacs.ps1'
+      arguments: '-sourceFolder $(build.SourcesDirectory)/src/MicroServices/$(DomainName) -artifactFolder $(build.artifactstagingdirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: dacpac_drop'
+    inputs:
+      ArtifactName: 'dacpac_drop'
+
+- job: APIs
+  displayName: Build and test API code
+  pool: Hosted Windows 2019 with VS2019
+
+  steps:
+  - checkout: self
+    persistCredentials: true
+
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk 3.1.x'
+    inputs:
+      version: 3.1.x
+
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+      command: restore
+      projects: '$(RestoreBuildProjects)'      
+
+  - task: bleddynrichards.Assembly-Info-Task.Assembly-Info-NetCore.Assembly-Info-NetCore@2
+    displayName: 'Set Assembly Manifest Data'
+    inputs:
+      InsertAttributes: true
+      VersionNumber: '$(Build.BuildNumber)'
+      FileVersionNumber: '$(Build.BuildNumber)'
+      InformationalVersion: '$(Build.BuildNumber)'
+      PackageVersion: '$(Build.BuildNumber)'
+
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: 'SonarCloud IkeMtz'
+      organization: ikemtz
+      projectKey: Nurser_$(DomainName)
+      projectName: Nurser_$(DomainName)
+      extraProperties: |
+        # Additional properties that will be passed to the scanner, 
+        # Put one key=value per line, example:
+        # sonar.exclusions=**/*.bin
+        sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
+        # sonar.branch.name=$(Build.SourceBranch)
+
+  - task: VSBuild@1
+    displayName: 'Build solution DB Project'
+    inputs:
+      solution: src/MicroServices/$(DomainName)/**.sqlproj
+
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      projects: '$(RestoreBuildProjects)'
+      arguments: '--configuration $(BuildConfiguration) --no-restore'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Unigration Tests'
+    inputs:
+      command: test
+      projects: '$(TestProjects)'
+      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage" --settings $(Build.SourcesDirectory)/src/MicroServices/test.RunSettings --no-build --no-restore --filter TestCategory!=Integration'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Unigration Tests - Sonar'
+    inputs:
+      command: 'custom'
+      projects: '$(TestProjects)'
+      custom: 'test'
+      arguments: '--logger trx --configuration $(BuildConfiguration) --collect "Code coverage" --results-directory $(Common.TestResultsDirectory) --no-build --no-restore --settings $(Build.SourcesDirectory)/src/MicroServices/test.RunSettings --filter TestCategory!=Integration'
+
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
+
+  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+    displayName: 'Publish Quality Gate Result'
+
+  - task: sonarcloud-buildbreaker@2
+    inputs:
+      SonarCloud: 'SonarCloud IkeMtz'
+      organization: 'ikemtz'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish WebApi projects'
+    inputs:
+      command: publish
+      publishWebProjects: false
+      projects: 'src/MicroServices/$(DomainName)/**/*.WebApi/*.csproj'
+      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+      zipAfterPublish: false
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish OData projects'
+    inputs:
+      command: publish
+      publishWebProjects: false
+      projects: 'src/MicroServices/$(DomainName)/**/*.OData/*.csproj'
+      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+      zipAfterPublish: false
+
+  - task: PowerShell@2
+    displayName: 'Artifact CI/CD scripts'
+    inputs:
+      targetType: filePath
+      filePath: 'src/MicroServices/artifact-ci-cd-scripts.ps1'
+      arguments: '-sourceFolder $(build.SourcesDirectory)/src/MicroServices -domainName $(DomainName) -artifactFolder $(build.artifactstagingdirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: ApiDrop'
+    inputs:
+      ArtifactName: ApiDrop
+      
+  - task: GitTag@5
+    inputs:
+      workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
+      tagUser: 'ikemtz'
+      tagEmail: 'ikemtz@outlook.com'
+      tag: 'hlti-$(Build.BuildNumber)'
+      tagMessage: 'hlti-$(Build.BuildNumber)'
+      useLightweightTags: true  
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/MicroServices/Units/*
+
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/MicroServices/Units/*
+
+schedules:
+  - cron: '0 0 * * Sun'
+    displayName: 'Sunday 12:00 AM (UTC) weekly latest version build'
+    branches:
+      include:
+      - master

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <ProjectGuid>93F82AF2-C1E7-4F04-8183-DE773CD8B107</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="pub\**" />
+    <EmbeddedResource Remove="pub\**" />
+    <None Remove="pub\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="1.20.138.1" />
+  </ItemGroup>
+</Project>

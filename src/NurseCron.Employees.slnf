@@ -1,0 +1,13 @@
+{ 
+  "solution": { 
+    "path": "NurseCron.Services.sln", 
+    "projects": [ 
+      "MicroServices\\Employees\\src\\NurseCron.Employees.Abstraction\\NurseCron.Employees.Abstraction.csproj", 
+      "MicroServices\\Employees\\src\\NurseCron.Employees.DB\\NurseCron.Employees.DB.sqlproj", 
+      "MicroServices\\Employees\\src\\NurseCron.Employees.OData\\NurseCron.Employees.OData.csproj", 
+      "MicroServices\\Employees\\src\\NurseCron.Employees.WebApi\\NurseCron.Employees.WebApi.csproj", 
+      "MicroServices\\Employees\\src\\Tests\\NurseCron.Employees.OData.Tests\\NurseCron.Employees.OData.Tests.csproj", 
+      "MicroServices\\Employees\\src\\Tests\\NurseCron.Employees.WebApi.Tests\\NurseCron.Employees.WebApi.Tests.csproj" 
+    ] 
+  } 
+}

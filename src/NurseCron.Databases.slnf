@@ -1,0 +1,13 @@
+{
+  "solution": {
+    "path": "NurseCron.Services.sln",
+    "projects": [
+      "MicroServices\\Certifications\\src\\NurseCron.Certifications.DB\\NurseCron.Certifications.DB.sqlproj",
+      "MicroServices\\Competencies\\src\\NurseCron.Competencies.DB\\NurseCron.Competencies.DB.sqlproj",
+      "MicroServices\\Employees\\src\\NurseCron.Employees.DB\\NurseCron.Employees.DB.sqlproj",
+      "MicroServices\\HealthItems\\src\\NurseCron.HealthItems.DB\\NurseCron.HealthItems.DB.sqlproj",
+      "MicroServices\\Schedules\\src\\NurseCron.Schedules.DB\\NurseCron.Schedules.DB.sqlproj",
+      "MicroServices\\Units\\src\\NurseCron.Units.DB\\NurseCron.Units.DB.sqlproj"
+    ]
+  }
+}
