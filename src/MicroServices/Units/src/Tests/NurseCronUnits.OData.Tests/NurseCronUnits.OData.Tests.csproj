@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
+    <ProjectGuid>ACCE7A5A-7E5C-4A45-8EB9-9FAD169401AD</ProjectGuid>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.138.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
@@ -15,9 +13,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\NurseCron.Units.OData\NurseCron.Units.OData.csproj" />
   </ItemGroup>
-
 </Project>

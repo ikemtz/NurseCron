@@ -1,13 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ProjectGuid>1B69648C-E91B-434D-BC93-7CE13A5C9B6E</ProjectGuid>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="1fqxer0i.mbn~" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="1.20.144.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
@@ -15,5 +13,4 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
 </Project>

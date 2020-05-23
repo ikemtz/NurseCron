@@ -108,14 +108,14 @@ jobs:
       SonarCloud: 'SonarCloud IkeMtz'
       organization: 'ikemtz'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet publish WebApi projects'
-    inputs:
-      command: publish
-      publishWebProjects: false
-      projects: 'src/MicroServices/$(DomainName)/**/*.WebApi/*.csproj'
-      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-      zipAfterPublish: false
+#  - task: DotNetCoreCLI@2
+#    displayName: 'dotnet publish WebApi projects'
+#    inputs:
+#      command: publish
+#      publishWebProjects: false
+#      projects: 'src/MicroServices/$(DomainName)/**/*.WebApi/*.csproj'
+#      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+#      zipAfterPublish: false
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet publish OData projects'

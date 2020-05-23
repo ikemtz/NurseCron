@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
+    <ProjectGuid>7187E0CF-9233-4879-984D-D00FC654F277</ProjectGuid>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="1.20.138.1" />
   </ItemGroup>
-
 </Project>
