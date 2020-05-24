@@ -1,0 +1,10 @@
+**/bin/**
+**/bin
+**/obj/**
+**/obj
+**/*.Tests.WebApi/**
+**/*.Tests.OData/**
+**/node_modules/**
+**/*.Orchestration.*/**
+**/*.jfm
+**/*.dbmdl

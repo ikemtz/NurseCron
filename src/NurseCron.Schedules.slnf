@@ -1,10 +1,10 @@
 {
   "solution": {
-    "path": "NurseCron.Services.sln",
+    "path": "NurseCron.sln",
     "projects": [
       "MicroServices\\Schedules\\src\\NurseCron.Schedules.DB\\NurseCron.Schedules.DB.sqlproj",
-      "MicroServices\\Schedules\\src\\NurseCron.Services.Schedules.Abstraction\\NurseCron.Services.Schedules.Abstraction.csproj",
-      "MicroServices\\Schedules\\src\\NurseCron.Services.Schedules.OData\\NurseCron.Services.Schedules.OData.csproj"
+      "MicroServices\\Schedules\\src\\NurseCron.Schedules.Abstraction\\NurseCron.Schedules.Abstraction.csproj",
+      "MicroServices\\Schedules\\src\\NurseCron.Schedules.OData\\NurseCron.Schedules.OData.csproj"
     ]
   }
 }

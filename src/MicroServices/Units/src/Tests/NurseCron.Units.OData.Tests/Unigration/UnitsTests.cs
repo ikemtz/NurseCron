@@ -13,11 +13,11 @@ using Newtonsoft.Json;
 namespace NurseCron.Units.Tests.Unigration.OData
 {
   [TestClass]
-  public partial class ItemsTests : BaseUnigrationTests
+  public partial class UnitsTests : BaseUnigrationTests
   {
     [TestMethod]
     [TestCategory("Unigration")]
-    public async Task GetItemsTest()
+    public async Task GetUnitsTest()
     {
       var objA = new Unit()
       {

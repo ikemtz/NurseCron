@@ -29,7 +29,7 @@ namespace NurseCron.Units.OData.Controllers.V1
     [ODataRoute]
     [Produces("application/json")]
     [ProducesResponseType(typeof(ODataEnvelope<Building, Guid>), Status200OK)]
-    [EnableQuery(MaxTop = 100)]
+    [EnableQuery(MaxTop = 100, AllowedQueryOptions = All)]
     public IEnumerable<Building> Get()
     {
       return _databaseContext.Buildings
