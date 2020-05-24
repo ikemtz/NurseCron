@@ -36,8 +36,8 @@
     <None Include="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.20.138.1" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="1.20.138.1" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.20.144.5" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="1.20.144.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
   </ItemGroup>
