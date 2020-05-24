@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  db:
+    build: NurseCron.Units.DB/.
+    ports:
+     - "1433:1433"
+  odata:
+    build: 
+      context: ./
+      dockerfile: ./Dev.OData.Dockerfile
+#    env_file:
+#    - src/NurseCron.Certifications.Api/Dockerfile.env
+    ports:
+    - "81:80"
+#  api:
+#    build: 
+#      context: ./
+#      dockerfile: ./Dev.WebApi.Dockerfile
+#  #    env_file:
+#  #    - src/NurseCron.Certifications.Api/Dockerfile.env
+#    ports:
+#    - "82:80"
