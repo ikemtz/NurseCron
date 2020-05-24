@@ -1,20 +1,16 @@
+using System.Diagnostics.CodeAnalysis;
+using IkeMtz.NRSRx.Core.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace NurseCron.Services.Schedules.OData
 {
+  [ExcludeFromCodeCoverage]  //This is part of the dotnet aspnet.core project template and typically should not be changed 
   public static class Program
   {
-    public static void Main(string[] args)
+    public static void Main()
     {
-      CreateHostBuilder(args).Build().Run();
+      CoreWebStartup.CreateDefaultHostBuilder<Startup>().Build().Run();
     }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-      Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-          _ = webBuilder.UseStartup<Startup>();
-        });
   }
 }
