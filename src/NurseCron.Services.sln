@@ -153,17 +153,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Units.Abstraction
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8C90BE53-C5AB-4600-9FA1-867E360EB5BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCronUnits.OData.Tests", "MicroServices\Units\src\Tests\NurseCronUnits.OData.Tests\NurseCronUnits.OData.Tests.csproj", "{9089D713-9C12-443F-ACA4-D81CD57E0B72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Units.OData.Tests", "MicroServices\Units\src\Tests\NurseCron.Units.OData.Tests\Nurse.CronUnits.OData.Tests.csproj", "{9089D713-9C12-443F-ACA4-D81CD57E0B72}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schedules", "Schedules", "{0F8E48AB-8BD9-4EE3-BE05-4D65BEC034A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Services.Schedules.Abstraction", "MicroServices\Schedules\src\NurseCron.Services.Schedules.Abstraction\NurseCron.Services.Schedules.Abstraction.csproj", "{777F41B2-2F1C-4CDE-B960-9B87BFEBB731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Schedules.Abstraction", "MicroServices\Schedules\src\NurseCron.Schedules.Abstraction\NurseCron.Schedules.Abstraction.csproj", "{777F41B2-2F1C-4CDE-B960-9B87BFEBB731}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Services.Schedules.OData", "MicroServices\Schedules\src\NurseCron.Services.Schedules.OData\NurseCron.Services.Schedules.OData.csproj", "{0FB9CAE7-00F1-4AD7-8DDE-D077BDE79206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Schedules.OData", "MicroServices\Schedules\src\NurseCron.Schedules.OData\NurseCron.Schedules.OData.csproj", "{0FB9CAE7-00F1-4AD7-8DDE-D077BDE79206}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NurseCron.Schedules.DB", "MicroServices\Schedules\src\NurseCron.Schedules.DB\NurseCron.Schedules.DB.sqlproj", "{AFF966D4-5826-4DF8-9268-306F23C969A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NurseCron.Services.Schedules.OData.Tests", "MicroServices\Schedules\src\Tests\NurseCron.Services.Schedules.OData.Tests\NurseCron.Services.Schedules.OData.Tests.csproj", "{27C0B225-AC54-45B6-BDC0-0DAD400414A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NurseCron.Schedules.OData.Tests", "MicroServices\Schedules\src\Tests\NurseCron.Schedules.OData.Tests\NurseCron.Schedules.OData.Tests.csproj", "{27C0B225-AC54-45B6-BDC0-0DAD400414A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{032DDB15-C329-43D2-8BDD-0191C9A36372}"
 EndProject
