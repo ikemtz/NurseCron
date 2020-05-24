@@ -17,7 +17,7 @@ Unigration testing
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Certifications&metric=security_rating)](https://sonarcloud.io/dashboard?id=NurseCRON_Certifications)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Certifications&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=NurseCRON_Certifications)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Certifications&metric=code_smells)](https://sonarcloud.io/dashboard?id=NurseCRON_Certifications)
-![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-certifications)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-certifications)](https://hub.docker.com/repository/docker/ikemtz/nurse-cron-certifications)
 ## NurseCRON Competency MicroService
 [![Build Status](https://ikemtz.visualstudio.com/Devops/_apis/build/status/NurseCron/NurseCron%20Competencies%20Microservice?branchName=master)](https://ikemtz.visualstudio.com/Devops/_build/latest?definitionId=39&branchName=master)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Competencies&metric=coverage)](https://sonarcloud.io/dashboard?id=NurseCRON_Competencies)
@@ -25,7 +25,7 @@ Unigration testing
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Competencies&metric=security_rating)](https://sonarcloud.io/dashboard?id=NurseCRON_Competencies)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Competencies&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=NurseCRON_Competencies)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Competencies&metric=code_smells)](https://sonarcloud.io/dashboard?id=NurseCRON_Competencies)
-![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-competencies)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-competencies)](https://hub.docker.com/repository/docker/ikemtz/nurse-cron-competencies)
 ## NurseCRON Employees MicroService
 [![Build Status](https://ikemtz.visualstudio.com/Devops/_apis/build/status/NurseCron/NurseCron%20Employees%20Microservice?branchName=master)](https://ikemtz.visualstudio.com/Devops/_build/latest?definitionId=39&branchName=master)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Employees&metric=coverage)](https://sonarcloud.io/dashboard?id=NurseCRON_Employees)
@@ -33,7 +33,7 @@ Unigration testing
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Employees&metric=security_rating)](https://sonarcloud.io/dashboard?id=NurseCRON_Employees)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Employees&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=NurseCRON_Employees)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Employees&metric=code_smells)](https://sonarcloud.io/dashboard?id=NurseCRON_Employees)
-![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-employees)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-employees)](https://hub.docker.com/repository/docker/ikemtz/nurse-cron-employees)
 ## NurseCRON HealthItems MicroService
 [![Build Status](https://ikemtz.visualstudio.com/Devops/_apis/build/status/NurseCron/NurseCron%20HealthItems%20Microservice?branchName=master)](https://ikemtz.visualstudio.com/Devops/_build/latest?definitionId=39&branchName=master)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_HealthItems&metric=coverage)](https://sonarcloud.io/dashboard?id=NurseCRON_HealthItems)
@@ -41,7 +41,7 @@ Unigration testing
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_HealthItems&metric=security_rating)](https://sonarcloud.io/dashboard?id=NurseCRON_HealthItems)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_HealthItems&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=NurseCRON_HealthItems)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_HealthItems&metric=code_smells)](https://sonarcloud.io/dashboard?id=NurseCRON_HealthItems)
-![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-healthitems)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-healthitems)](https://hub.docker.com/repository/docker/ikemtz/nurse-cron-healthitems)
 ## NurseCron Schedules MicroService
 [![Build Status](https://ikemtz.visualstudio.com/Devops/_apis/build/status/NurseCron/NurseCron%20Schedules%20Microservice?branchName=master)](https://ikemtz.visualstudio.com/Devops/_build/latest?definitionId=39&branchName=master)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Schedules&metric=coverage)](https://sonarcloud.io/dashboard?id=NurseCRON_Schedules)
@@ -49,7 +49,7 @@ Unigration testing
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Schedules&metric=security_rating)](https://sonarcloud.io/dashboard?id=NurseCRON_Schedules)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Schedules&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=NurseCRON_Schedules)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Schedules&metric=code_smells)](https://sonarcloud.io/dashboard?id=NurseCRON_Schedules)
-![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-schedules)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-schedules)](https://hub.docker.com/repository/docker/ikemtz/nurse-cron-schedules)
 ## NurseCRON Units MicroService
 [![Build Status](https://ikemtz.visualstudio.com/Devops/_apis/build/status/NurseCron/NurseCron%20Units%20Microservice?branchName=master)](https://ikemtz.visualstudio.com/Devops/_build/latest?definitionId=39&branchName=master)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Units&metric=coverage)](https://sonarcloud.io/dashboard?id=NurseCRON_Units)
@@ -57,4 +57,4 @@ Unigration testing
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Units&metric=security_rating)](https://sonarcloud.io/dashboard?id=NurseCRON_Units)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Units&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=NurseCRON_Units)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NurseCRON_Units&metric=code_smells)](https://sonarcloud.io/dashboard?id=NurseCRON_Units)
-![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-units)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ikemtz/nurse-cron-units)](https://hub.docker.com/repository/docker/ikemtz/nurse-cron-units)
