@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <ProjectGuid>5A7CAF06-8E0E-43B9-B323-6104DCA572C7</ProjectGuid>
+    <ProjectGuid>{27C0B225-AC54-45B6-BDC0-0DAD400414A0}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.144.5" />
@@ -14,6 +14,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NurseCron.Services.Schedules.OData\NurseCron.Services.Schedules.OData.csproj" />
+    <ProjectReference Include="..\..\NurseCron.Schedules.OData\NurseCron.Schedules.OData.csproj" />
   </ItemGroup>
 </Project>

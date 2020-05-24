@@ -16,13 +16,13 @@ namespace NurseCron.Units.Tests.Integration.OData
   {
     [TestMethod]
     [TestCategory("Integration")]
-    public async Task GetItemsTest()
+    public async Task GetUnitsTest()
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>());
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(Unit)}?$count=true");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Unit)}s?$count=true");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Unit>>(resp);
       Assert.AreEqual(envelope.Count, envelope.Value.Count());
