@@ -145,7 +145,8 @@ jobs:
       tagEmail: 'ikemtz@outlook.com'
       tag: 'cert-$(Build.BuildNumber)'
       tagMessage: 'cert-$(Build.BuildNumber)'
-      useLightweightTags: true  
+      useLightweightTags: true
+      conditions: and(succeeded(), not(endsWith(variables['Build.SourceBranch'], 'master')))
 
 trigger:
   batch: true
