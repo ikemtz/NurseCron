@@ -24,32 +24,16 @@ namespace NurseCron.Employees.Models
     public string MobilePhone { get; set; }
     public string Photo { get; set; }
     public DateTime? BirthDate { get; set; }
-    public ICollection<EmployeeCertification> Certifications { get; set; }
+    public ICollection<EmployeeCertification> EmployeeCertifications { get; set; }
 
-    public ICollection<EmployeeCompetency> Competencies { get; set; }
-    public ICollection<EmployeeHealthItem> HealthItems { get; set; }
+    public ICollection<EmployeeCompetency> EmployeeCompetencies { get; set; }
+    public ICollection<EmployeeHealthItem> EmployeeHealthItems { get; set; }
     public DateTime? FireDate { get; set; }
     public bool IsEnabled { get; set; }
 
     public void UpdateEmployee(Employee item)
     {
-      item.FirstName = this.FirstName;
-      item.Email = this.Email;
-      item.LastName = this.LastName;
-      item.Certifications = this.Certifications;
-      item.Competencies = this.Competencies;
-      item.HealthItems = this.HealthItems;
-      item.BirthDate = this.BirthDate;
-      item.HireDate = this.HireDate;
-      item.AddressLine1 = this.AddressLine1;
-      item.City = this.City;
-      item.State = this.State;
-      item.Zip = this.Zip;
-      item.HomePhone = this.HomePhone;
-      item.MobilePhone = this.MobilePhone;
-      item.Photo = this.Photo;
-      item.FireDate = this.FireDate;
-      item.IsEnabled = this.IsEnabled;
+      SimpleMapper<EmployeeUpdateRequest, Employee>.Instance.ApplyChanges(this, item);
     }
   }
 }

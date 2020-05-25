@@ -15,8 +15,8 @@ namespace NurseCron.Employees.Models
     string State { get; set; }
     string Zip { get; set; }
     string Photo { get; set; }
-    ICollection<EmployeeCertification> Certifications { get; set; }
-    ICollection<EmployeeCompetency> Competencies { get; set; }
-    ICollection<EmployeeHealthItem> HealthItems { get; set; }
+    ICollection<EmployeeCertification> EmployeeCertifications { get; }
+    ICollection<EmployeeCompetency> EmployeeCompetencies { get; }
+    ICollection<EmployeeHealthItem> EmployeeHealthItems { get; }
   }
 }
