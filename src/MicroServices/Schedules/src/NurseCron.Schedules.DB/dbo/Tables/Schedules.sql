@@ -4,6 +4,7 @@ CREATE TABLE [Schedules](
 	[UnitName] [nvarchar](250) NOT NULL,
 	[EmployeeId] [uniqueidentifier] NOT NULL,
 	[EmployeeName] [nvarchar](250) NOT NULL,
+	[StaffingRequirementId] [uniqueidentifier] NOT NULL,
 	[StartTimeUtc] [datetimeoffset](7) NOT NULL,
   [ScheduledHours] [decimal](18,2) NOT NULL,
   [ApprovedOnUtc] [datetimeoffset](7) NOT NULL,

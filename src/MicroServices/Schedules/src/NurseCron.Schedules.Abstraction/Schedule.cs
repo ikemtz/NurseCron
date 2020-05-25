@@ -24,6 +24,8 @@ namespace NurseCron.Services.Schedules.Abstraction
     [MaxLength(250)]
     public string EmployeeName { get; set; }
     [Required]
+    public Guid StaffingRequirementId { get; set; }
+    [Required]
     public DateTimeOffset StartTimeUtc { get; set; }
     [Required]
     public decimal ScheduledHours { get; set; }
