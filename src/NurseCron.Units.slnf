@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "path": "NurseCron.Services.sln",
+    "projects": [
+      "MicroServices\\Units\\src\\NurseCron.Units.Abstraction\\NurseCron.Units.Abstraction.csproj",
+      "MicroServices\\Units\\src\\NurseCron.Units.DB\\NurseCron.Units.DB.sqlproj",
+      "MicroServices\\Units\\src\\NurseCron.Units.OData\\NurseCron.Units.OData.csproj",
+      "MicroServices\\Units\\src\\Tests\\NurseCron.Units.OData.Tests\\NurseCron.Units.OData.Tests.csproj"
+    ]
+  }
+}
