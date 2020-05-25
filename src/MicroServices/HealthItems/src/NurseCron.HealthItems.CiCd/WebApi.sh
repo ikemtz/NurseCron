@@ -18,30 +18,30 @@ export sqlAdminPass=$2
 
 # Common Setup Variables
 export location="eastus"
-export planRgName=$envUpper"-Nurser"
-export appsRgName=$envUpper"-Nurser"
-export planName=$envLower"-ap-core-nrsr"
-export app1Name=$envLower"-wa-hlta-nrsr"
+export planRgName=$envUpper"-NurseCron"
+export appsRgName=$envUpper"-NurseCron"
+export planName=$envLower"-ap-core-nrcrn"
+export app1Name=$envLower"-wa-hlta-nrcrn"
 export dockerUrl="https://index.docker.io"
 
-export sqlRgName=$envUpper"-Nurser"
-export sqlSrvName=$envLower"-ss-core-nrsr"
-export sqlAdminUser=$envUpper"_NurserAdminUser"
+export sqlRgName=$envUpper"-NurseCron"
+export sqlSrvName=$envLower"-ss-core-nrcrn"
+export sqlAdminUser=$envUpper"_NurseCronAdminUser"
 export newSqlUserName=$(echo $app1Name | tr - x)
 export identityProvider="https://nrsrx-demo.auth0.com/"
 
-export serviceBusRgName=$envUpper"-Nurser"
-export serviceBusNamespace=$envLower"-sb-core-nrsr"
+export serviceBusRgName=$envUpper"-NurseCron"
+export serviceBusNamespace=$envLower"-sb-core-nrcrn"
 
 # Service specific
 export entityTypes=( "HealthItem" )
 export eventTypes=( "Created" "Updated" "Deleted" )
 export swaggerClientId="Q53R51fe1DoSek0bbMCHT7exphXdaai1"
 export swaggerAudience=$envUpper"-HltA"
-export validAudiences="$envUpper-Nurser,$swaggerAudience"
-export ainName=$envLower"-ai-core-nrsr"
+export validAudiences="$envUpper-NurseCron,$swaggerAudience"
+export ainName=$envLower"-ai-core-nrcrn"
 export dockerImageName="ikemtz/nurse-cron-healthitems:webapi_latest"
-export sqlDbName=$envLower"-db-core-nrsr"
+export sqlDbName=$envLower"-db-core-nrcrn"
 
 # New Randomized SQL Password
 export newSqlPass=$(openssl rand -base64 48 | awk '{gsub(/[\/|+|=|;]/, "im")};1')
