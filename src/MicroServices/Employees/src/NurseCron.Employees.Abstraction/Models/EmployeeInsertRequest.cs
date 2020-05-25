@@ -9,6 +9,9 @@ namespace NurseCron.Employees.Models
   {
     public EmployeeInsertRequest()
     {
+      EmployeeCertifications = new HashSet<EmployeeCertification>();
+      EmployeeCompetencies = new HashSet<EmployeeCompetency>();
+      EmployeeHealthItems = new HashSet<EmployeeHealthItem>();
     }
     public Guid? Id { get; set; }
 
@@ -18,10 +21,9 @@ namespace NurseCron.Employees.Models
     public string LastName { get; set; }
     [EmailAddress]
     public string Email { get; set; }
-    public ICollection<EmployeeCertification> EmployeeCertifications { get; set; }
-
-    public ICollection<EmployeeCompetency> EmployeeCompetencies { get; set; }
-    public ICollection<EmployeeHealthItem> EmployeeHealthItems { get; set; }
+    public ICollection<EmployeeCertification> EmployeeCertifications { get; }
+    public ICollection<EmployeeCompetency> EmployeeCompetencies { get; }
+    public ICollection<EmployeeHealthItem> EmployeeHealthItems { get; }
     public DateTime? HireDate { get; set; }
     public string AddressLine1 { get; set; }
     public string City { get; set; }

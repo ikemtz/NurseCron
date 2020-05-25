@@ -41,48 +41,49 @@ namespace NurseCron.Employees.Tests.Integration.Api
         FirstName = Guid.NewGuid().ToString(),
         LastName = Guid.NewGuid().ToString(),
         Email = $"{Guid.NewGuid()}@email.com",
-        EmployeeCertifications = new[] {
-                    new EmployeeCertification
-                    {
-                        CertificationId = Guid.NewGuid(),
-                        CertificationName  = Guid.NewGuid().ToString(),
-                    },
-                     new EmployeeCertification
-                    {
-                        CertificationId = Guid.NewGuid(),
-                        CertificationName  = Guid.NewGuid().ToString(),
-                        ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
-                    },
-                },
-        EmployeeCompetencies = new[] {
-                    new EmployeeCompetency
-                    {
-                        CompetencyId = Guid.NewGuid(),
-                        CompetencyName  = Guid.NewGuid().ToString(),
-                    },
-                     new EmployeeCompetency
-                    {
-                        CompetencyId = Guid.NewGuid(),
-                        CompetencyName  = Guid.NewGuid().ToString(),
-                        ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
-                        IsEnabled = true
-                    },
-                },
-        EmployeeHealthItems = new[] {
-                    new EmployeeHealthItem
-                    {
-                        HealthItemId = Guid.NewGuid(),
-                        HealthItemName  = Guid.NewGuid().ToString(),
-                    },
-                     new EmployeeHealthItem
-                    {
-                        HealthItemId = Guid.NewGuid(),
-                        HealthItemName  = Guid.NewGuid().ToString(),
-                        ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
-                        IsEnabled = true
-                    },
-                },
+
+
       };
+      objA.EmployeeCertifications.Add(
+         new EmployeeCertification
+         {
+           CertificationId = Guid.NewGuid(),
+           CertificationName = Guid.NewGuid().ToString(),
+         });
+      objA.EmployeeCertifications.Add(
+                     new EmployeeCertification
+                     {
+                       CertificationId = Guid.NewGuid(),
+                       CertificationName = Guid.NewGuid().ToString(),
+                       ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
+                     });
+      objA.EmployeeCompetencies.Add(
+          new EmployeeCompetency
+          {
+            CompetencyId = Guid.NewGuid(),
+            CompetencyName = Guid.NewGuid().ToString(),
+          });
+      objA.EmployeeCompetencies.Add(
+                     new EmployeeCompetency
+                     {
+                       CompetencyId = Guid.NewGuid(),
+                       CompetencyName = Guid.NewGuid().ToString(),
+                       ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
+                       IsEnabled = true
+                     });
+      objA.EmployeeHealthItems.Add(new EmployeeHealthItem
+      {
+        HealthItemId = Guid.NewGuid(),
+        HealthItemName = Guid.NewGuid().ToString(),
+      });
+      objA.EmployeeHealthItems.Add(
+                     new EmployeeHealthItem
+                     {
+                       HealthItemId = Guid.NewGuid(),
+                       HealthItemName = Guid.NewGuid().ToString(),
+                       ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
+                       IsEnabled = true
+                     });
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>());
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
