@@ -17,15 +17,15 @@ export sqlAdminPass=$2
 
 # Common Setup Variables
 export location="eastus"
-export planRgName=$envUpper"-Nurser"
-export appsRgName=$envUpper"-Nurser"
-export planName=$envLower"-ap-core-nrsr"
-export app1Name=$envLower"-wa-unto-nrsr"
+export planRgName=$envUpper"-NurseCron"
+export appsRgName=$envUpper"-NurseCron"
+export planName=$envLower"-ap-core-nrcrn"
+export app1Name=$envLower"-wa-unto-nrcrn"
 export dockerUrl=$(echo "https://index.docker.io")
 
-export sqlRgName=$envUpper"-Nurser"
-export sqlSrvName=$envLower"-ss-core-nrsr"
-export sqlAdminUser=$envUpper"_NurserAdminUser"
+export sqlRgName=$envUpper"-NurseCron"
+export sqlSrvName=$envLower"-ss-core-nrcrn"
+export sqlAdminUser=$envUpper"_NurseCronAdminUser"
 export newSqlUserName=$(echo $app1Name | tr - x)
 export identityProvider="https://nrsrx-demo.auth0.com/"
 
@@ -33,10 +33,10 @@ export identityProvider="https://nrsrx-demo.auth0.com/"
 export entityName="Certification"
 export swaggerClientId="pIvS9gx3454OZZPkJ5xEUPtht0vcq4vw"
 export swaggerAudience=$envUpper"-UntO"
-export validAudiences="$envUpper-Nurser,$swaggerAudience"
-export ainName=$envLower"-ai-core-nrsr"
+export validAudiences="$envUpper-NurseCron,$swaggerAudience"
+export ainName=$envLower"-ai-core-nrcrn"
 export dockerImageName="ikemtz/nurse-cron-units:odata_latest"
-export sqlDbName=$envLower"-db-core-nrsr"
+export sqlDbName=$envLower"-db-core-nrcrn"
 
 # New Randomized SQL Password
 export newSqlPass=$(openssl rand -base64 48 | awk '{gsub(/[\/|+|=|;]/, "im")};1')
