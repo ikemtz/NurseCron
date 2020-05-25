@@ -29,7 +29,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       var result = await resp.Content.ReadAsStringAsync();
 
       var obj = JsonConvert.DeserializeObject<dynamic>(result);
-      Assert.AreEqual("NRSRx Employee API Microservice Controller", obj.name.ToString());
+      _ = Assert.AreEqual("NRSRx Employee API Microservice Controller", obj.name);
     }
 
     [TestMethod]
@@ -41,7 +41,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
         FirstName = Guid.NewGuid().ToString(),
         LastName = Guid.NewGuid().ToString(),
         Email = $"{Guid.NewGuid()}@email.com",
-        Certifications = new[] {
+        EmployeeCertifications = new[] {
                     new EmployeeCertification
                     {
                         CertificationId = Guid.NewGuid(),
@@ -54,7 +54,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
                         ExpiresOnUtc = DateTime.UtcNow.AddDays(new Random().Next(1, 20)),
                     },
                 },
-        Competencies = new[] {
+        EmployeeCompetencies = new[] {
                     new EmployeeCompetency
                     {
                         CompetencyId = Guid.NewGuid(),
@@ -68,7 +68,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
                         IsEnabled = true
                     },
                 },
-        HealthItems = new[] {
+        EmployeeHealthItems = new[] {
                     new EmployeeHealthItem
                     {
                         HealthItemId = Guid.NewGuid(),
@@ -88,18 +88,18 @@ namespace NurseCron.Employees.Tests.Integration.Api
       GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Employees)}.json", objA);
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Employee>(resp);
       Assert.AreEqual(objA.FirstName, result.FirstName);
       Assert.IsTrue(result.IsEnabled);
       Assert.IsNotNull(result.CreatedBy);
 
       var ctx = srv.GetDbContext<EmployeesContext>();
-      var emp = await ctx.Employees.Include(t => t.Certifications).FirstOrDefaultAsync(t => t.FirstName == result.FirstName);
+      var emp = await ctx.Employees.Include(t => t.EmployeeCertifications).FirstOrDefaultAsync(t => t.FirstName == result.FirstName);
 
       Assert.IsNotNull(emp);
       Assert.AreEqual(result.CreatedOnUtc.ToString(), emp.CreatedOnUtc.ToString());
-      Assert.AreEqual(2, emp.Certifications.Count);
+      Assert.AreEqual(2, emp.EmployeeCertifications.Count);
     }
 
     [TestMethod]
@@ -113,34 +113,30 @@ namespace NurseCron.Employees.Tests.Integration.Api
         LastName = Guid.NewGuid().ToString(),
         Email = $"{Guid.NewGuid()}@email.com",
         HireDate = DateTime.UtcNow.AddMonths(-23),
-        Certifications = new EmployeeCertification[] {
-                    new EmployeeCertification()
-                    {
-                        CertificationId = Guid.NewGuid(),
-                        CertificationName  = Guid.NewGuid().ToString(),
-                    }
-                },
         IsEnabled = true,
       };
+      objA.EmployeeCertifications.Add(new EmployeeCertification()
+      {
+        CertificationId = Guid.NewGuid(),
+        CertificationName = Guid.NewGuid().ToString(),
+      });
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationTestStartup>());
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Employee>(resp);
 
       //Update
       objA.FirstName = Guid.NewGuid().ToString();
-      objA.Certifications = new EmployeeCertification[] {
-                    new EmployeeCertification()
-                    {
-                        CertificationId = Guid.NewGuid(),
-                        CertificationName  = Guid.NewGuid().ToString(),
-                    }
-                };
+      objA.EmployeeCertifications.Add(new EmployeeCertification()
+      {
+        CertificationId = Guid.NewGuid(),
+        CertificationName = Guid.NewGuid().ToString(),
+      });
       resp = await client.PostAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Employee>(resp);
 
       Assert.IsNotNull(result.UpdatedBy);
@@ -152,7 +148,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       Assert.IsNotNull(emp);
       Assert.AreEqual(result.UpdatedOnUtc.ToString(), emp.UpdatedOnUtc.ToString());
       Assert.IsNotNull(emp.UpdatedBy);
-      Assert.AreEqual(1, result.Certifications.Count);
+      Assert.AreEqual(1, result.EmployeeCertifications.Count);
     }
 
     [TestMethod]
@@ -191,11 +187,11 @@ namespace NurseCron.Employees.Tests.Integration.Api
       GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Employee>(resp);
       //Delete 
       resp = await client.DeleteAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}");
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await DeserializeResponseAsync<Employee>(resp);
 
