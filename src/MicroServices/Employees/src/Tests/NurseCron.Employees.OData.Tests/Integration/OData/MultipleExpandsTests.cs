@@ -26,8 +26,8 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       //Equivalent EfQuery -- THIS WORKS
       var dbContext = srv.GetDbContext<EmployeesContext>();
       var dbItems = await dbContext.Employees
-        .Include(t => t.Competencies)
-        .Include(t => t.Certifications)
+        .Include(t => t.EmployeeCompetencies)
+        .Include(t => t.EmployeeCertifications)
         .Take(5)
         .ToListAsync();
       Assert.IsNotNull(dbItems);
@@ -56,8 +56,8 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       //Equivalent EfQuery -- THIS WORKS
       var dbContext = srv.GetDbContext<EmployeesContext>();
       var dbItems = await dbContext.Employees
-        .Include(t => t.Competencies)
-        .Include(t => t.HealthItems)
+        .Include(t => t.EmployeeCompetencies)
+        .Include(t => t.EmployeeHealthItems)
         .Take(5)
         .ToListAsync();
       Assert.IsNotNull(dbItems);
@@ -86,8 +86,9 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       //Equivalent EfQuery -- THIS WORKS
       var dbContext = srv.GetDbContext<EmployeesContext>();
       var dbItems = await dbContext.Employees
-        .Include(t => t.Certifications)
-        .Include(t => t.HealthItems)
+        .Include(t => t.EmployeeCertifications)
+        .Include(t => t.EmployeeCompetencies)
+        .Include(t => t.EmployeeHealthItems)
         .Take(5)
         .ToListAsync();
       Assert.IsNotNull(dbItems);
@@ -116,9 +117,9 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       //Equivalent EfQuery -- THIS WORKS
       var dbContext = srv.GetDbContext<EmployeesContext>();
       var dbItems = await dbContext.Employees
-        .Include(t => t.Competencies)
-        .Include(t => t.Certifications)
-        .Include(t => t.HealthItems)
+        .Include(t => t.EmployeeCompetencies)
+        .Include(t => t.EmployeeCertifications)
+        .Include(t => t.EmployeeHealthItems)
         .Take(5)
         .ToListAsync();
       Assert.IsNotNull(dbItems);

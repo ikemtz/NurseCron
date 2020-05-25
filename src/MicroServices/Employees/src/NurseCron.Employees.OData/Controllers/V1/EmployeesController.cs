@@ -30,9 +30,9 @@ namespace NurseCron.Employees.OData.Controllers.V1
     public IQueryable Get()
     {
       return _ctx.Employees
-        .Include(t => t.Certifications)
-        .Include(t => t.Competencies)
-        .Include(t => t.HealthItems)
+        .Include(t => t.EmployeeCertifications)
+        .Include(t => t.EmployeeCompetencies)
+        .Include(t => t.EmployeeHealthItems)
         .Where(t => t.IsEnabled);
     }
   }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using IkeMtz.NRSRx.Core.Models;
 
 namespace NurseCron.Employees.Models
 {
@@ -8,7 +9,11 @@ namespace NurseCron.Employees.Models
   {
     public EmployeeInsertRequest()
     {
+      EmployeeCertifications = new HashSet<EmployeeCertification>();
+      EmployeeCompetencies = new HashSet<EmployeeCompetency>();
+      EmployeeHealthItems = new HashSet<EmployeeHealthItem>();
     }
+    public Guid? Id { get; set; }
 
     [Required]
     public string FirstName { get; set; }
@@ -16,10 +21,9 @@ namespace NurseCron.Employees.Models
     public string LastName { get; set; }
     [EmailAddress]
     public string Email { get; set; }
-    public ICollection<EmployeeCertification> Certifications { get; set; }
-
-    public ICollection<EmployeeCompetency> Competencies { get; set; }
-    public ICollection<EmployeeHealthItem> HealthItems { get; set; }
+    public ICollection<EmployeeCertification> EmployeeCertifications { get; }
+    public ICollection<EmployeeCompetency> EmployeeCompetencies { get; }
+    public ICollection<EmployeeHealthItem> EmployeeHealthItems { get; }
     public DateTime? HireDate { get; set; }
     public string AddressLine1 { get; set; }
     public string City { get; set; }
@@ -31,24 +35,9 @@ namespace NurseCron.Employees.Models
     public DateTime? BirthDate { get; set; }
     public Employee ToEmployee()
     {
-      return new Employee()
-      {
-        FirstName = this.FirstName,
-        Email = this.Email,
-        LastName = this.LastName,
-        Certifications = this.Certifications,
-        Competencies = this.Competencies,
-        HealthItems = this.HealthItems,
-        BirthDate = this.BirthDate,
-        HireDate = this.HireDate ?? DateTime.UtcNow,
-        AddressLine1 = this.AddressLine1,
-        City = this.City,
-        State = this.State,
-        Zip = this.Zip,
-        HomePhone = this.HomePhone,
-        MobilePhone = this.MobilePhone,
-        Photo = this.Photo,
-      };
+      var employee = SimpleMapper<EmployeeInsertRequest, Employee>.Instance.Convert(this);
+      employee.Id = this.Id.GetValueOrDefault() != default ? this.Id.Value : Guid.NewGuid();
+      return employee;
     }
   }
 }

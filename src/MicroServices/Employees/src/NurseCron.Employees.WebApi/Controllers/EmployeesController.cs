@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using IkeMtz.NRSRx.Core.EntityFramework;
 using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Events;
 using Microsoft.AspNetCore.Authorization;
@@ -52,6 +53,9 @@ namespace NurseCron.Employees.WebApi.Controllers
     public async Task<ActionResult> Put([FromBody] EmployeeInsertRequest value)
     {
       var obj = value.ToEmployee();
+      ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeCompetencies, obj.EmployeeCompetencies);
+      ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeCertifications, obj.EmployeeCertifications);
+      ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeHealthItems, obj.EmployeeHealthItems);
       _ = _ctx.Employees.Add(obj);
       if (0 < await _ctx.SaveChangesAsync())
       {
@@ -71,13 +75,16 @@ namespace NurseCron.Employees.WebApi.Controllers
         return BadRequest($"Invalid {nameof(Employee)} Id");
       }
       var obj = await _ctx.Employees
-          .Include(t => t.Certifications)
+          .Include(t => t.EmployeeCertifications)
           .FirstOrDefaultAsync(t => t.Id == id);
       if (null == obj)
       {
         return NotFound($"{nameof(Employee)} Not Found");
       }
       value.UpdateEmployee(obj);
+      ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeCompetencies, obj.EmployeeCompetencies);
+      ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeCertifications, obj.EmployeeCertifications);
+      ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeHealthItems, obj.EmployeeHealthItems);
       if (0 < await _ctx.SaveChangesAsync())
       {
         await _updatedPublisher.PublishAsync(obj);
