@@ -66,15 +66,21 @@ trigger:
     include:     
     #  You can generate this list using this linux command:
     #  find . -type d -name "*.DB" | sed -e 's/DB/DB\/\*/' | sed -e 's/.\//- /'
-    - src/MicroServices/Certifications/src/IkeMtz.NRSRx.Certifications.DB/*
-    - src/MicroServices/Competencies/src/IkeMtz.NRSRx.Competencies.DB/*
-    - src/MicroServices/Employees/src/IkeMtz.NRSRx.Employees.DB/*
-    - src/MicroServices/HealthItems/src/IkeMtz.NRSRx.HealthItems.DB/* 
+    - Certifications/src/NurseCron.Certifications.DB/*
+    - Competencies/src/NurseCron.Competencies.DB/*
+    - Employees/src/NurseCron.Employees.DB/*
+    - HealthItems/src/NurseCron.HealthItems.DB/*
+    - Schedules/src/NurseCron.Schedules.DB/*
+    - Units/src/NurseCron.Units.DB/*
+
 
 pr:
   paths:
     include:
-    - src/MicroServices/Certifications/src/IkeMtz.NRSRx.Certifications.DB/*
-    - src/MicroServices/Competencies/src/IkeMtz.NRSRx.Competencies.DB/*
-    - src/MicroServices/Employees/src/IkeMtz.NRSRx.Employees.DB/*
-    - src/MicroServices/HealthItems/src/IkeMtz.NRSRx.HealthItems.DB/*
+    - Certifications/src/NurseCron.Certifications.DB/*
+    - Competencies/src/NurseCron.Competencies.DB/*
+    - Employees/src/NurseCron.Employees.DB/*
+    - HealthItems/src/NurseCron.HealthItems.DB/*
+    - Schedules/src/NurseCron.Schedules.DB/*
+    - Units/src/NurseCron.Units.DB/*
+

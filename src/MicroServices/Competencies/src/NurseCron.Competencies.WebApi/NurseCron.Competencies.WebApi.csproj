@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <UserSecretsId>85137edd-931e-4edc-a62c-4728cdff6b4e</UserSecretsId>
+    <UserSecretsId>2D7955DC-FB72-4836-81BC-CFD8BF800E71</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsAnnotationResourceId>
     <ProjectGuid>8BE1DBFE-8B4F-46B2-8110-CB3DF13C6FA3</ProjectGuid>

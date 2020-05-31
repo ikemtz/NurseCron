@@ -1,8 +1,9 @@
 using System;
+using IkeMtz.NRSRx.Core.Models;
 
 namespace NurseCron.Certifications.Abstraction.Models
 {
-  public partial class Certification : ICertification
+  public partial class Certification : ICertification, IIdentifiable, IAuditable
   {
     public Guid Id { get; set; }
     public string Name { get; set; }

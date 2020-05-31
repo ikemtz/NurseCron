@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using IkeMtz.NRSRx.Core.WebApi;
 
 namespace NurseCron.Employees.Tests.Integration.Api
 {
@@ -28,8 +29,8 @@ namespace NurseCron.Employees.Tests.Integration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
 
-      var obj = JsonConvert.DeserializeObject<dynamic>(result);
-      _ = Assert.AreEqual("NRSRx Employee API Microservice Controller", obj.name);
+      var obj = JsonConvert.DeserializeObject<PingResult>(result);
+      Assert.AreEqual("NRSRx Employee API Microservice Controller", obj.Name);
     }
 
     [TestMethod]
@@ -149,7 +150,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       Assert.IsNotNull(emp);
       Assert.AreEqual(result.UpdatedOnUtc.ToString(), emp.UpdatedOnUtc.ToString());
       Assert.IsNotNull(emp.UpdatedBy);
-      Assert.AreEqual(1, result.EmployeeCertifications.Count);
+      Assert.AreEqual(2, result.EmployeeCertifications.Count);
     }
 
     [TestMethod]

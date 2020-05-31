@@ -11,7 +11,8 @@ namespace NurseCron.Certifications.Abstraction.Models
     {
       return new Certification()
       {
-        Name = this.Name
+        Name = this.Name,
+        IsEnabled = true,
       };
     }
   }

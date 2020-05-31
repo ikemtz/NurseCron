@@ -41,7 +41,7 @@ namespace NurseCron.Employees.Tests.Integration.OData
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$count=true&$expand=Certifications");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$count=true&$expand=EmployeeCertifications");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
       Assert.AreEqual(envelope.Count, envelope.Value.Count());
@@ -61,7 +61,7 @@ namespace NurseCron.Employees.Tests.Integration.OData
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$count=true&$expand=Competencies");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$count=true&$expand=EmployeeCompetencies");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
       Assert.AreEqual(envelope.Count, envelope.Value.Count());
@@ -81,7 +81,7 @@ namespace NurseCron.Employees.Tests.Integration.OData
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$count=true&$expand=HealthItems");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$count=true&$expand=EmployeeHealthItems");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
       Assert.AreEqual(envelope.Count, envelope.Value.Count());
