@@ -37,6 +37,7 @@ namespace NurseCron.Employees.Models
     {
       var employee = SimpleMapper<EmployeeInsertRequest, Employee>.Instance.Convert(this);
       employee.Id = this.Id.GetValueOrDefault() != default ? this.Id.Value : Guid.NewGuid();
+      employee.IsEnabled = true;
       return employee;
     }
   }

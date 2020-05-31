@@ -12,7 +12,8 @@ namespace NurseCron.Competencies.Abstraction.Models
     {
       return new Competency()
       {
-        Name = this.Name
+        Name = this.Name,
+        IsEnabled = true,
       };
     }
   }

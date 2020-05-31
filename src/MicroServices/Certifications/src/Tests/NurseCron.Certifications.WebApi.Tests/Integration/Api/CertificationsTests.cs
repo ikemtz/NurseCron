@@ -31,8 +31,8 @@ namespace NurseCron.Certifications.Tests.Integration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
 
-      var obj = JsonConvert.DeserializeObject<dynamic>(result);
-      Assert.AreEqual("NRSRx Certification API Microservice Controller", obj.name.ToString());
+      var obj = JsonConvert.DeserializeObject<Certification>(result);
+      Assert.AreEqual("NRSRx Certification API Microservice Controller", obj.Name);
     }
 
     [TestMethod]
@@ -48,7 +48,7 @@ namespace NurseCron.Certifications.Tests.Integration.Api
       GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.PutAsJsonAsync("api/v1/Certifications.json", objA);
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Certification>(resp);
       Assert.AreEqual(objA.Name, result.Name);
       Assert.IsTrue(result.IsEnabled);
@@ -132,11 +132,11 @@ namespace NurseCron.Certifications.Tests.Integration.Api
       GenerateAuthHeader(client, GenerateTestToken());
 
       var resp = await client.PutAsJsonAsync($"api/v1/Certifications.json?id={objA.Id}", objA);
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Certification>(resp);
       //Delete 
       resp = await client.DeleteAsync($"api/v1/Certifications.json?id={objA.Id}");
-      resp.EnsureSuccessStatusCode();
+      _ = resp.EnsureSuccessStatusCode();
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await DeserializeResponseAsync<Certification>(resp);
 

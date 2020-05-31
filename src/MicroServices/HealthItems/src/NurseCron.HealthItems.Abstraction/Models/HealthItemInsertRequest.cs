@@ -11,7 +11,8 @@ namespace NurseCron.HealthItems.Models
     {
       return new HealthItem()
       {
-        Name = this.Name
+        Name = this.Name,
+        IsEnabled = true,
       };
     }
   }
