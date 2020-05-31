@@ -33,10 +33,9 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       Assert.IsNotNull(dbItems);
 
       //Equivalent OData Query -- This doesn't
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=Competencies,Certifications");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=EmployeeCompetencies,EmployeeCertifications");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
-      Assert.AreEqual(envelope.Count, envelope.Value.Count());
       envelope.Value.ToList().ForEach(t =>
       {
         Assert.IsNotNull(t.CreatedBy);
@@ -63,10 +62,9 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       Assert.IsNotNull(dbItems);
 
       //Equivalent OData Query -- This doesn't
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=Competencies,HealthItems");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=EmployeeCompetencies,EmployeeHealthItems");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
-      Assert.AreEqual(envelope.Count, envelope.Value.Count());
       envelope.Value.ToList().ForEach(t =>
       {
         Assert.IsNotNull(t.CreatedBy);
@@ -94,10 +92,9 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       Assert.IsNotNull(dbItems);
 
       //Equivalent OData Query -- This doesn't
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=Certifications,HealthItems");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=EmployeeCertifications,EmployeeHealthItems");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
-      Assert.AreEqual(envelope.Count, envelope.Value.Count());
       envelope.Value.ToList().ForEach(t =>
       {
         Assert.IsNotNull(t.CreatedBy);
@@ -125,10 +122,9 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       Assert.IsNotNull(dbItems);
 
       //Equivalent OData Query -- This doesn't
-      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=Competencies,Certifications,HealthItems");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Employees)}?$top=5&$count=true&$expand=EmployeeCompetencies,EmployeeCertifications,EmployeeHealthItems");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Employee>>(resp);
-      Assert.AreEqual(envelope.Count, envelope.Value.Count());
       envelope.Value.ToList().ForEach(t =>
       {
         Assert.IsNotNull(t.CreatedBy);

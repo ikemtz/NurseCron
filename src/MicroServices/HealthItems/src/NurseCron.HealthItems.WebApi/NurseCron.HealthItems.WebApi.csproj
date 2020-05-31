@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <UserSecretsId>4d421a96-f428-448a-b34e-2f8b0ce03d7a</UserSecretsId>
+    <UserSecretsId>D60B6CE3-D7A8-466C-A2B5-4B9454AD5B12</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsAnnotationResourceId>
     <ProjectGuid>1495E9B2-D997-4749-BE58-B08F304AF84E</ProjectGuid>
@@ -33,7 +33,7 @@
     <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.20.144.5" />
     <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="1.20.144.5" />
     <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="1.20.144.5" />
-    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="1.20.144.1" />
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="1.20.144.5" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
   </ItemGroup>
   <ItemGroup>

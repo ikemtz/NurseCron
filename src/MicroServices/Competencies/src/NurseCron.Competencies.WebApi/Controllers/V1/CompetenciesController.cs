@@ -1,7 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using NurseCron.Competencies.Abstraction.Models;
-using NurseCron.Competencies.WebApi.Data;
 using IkeMtz.NRSRx.Core.Models.Validation;
 using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Events;
@@ -9,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.EntityFrameworkCore;
+using NurseCron.Competencies.Abstraction.Models;
+using NurseCron.Competencies.WebApi.Data;
 
 namespace NurseCron.Competencies.WebApi.V1.Controllers
 {

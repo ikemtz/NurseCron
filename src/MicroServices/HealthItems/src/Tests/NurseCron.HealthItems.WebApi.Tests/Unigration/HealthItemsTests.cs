@@ -24,12 +24,12 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
       //Get 
-      var resp = await client.GetAsync($"api/v1/HealthItems.json");
+      var resp = await client.GetAsync($"api/v1/{nameof(HealthItem)}s.json");
 
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
       var obj = JsonConvert.DeserializeObject<PingResult>(result);
-      Assert.AreEqual("NRSRx HealthItem API Microservice Controller", obj.Name);
+      Assert.AreEqual($"NRSRx {nameof(HealthItem)} API Microservice Controller", obj.Name);
     }
 
     [TestMethod]
@@ -44,7 +44,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync("api/v1/healthitems.json", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json", objA);
 
       var result = await DeserializeResponseAsync<HealthItem>(resp);
       Assert.AreEqual(objA.Name, result.Name);
@@ -81,7 +81,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      var resp = await client.PostAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<HealthItem>(resp);
 
       Assert.AreEqual("Integration Tester", result.UpdatedBy);
@@ -108,7 +108,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PostAsJsonAsync($"api/v1/healthitems.json?id={objA.Id}", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual($"\"{nameof(HealthItem)} Not Found\"", await resp.Content.ReadAsStringAsync());
     }
@@ -135,7 +135,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
       //Update 
-      var resp = await client.DeleteAsync($"api/v1/healthitems.json?id={objA.Id}");
+      var resp = await client.DeleteAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}");
 
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await DeserializeResponseAsync<HealthItem>(resp);
@@ -152,7 +152,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
       //Delete
-      var resp = await client.DeleteAsync($"api/v1/healthitems.json?id={Guid.NewGuid()}");
+      var resp = await client.DeleteAsync($"api/v1/{nameof(HealthItem)}s.json?id={Guid.NewGuid()}");
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual($"\"{nameof(HealthItem)} Not Found\"", await resp.Content.ReadAsStringAsync());
     }
