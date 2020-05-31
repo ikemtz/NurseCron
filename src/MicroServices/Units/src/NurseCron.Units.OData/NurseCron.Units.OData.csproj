@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>a4975e18-3df4-482a-8b25-83d80d3cc7e7</UserSecretsId>
+    <UserSecretsId>A61AC368-75D8-4C35-8B43-9F4DFFE947D4</UserSecretsId>
     <ProjectGuid>218E4B14-A12A-4EC5-BF6A-59741D4E323D</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

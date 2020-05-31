@@ -14,7 +14,6 @@ namespace NurseCron.Units.Abstraction
     [Required]
     [MaxLength(102)]
     public string Name { get; set; }
-    public string del { get; set; }
     [Required]
     public decimal RoomCount { get; set; }
     [Required]
