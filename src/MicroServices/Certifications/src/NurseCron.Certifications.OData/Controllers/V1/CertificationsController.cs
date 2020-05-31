@@ -23,7 +23,7 @@ namespace NurseCron.Certifications.OData.Controllers.V1
     {
       _ctx = ctx;
     }
-    [PermissionsFilter(new[] { "cert:read" })]
+    [PermissionsFilter(new[] { "emp:crt:r" })]
     [Produces("application/json")]
     [ODataRoute]
     [ProducesResponseType(typeof(ODataEnvelope<Certification>), Status200OK)]
