@@ -132,6 +132,5 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
         Assert.IsTrue(t.IsEnabled);
       });
     }
-
   }
 }
