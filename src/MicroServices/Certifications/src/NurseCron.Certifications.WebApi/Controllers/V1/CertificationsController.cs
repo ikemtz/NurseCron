@@ -47,11 +47,11 @@ namespace NurseCron.Certifications.WebApi.Controllers
     }
 
     // PUT api/certifications
-    [HttpPut]
+    [HttpPost]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(Certification))]
     [ValidateModel]
-    public async Task<ActionResult> Put([FromBody] CertificationInsertRequest value)
+    public async Task<ActionResult> Post([FromBody] CertificationInsertDto value)
     {
       var obj = value.ToCertification();
       _ = await _ctx.Certifications.AddAsync(obj);
@@ -61,12 +61,12 @@ namespace NurseCron.Certifications.WebApi.Controllers
     }
 
     // POST api/certifications
-    [HttpPost]
+    [HttpPut]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(Certification))]
     [ValidateModel]
 
-    public async Task<ActionResult> Post([FromQuery] Guid id, [FromBody] CertificationUpdateRequest value)
+    public async Task<ActionResult> HttpPut([FromQuery] Guid id, [FromBody] CertificationUpdateDto value)
     {
       if (id == Guid.Empty)
       {

@@ -5,9 +5,8 @@ using IkeMtz.NRSRx.Core.Models;
 
 namespace NurseCron.Employees.Models
 {
-
   public partial class Employee
-  : IIdentifiable, IAuditable, ICalculateable, IEmployee
+  : IIdentifiable, IAuditable, IEmployee
   {
     public Employee()
     {
@@ -67,13 +66,5 @@ namespace NurseCron.Employees.Models
     public virtual ICollection<EmployeeCertification> EmployeeCertifications { get; }
     public virtual ICollection<EmployeeCompetency> EmployeeCompetencies { get; }
     public virtual ICollection<EmployeeHealthItem> EmployeeHealthItems { get; }
-
-    public void CalculateValues()
-    {
-      this.CompetencyCount = EmployeeCompetencies.Count;
-      this.CertificationCount = EmployeeCertifications.Count;
-      this.HealthItemCount = EmployeeHealthItems.Count;
-    }
   }
-
 }

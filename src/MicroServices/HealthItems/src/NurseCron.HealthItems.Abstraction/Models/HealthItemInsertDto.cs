@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NurseCron.HealthItems.Models
 {
-  public class HealthItemInsertRequest
+  public class HealthItemInsertDto
   {
     [Required]
     public string Name { get; set; }

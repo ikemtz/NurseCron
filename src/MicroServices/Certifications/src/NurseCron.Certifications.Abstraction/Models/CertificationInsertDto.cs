@@ -1,16 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace NurseCron.Competencies.Abstraction.Models
+namespace NurseCron.Certifications.Abstraction.Models
 {
-  public class CompetencyInsertRequest
+  public class CertificationInsertDto
   {
-
     [Required]
     public string Name { get; set; }
 
-    public Competency ToCompetency()
+    public Certification ToCertification()
     {
-      return new Competency()
+      return new Certification()
       {
         Name = this.Name,
         IsEnabled = true,

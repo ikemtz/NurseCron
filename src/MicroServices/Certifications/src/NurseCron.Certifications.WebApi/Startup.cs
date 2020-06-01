@@ -20,7 +20,7 @@ namespace NurseCron.Certifications.WebApi
 
     public override void SetupMiscDependencies(IServiceCollection services)
     {
-      services.AddScoped<ICertificationsContext, CertificationsContext>();
+      _ = services.AddScoped<ICertificationsContext, CertificationsContext>();
     }
 
     [ExcludeFromCodeCoverage]
@@ -32,9 +32,9 @@ namespace NurseCron.Certifications.WebApi
     [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
-      services
-      .AddDbContext<CertificationsContext>(x => x.UseSqlServer(connectionString))
-      .AddEntityFrameworkSqlServer();
+      _ = services
+       .AddDbContext<CertificationsContext>(x => x.UseSqlServer(connectionString))
+       .AddEntityFrameworkSqlServer();
     }
   }
 }
