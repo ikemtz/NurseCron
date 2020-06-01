@@ -11,6 +11,8 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using NurseCron.Seurity;
+using IkeMtz.NRSRx.Core.Authorization;
 
 namespace NurseCron.Certifications.Tests.Unigration.OData
 {
@@ -32,15 +34,16 @@ namespace NurseCron.Certifications.Tests.Unigration.OData
           .ConfigureTestServices(x =>
             {
               ExecuteOnContext<CertificationsContext>(x, db =>
-                    {
-                      db.Certifications.Add(objA);
-                    });
+              {
+                _ = db.Certifications.Add(objA);
+              });
             })
        );
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
+      GenerateAuthHeader(client, GenerateTestToken(new[] {
+        new Claim(PermissionsFilterAttribute.DefaultPermissionClaimType,Permissions.ReadCertifications) }));
 
-      var resp = await client.GetStringAsync("odata/v1/certifications?$count=true");
+      var resp = await client.GetStringAsync($"odata/v1/{nameof(Certification)}s?$count=true");
 
       TestContext.WriteLine($"Server Reponse: {resp}");
       Assert.IsFalse(resp.ToLower().Contains("updatedby"), $"Validation of {nameof(NrsrxODataSerializer)} failed.");
@@ -63,15 +66,16 @@ namespace NurseCron.Certifications.Tests.Unigration.OData
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<CertificationsContext>(x, db =>
-                  {
-                    db.Certifications.Add(objA);
-                  });
+            {
+              _ = db.Certifications.Add(objA);
+            });
           })
        );
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("scope", "cert:read") }));
+      GenerateAuthHeader(client, GenerateTestToken(new[] {
+        new Claim(PermissionsFilterAttribute.DefaultPermissionClaimType, Permissions.ReadCertifications) }));
 
-      var resp = await client.GetAsync("odata/v1/certifications?$count=true");
+      var resp = await client.GetAsync($"odata/v1/{nameof(Certification)}s?$count=true");
 
       var objB = await DeserializeResponseAsync<ODataEnvelope<Certification>>(resp);
 
@@ -92,15 +96,15 @@ namespace NurseCron.Certifications.Tests.Unigration.OData
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<CertificationsContext>(x, db =>
-                  {
-                    db.Certifications.Add(objA);
-                  });
+            {
+              _ = db.Certifications.Add(objA);
+            });
           })
        );
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
+      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim(PermissionsFilterAttribute.DefaultPermissionClaimType, Permissions.ReadCertifications) }));
 
-      var resp = await client.GetAsync("odata/v1/certifications?$select=id&$count=true");
+      var resp = await client.GetAsync($"odata/v1/{nameof(Certification)}s?$select=id&$count=true");
 
       var objB = await DeserializeResponseAsync<ODataEnvelope<Certification>>(resp);
 
@@ -122,15 +126,16 @@ namespace NurseCron.Certifications.Tests.Unigration.OData
           .ConfigureTestServices(x =>
           {
             ExecuteOnContext<CertificationsContext>(x, db =>
-                  {
-                    db.Certifications.Add(objA);
-                  });
+            {
+              _ = db.Certifications.Add(objA);
+            });
           })
        );
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
+      GenerateAuthHeader(client, GenerateTestToken(new[] {
+        new Claim(PermissionsFilterAttribute.DefaultPermissionClaimType, Permissions.ReadCertifications) }));
 
-      var resp = await client.GetAsync("odata/v1/certifications?filter=createdOnUtc%20gt%202019-01-02T00%3A00%3A00Z&$count=true");
+      var resp = await client.GetAsync($"odata/v1/{nameof(Certification)}s?filter=createdOnUtc%20gt%202019-01-02T00%3A00%3A00Z&$count=true");
 
       var objB = await DeserializeResponseAsync<ODataEnvelope<Certification>>(resp);
 

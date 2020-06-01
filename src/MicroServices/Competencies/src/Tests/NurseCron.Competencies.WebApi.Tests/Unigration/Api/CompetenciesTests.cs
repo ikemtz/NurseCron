@@ -37,7 +37,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
     [TestCategory("Unigration")]
     public async Task SaveCompetencyTest()
     {
-      var objA = new CompetencyInsertRequest
+      var objA = new CompetencyInsertDto
       {
         Name = Guid.NewGuid().ToString()
       };
@@ -45,7 +45,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync("api/v1/competencies.json", objA);
+      var resp = await client.PostAsJsonAsync("api/v1/competencies.json", objA);
 
       var result = await DeserializeResponseAsync<Competency>(resp);
       Assert.AreEqual(objA.Name, result.Name);
@@ -80,7 +80,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      var resp = await client.PostAsJsonAsync($"api/v1/competencies.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/competencies.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<Competency>(resp);
 
       Assert.AreEqual("Integration Tester", result.UpdatedBy);
@@ -97,7 +97,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
     [TestCategory("Unigration")]
     public async Task UpdateCompetencyNotFoundTest()
     {
-      var objA = new CompetencyUpdateRequest
+      var objA = new CompetencyUpdateDto
       {
         Name = Guid.NewGuid().ToString(),
         Id = Guid.NewGuid(),
@@ -106,7 +106,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PostAsJsonAsync($"api/v1/competencies.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/competencies.json?id={objA.Id}", objA);
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual("\"Competency Not Found\"", await resp.Content.ReadAsStringAsync());
     }

@@ -45,14 +45,13 @@ namespace NurseCron.Employees.WebApi.Controllers
       return Ok(result);
     }
 
-    // PUT api/competencies
-    [HttpPut]
+    [HttpPost]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(Employee))]
     [ValidateModel]
-    public async Task<ActionResult> Put([FromBody] EmployeeInsertRequest value)
+    public async Task<ActionResult> Post([FromBody] EmployeeInsertDto value)
     {
-      var obj = value.ToEmployee();
+      var obj = Employee.FromInsertDto(value);
       ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeCompetencies, obj.EmployeeCompetencies);
       ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeCertifications, obj.EmployeeCertifications);
       ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeHealthItems, obj.EmployeeHealthItems);
@@ -64,11 +63,10 @@ namespace NurseCron.Employees.WebApi.Controllers
       return Ok(obj);
     }
 
-    // POST api/competencies
-    [HttpPost]
+    [HttpPut]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(Employee))]
-    public async Task<ActionResult> Post([FromQuery] Guid id, [FromBody] EmployeeUpdateRequest value)
+    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] EmployeeUpdateDto value)
     {
       if (id == Guid.Empty)
       {
@@ -76,12 +74,14 @@ namespace NurseCron.Employees.WebApi.Controllers
       }
       var obj = await _ctx.Employees
           .Include(t => t.EmployeeCertifications)
+          .Include(t => t.EmployeeCompetencies)
+          .Include(t => t.EmployeeHealthItems)
           .FirstOrDefaultAsync(t => t.Id == id);
       if (null == obj)
       {
         return NotFound($"{nameof(Employee)} Not Found");
       }
-      value.UpdateEmployee(obj);
+      obj.UpdateFromDto(value);
       ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeCompetencies, obj.EmployeeCompetencies);
       ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeCertifications, obj.EmployeeCertifications);
       ContextCollectionSyncer.SyncCollections(_ctx, value.EmployeeHealthItems, obj.EmployeeHealthItems);
@@ -92,7 +92,6 @@ namespace NurseCron.Employees.WebApi.Controllers
       return Ok(obj);
     }
 
-    // DELETE api/certifications
     [HttpDelete]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(Employee))]

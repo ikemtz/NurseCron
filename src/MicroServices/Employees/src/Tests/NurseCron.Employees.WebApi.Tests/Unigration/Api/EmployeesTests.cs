@@ -37,7 +37,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
     [TestCategory("Unigration")]
     public async Task SaveEmployeeTest()
     {
-      var objA = new EmployeeInsertRequest
+      var objA = new EmployeeInsertDto
       {
         FirstName = Guid.NewGuid().ToString(),
         LastName = Guid.NewGuid().ToString(),
@@ -47,7 +47,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync("api/v1/Employees.json", objA);
+      var resp = await client.PostAsJsonAsync("api/v1/Employees.json", objA);
       _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Employee>(resp);
       Assert.AreEqual(objA.FirstName, result.FirstName);
@@ -84,7 +84,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
       //Update
       objA.FirstName = Guid.NewGuid().ToString();
-      var resp = await client.PostAsJsonAsync($"api/v1/Employees.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/Employees.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<Employee>(resp);
 
       Assert.AreEqual("Integration Tester", result.UpdatedBy);
@@ -103,7 +103,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
     [TestCategory("Unigration")]
     public async Task UpdateEmployeeNotFoundTest()
     {
-      var objA = new EmployeeUpdateRequest
+      var objA = new EmployeeUpdateDto
       {
         FirstName = Guid.NewGuid().ToString(),
         HireDate = DateTime.UtcNow.AddMonths(-6),
@@ -113,7 +113,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PostAsJsonAsync($"api/v1/Employees.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/Employees.json?id={objA.Id}", objA);
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual($"\"{nameof(Employee)} Not Found\"", await resp.Content.ReadAsStringAsync());
     }

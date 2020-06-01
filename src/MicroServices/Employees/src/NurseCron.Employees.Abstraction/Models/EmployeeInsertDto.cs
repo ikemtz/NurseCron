@@ -5,9 +5,9 @@ using IkeMtz.NRSRx.Core.Models;
 
 namespace NurseCron.Employees.Models
 {
-  public class EmployeeInsertRequest
+  public class EmployeeInsertDto
   {
-    public EmployeeInsertRequest()
+    public EmployeeInsertDto()
     {
       EmployeeCertifications = new HashSet<EmployeeCertification>();
       EmployeeCompetencies = new HashSet<EmployeeCompetency>();
@@ -33,12 +33,5 @@ namespace NurseCron.Employees.Models
     public string MobilePhone { get; set; }
     public string Photo { get; set; }
     public DateTime? BirthDate { get; set; }
-    public Employee ToEmployee()
-    {
-      var employee = SimpleMapper<EmployeeInsertRequest, Employee>.Instance.Convert(this);
-      employee.Id = this.Id.GetValueOrDefault() != default ? this.Id.Value : Guid.NewGuid();
-      employee.IsEnabled = true;
-      return employee;
-    }
   }
 }

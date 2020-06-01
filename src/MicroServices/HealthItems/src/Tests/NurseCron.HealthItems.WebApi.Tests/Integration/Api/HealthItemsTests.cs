@@ -37,7 +37,7 @@ namespace NurseCron.HealthItems.Tests.Integration.WebApi
     [TestCategory("Integration")]
     public async Task SaveHealthItemTest()
     {
-      var objA = new HealthItemInsertRequest
+      var objA = new HealthItemInsertDto
       {
         Name = Guid.NewGuid().ToString()
       };
@@ -45,7 +45,7 @@ namespace NurseCron.HealthItems.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json", objA);
       _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<HealthItem>(resp);
       Assert.AreEqual(objA.Name, result.Name);
@@ -73,13 +73,13 @@ namespace NurseCron.HealthItems.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<HealthItem>(resp);
 
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
+      resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<HealthItem>(resp);
 
@@ -98,7 +98,7 @@ namespace NurseCron.HealthItems.Tests.Integration.WebApi
     [TestCategory("Integration")]
     public async Task UpdateHealthItemNotFoundTest()
     {
-      var objA = new HealthItemUpdateRequest
+      var objA = new HealthItemUpdateDto
       {
         Name = Guid.NewGuid().ToString(),
         Id = Guid.NewGuid(),
@@ -107,7 +107,7 @@ namespace NurseCron.HealthItems.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual($"\"{nameof(HealthItem)} Not Found\"", await resp.Content.ReadAsStringAsync());
     }
@@ -126,7 +126,7 @@ namespace NurseCron.HealthItems.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<HealthItem>(resp);
       //Delete 

@@ -36,7 +36,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
     [TestCategory("Unigration")]
     public async Task SaveHealthItemTest()
     {
-      var objA = new HealthItemInsertRequest
+      var objA = new HealthItemInsertDto
       {
         Name = Guid.NewGuid().ToString()
       };
@@ -44,7 +44,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json", objA);
 
       var result = await DeserializeResponseAsync<HealthItem>(resp);
       Assert.AreEqual(objA.Name, result.Name);
@@ -81,7 +81,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<HealthItem>(resp);
 
       Assert.AreEqual("Integration Tester", result.UpdatedBy);
@@ -99,7 +99,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
     [TestCategory("Unigration")]
     public async Task UpdateHealthItemNotFoundTest()
     {
-      var objA = new HealthItemUpdateRequest
+      var objA = new HealthItemUpdateDto
       {
         Name = Guid.NewGuid().ToString(),
         Id = Guid.NewGuid(),
@@ -108,7 +108,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual($"\"{nameof(HealthItem)} Not Found\"", await resp.Content.ReadAsStringAsync());
     }
