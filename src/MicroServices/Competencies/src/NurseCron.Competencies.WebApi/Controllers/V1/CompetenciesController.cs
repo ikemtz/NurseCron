@@ -44,14 +44,13 @@ namespace NurseCron.Competencies.WebApi.V1.Controllers
       };
       return Ok(result);
     }
-
-    // PUT api/competencies
-    [HttpPut]
+     
+    [HttpPost]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(Competency))]
     [ValidateModel]
 
-    public async Task<ActionResult> Put([FromBody] CompetencyInsertRequest value)
+    public async Task<ActionResult> Post([FromBody] CompetencyInsertDto value)
     {
       var comp = value.ToCompetency();
       _ = await _ctx.Competencies.AddAsync(comp);
@@ -63,13 +62,12 @@ namespace NurseCron.Competencies.WebApi.V1.Controllers
 
     }
 
-    // POST api/competencies
-    [HttpPost]
+    [HttpPut]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(Competency))]
     [ValidateModel]
 
-    public async Task<ActionResult> Post([FromQuery][RequiredNonDefault] Guid id, [FromBody] CompetencyUpdateRequest value)
+    public async Task<ActionResult> Put([FromQuery][RequiredNonDefault] Guid id, [FromBody] CompetencyUpdateDto value)
     {
 
       if (id == Guid.Empty)

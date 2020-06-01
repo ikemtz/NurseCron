@@ -37,7 +37,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
     [TestCategory("Integration")]
     public async Task SaveEmployeeTest()
     {
-      var objA = new EmployeeInsertRequest
+      var objA = new EmployeeInsertDto
       {
         FirstName = Guid.NewGuid().ToString(),
         LastName = Guid.NewGuid().ToString(),
@@ -89,7 +89,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Employees)}.json", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(Employees)}.json", objA);
       _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Employee>(resp);
       Assert.AreEqual(objA.FirstName, result.FirstName);
@@ -126,7 +126,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Employee>(resp);
 
@@ -137,7 +137,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
         CertificationId = Guid.NewGuid(),
         CertificationName = Guid.NewGuid().ToString(),
       });
-      resp = await client.PostAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
+      resp = await client.PutAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Employee>(resp);
 
@@ -157,7 +157,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
     [TestCategory("Integration")]
     public async Task UpdateEmployeeNotFoundTest()
     {
-      var objA = new EmployeeUpdateRequest
+      var objA = new EmployeeUpdateDto
       {
         FirstName = Guid.NewGuid().ToString(),
         Id = Guid.NewGuid(),
@@ -167,7 +167,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual($"\"{nameof(Employee)} Not Found\"", await resp.Content.ReadAsStringAsync());
     }
@@ -188,7 +188,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/{nameof(Employees)}.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Employee>(resp);
       //Delete 

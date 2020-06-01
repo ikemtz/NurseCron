@@ -5,7 +5,7 @@ using IkeMtz.NRSRx.Core.Models.Validation;
 
 namespace NurseCron.Competencies.Abstraction.Models
 {
-  public class CompetencyUpdateRequest : IIdentifiable
+  public class CompetencyUpdateDto : IIdentifiable
   {
     [RequiredNonDefault]
     public Guid Id { get; set; }

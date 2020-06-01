@@ -45,12 +45,12 @@ namespace NurseCron.HealthItems.WebApi.Controllers
     }
 
     // PUT api/competencies
-    [HttpPut]
+    [HttpPost]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(HealthItem))]
     [ValidateModel]
 
-    public async Task<ActionResult> Put([FromBody] HealthItemInsertRequest value)
+    public async Task<ActionResult> Post([FromBody] HealthItemInsertDto value)
     {
       var obj = value.ToHealthItem();
       _ = _ctx.HealthItems.Add(obj);
@@ -62,12 +62,12 @@ namespace NurseCron.HealthItems.WebApi.Controllers
     }
 
     // POST api/competencies
-    [HttpPost]
+    [HttpPut]
     [Authorize()]
     [ProducesResponseType(200, Type = typeof(HealthItem))]
     [ValidateModel]
 
-    public async Task<ActionResult> Post([FromQuery] Guid id, [FromBody] HealthItemUpdateRequest value)
+    public async Task<ActionResult> Put([FromQuery] Guid id, [FromBody] HealthItemUpdateDto value)
     {
       if (id == Guid.Empty)
       {

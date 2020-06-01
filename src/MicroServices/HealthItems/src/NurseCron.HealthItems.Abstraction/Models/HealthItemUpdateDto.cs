@@ -3,18 +3,19 @@ using System.ComponentModel.DataAnnotations;
 using IkeMtz.NRSRx.Core.Models;
 using IkeMtz.NRSRx.Core.Models.Validation;
 
-namespace NurseCron.Certifications.Abstraction.Models
+namespace NurseCron.HealthItems.Models
 {
-  public class CertificationUpdateRequest : IIdentifiable
+  public class HealthItemUpdateDto : IIdentifiable
   {
     [RequiredNonDefault]
     public Guid Id { get; set; }
+
     [Required]
     public string Name { get; set; }
 
-    public void UpdateCertification(Certification cert)
+    public void UpdateHealthItem(HealthItem item)
     {
-      cert.Name = Name;
+      item.Name = Name;
     }
   }
 }

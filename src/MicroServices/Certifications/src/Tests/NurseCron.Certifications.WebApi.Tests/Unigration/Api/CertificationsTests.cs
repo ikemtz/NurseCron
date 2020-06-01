@@ -24,7 +24,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
       //Get 
-      var resp = await client.GetAsync($"api/v1/certifications.json");
+      var resp = await client.GetAsync($"api/v1/{nameof(Certification)}s.json");
 
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
@@ -37,7 +37,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
     [TestCategory("Unigration")]
     public async Task SaveCertificationTest()
     {
-      var objA = new CertificationInsertRequest
+      var objA = new CertificationInsertDto
       {
         Name = Guid.NewGuid().ToString()
       };
@@ -45,7 +45,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
       var apiClient = apiSrv.CreateClient();
       GenerateAuthHeader(apiClient, GenerateTestToken());
 
-      var resp = await apiClient.PutAsJsonAsync("api/v1/certifications.json", objA);
+      var resp = await apiClient.PostAsJsonAsync($"api/v1/{nameof(Certification)}s.json", objA);
 
       var result = await DeserializeResponseAsync<Certification>(resp);
       Assert.AreEqual(objA.Name, result.Name);
@@ -81,7 +81,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
       GenerateAuthHeader(client, GenerateTestToken());
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      var resp = await client.PostAsJsonAsync($"api/v1/certifications.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Certification)}s.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<Certification>(resp);
 
       Assert.AreEqual("Integration Tester", result.UpdatedBy);
@@ -98,7 +98,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
     [TestCategory("Unigration")]
     public async Task UpdateCertificationNotFoundTest()
     {
-      var objA = new CertificationUpdateRequest
+      var objA = new CertificationUpdateDto
       {
         Name = Guid.NewGuid().ToString(),
         Id = Guid.NewGuid(),
@@ -107,7 +107,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PostAsJsonAsync($"api/v1/certifications.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Certification)}s.json?id={objA.Id}", objA);
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual("\"Certification Not Found\"", await resp.Content.ReadAsStringAsync());
     }
@@ -120,7 +120,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
       //Delete
-      var resp = await client.DeleteAsync($"api/v1/certifications.json?id={Guid.NewGuid()}");
+      var resp = await client.DeleteAsync($"api/v1/{nameof(Certification)}s.json?id={Guid.NewGuid()}");
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual("\"Certification Not Found\"", await resp.Content.ReadAsStringAsync());
     }
@@ -148,7 +148,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
       //Update 
-      var resp = await client.DeleteAsync($"api/v1/certifications.json?id={objA.Id}");
+      var resp = await client.DeleteAsync($"api/v1/{nameof(Certification)}s.json?id={objA.Id}");
 
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await DeserializeResponseAsync<Certification>(resp);

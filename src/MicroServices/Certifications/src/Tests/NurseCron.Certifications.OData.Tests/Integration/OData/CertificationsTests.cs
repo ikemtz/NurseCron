@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Net;
+using NurseCron.Seurity;
 
 namespace NurseCron.Certifications.Tests.Integration.OData
 {
@@ -22,7 +23,7 @@ namespace NurseCron.Certifications.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
+      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", Permissions.ReadCertifications) }));
 
       var resp = await client.GetStringAsync("odata/v1/Certifications?$count=true");
       TestContext.WriteLine($"Server Reponse: {resp}");
@@ -43,7 +44,7 @@ namespace NurseCron.Certifications.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
+      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", Permissions.ReadCertifications) }));
 
       var resp = await client.GetAsync("odata/v1/certifications?$select=id&top=1&$count=true");
 
@@ -58,7 +59,7 @@ namespace NurseCron.Certifications.Tests.Integration.OData
     {
       using var srv = new TestServer(TestHostBuilder<Startup, IntegrationODataTestStartup>());
       var client = srv.CreateClient();
-      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", "cert:read") }));
+      GenerateAuthHeader(client, GenerateTestToken(new[] { new Claim("permissions", Permissions.ReadCertifications) }));
 
       var resp = await client.GetAsync("odata/v1/certifications?filter=createdOnUtc%20gt%202019-01-02T00%3A00%3A00Z&$top=1&$count=true");
 

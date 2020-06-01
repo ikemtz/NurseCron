@@ -36,7 +36,7 @@ namespace NurseCron.Competencies.Tests.Integration.WebApi
     [TestCategory("Integration")]
     public async Task SaveCompetencyTest()
     {
-      var objA = new CompetencyInsertRequest
+      var objA = new CompetencyInsertDto
       {
         Name = Guid.NewGuid().ToString()
       };
@@ -44,7 +44,7 @@ namespace NurseCron.Competencies.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync("api/v1/Competencies.json", objA);
+      var resp = await client.PostAsJsonAsync("api/v1/Competencies.json", objA);
       _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Competency>(resp);
       Assert.AreEqual(objA.Name, result.Name);
@@ -72,13 +72,13 @@ namespace NurseCron.Competencies.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Competency>(resp);
 
       //Update
       objA.Name = Guid.NewGuid().ToString();
-      resp = await client.PostAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
+      resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Competency>(resp);
 
@@ -97,7 +97,7 @@ namespace NurseCron.Competencies.Tests.Integration.WebApi
     [TestCategory("Integration")]
     public async Task UpdateCompetencyNotFoundTest()
     {
-      var objA = new CompetencyUpdateRequest
+      var objA = new CompetencyUpdateDto
       {
         Name = Guid.NewGuid().ToString(),
         Id = Guid.NewGuid(),
@@ -106,7 +106,7 @@ namespace NurseCron.Competencies.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PostAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
+      var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
       Assert.AreEqual(HttpStatusCode.NotFound, resp.StatusCode);
       Assert.AreEqual($"\"{nameof(Competency)} Not Found\"", await resp.Content.ReadAsStringAsync());
     }
@@ -125,7 +125,7 @@ namespace NurseCron.Competencies.Tests.Integration.WebApi
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
-      var resp = await client.PutAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
+      var resp = await client.PostAsJsonAsync($"api/v1/Competencies.json?id={objA.Id}", objA);
       _ = resp.EnsureSuccessStatusCode();
       objA = await DeserializeResponseAsync<Competency>(resp);
       //Delete 

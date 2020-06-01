@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using static Microsoft.AspNet.OData.Query.AllowedQueryOptions;
 using static Microsoft.AspNetCore.Http.StatusCodes;
+using NurseCron.Certifications.Abstraction;
+using NurseCron.Seurity;
 
 namespace NurseCron.Certifications.OData.Controllers.V1
 {
@@ -18,12 +20,12 @@ namespace NurseCron.Certifications.OData.Controllers.V1
   public class CertificationsController : ODataController
   {
     private readonly ICertificationsContext _ctx;
-
     public CertificationsController(ICertificationsContext ctx)
     {
       _ctx = ctx;
     }
-    [PermissionsFilter(new[] { "emp:crt:r" })]
+
+    [PermissionsFilter(new[] { Permissions.ReadCertifications })]
     [Produces("application/json")]
     [ODataRoute]
     [ProducesResponseType(typeof(ODataEnvelope<Certification>), Status200OK)]

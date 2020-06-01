@@ -6,7 +6,7 @@ using IkeMtz.NRSRx.Core.Models.Validation;
 
 namespace NurseCron.Employees.Models
 {
-  public class EmployeeUpdateRequest : IIdentifiable
+  public class EmployeeUpdateDto : IIdentifiable
   {
     [RequiredNonDefault]
     public Guid Id { get; set; }
@@ -30,10 +30,5 @@ namespace NurseCron.Employees.Models
     public ICollection<EmployeeHealthItem> EmployeeHealthItems { get; set; }
     public DateTime? FireDate { get; set; }
     public bool IsEnabled { get; set; }
-
-    public void UpdateEmployee(Employee item)
-    {
-      SimpleMapper<EmployeeUpdateRequest, Employee>.Instance.ApplyChanges(this, item);
-    }
   }
 }
