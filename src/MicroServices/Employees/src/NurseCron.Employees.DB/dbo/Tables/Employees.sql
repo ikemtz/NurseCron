@@ -1,11 +1,11 @@
-﻿CREATE TABLE [dbo].[Employees]
+CREATE TABLE [dbo].[Employees]
 (
     [Id] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
     [LastName] NVARCHAR (250) NOT NULL,
     [FirstName] NVARCHAR (250) NOT NULL,
     [BirthDate] DATE NULL,
-    [MobilePhone] VARCHAR (10) NULL,
-    [HomePhone] VARCHAR (10) NULL,
+    [MobilePhone] VARCHAR (25) NULL,
+    [HomePhone] VARCHAR (25) NULL,
     [Photo] VARCHAR(4000) NULL,
     [Email] NVARCHAR (250) NOT NULL,
     [AddressLine1] VARCHAR (250) NULL,

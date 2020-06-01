@@ -24,9 +24,9 @@ namespace NurseCron.Employees.Models
     [MaxLength(250)]
     public string FirstName { get; set; }
     public DateTime? BirthDate { get; set; }
-    [MaxLength(10)]
+    [MaxLength(25)]
     public string MobilePhone { get; set; }
-    [MaxLength(10)]
+    [MaxLength(25)]
     public string HomePhone { get; set; }
     [MaxLength(4000)]
     public string Photo { get; set; }
