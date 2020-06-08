@@ -146,9 +146,9 @@ temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app
 echo Configuring Web App - disabling FTP access - enabling alwayson
 temp=$(az webapp config set --resource-group $appsRgName --name $app1Name --ftps-state Disabled --always-on true)
 
-echo Checking existance of SqlConnectionString AppSetting
+echo Checking existance of DbConnectionString AppSetting
 connectionString=$(az webapp config appsettings list --resource-group $appsRgName --name $app1Name \
-    | jq '.[] | select(.name=="SqlConnectionString") | .value' \
+    | jq '.[] | select(.name=="DbConnectionString") | .value' \
     | tr ' ' 'x')
 # we need this check to ensure we are not overriding an existing password
 if [ -z $connectionString ]; then
@@ -171,7 +171,7 @@ if [ -z $connectionString ]; then
         | awk -v srch="<password>" -v repl="$newSqlPass" '{sub(srch,repl,$0);print $0}')
     
     echo 'Setting up new connection string setting with new SQL user'
-    temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings SqlConnectionString="$connectionString" | jq -r '.')    
+    temp=$(az webapp config appsettings set --resource-group $appsRgName --name $app1Name --settings DbConnectionString="$connectionString" | jq -r '.')    
     echo Sql Connection String $connectionString
 else
     echo 'Skipping SQL User creation'
