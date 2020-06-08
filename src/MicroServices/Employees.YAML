@@ -146,7 +146,7 @@ jobs:
       tag: 'empl-$(Build.BuildNumber)'
       tagMessage: 'empl-$(Build.BuildNumber)'
       useLightweightTags: true
-      conditions: and(succeeded(), not(endsWith(variables['Build.SourceBranch'], 'master')))
+      conditions: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 trigger:
   batch: true
