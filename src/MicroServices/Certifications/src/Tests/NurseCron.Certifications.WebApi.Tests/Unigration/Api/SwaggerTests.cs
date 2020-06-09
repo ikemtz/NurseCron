@@ -26,7 +26,7 @@ namespace NurseCron.Certifications.Tests.Unigration.WebApi
     {
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>());
       var doc = await SwaggerUnitTests.TestJsonDocAsync(srv);
-      Assert.AreEqual($"NRSRx {nameof(Certification)} {nameof(Api).ToUpper()} Microservice", doc.Info.Title);
+      Assert.AreEqual($"NurseCRON {nameof(Certification)} {nameof(Api).ToUpper()} Microservice", doc.Info.Title);
     }
   }
 }

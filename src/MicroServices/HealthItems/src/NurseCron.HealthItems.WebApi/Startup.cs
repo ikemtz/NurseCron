@@ -11,7 +11,7 @@ namespace NurseCron.HealthItems.WebApi
 {
   public class Startup : CoreWebApiStartup
   {
-    public override string MicroServiceTitle => $"NRSRx {nameof(HealthItem)} API Microservice";
+    public override string MicroServiceTitle => $"NurseCRON {nameof(HealthItem)} API Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
 
     public Startup(IConfiguration configuration) : base(configuration)

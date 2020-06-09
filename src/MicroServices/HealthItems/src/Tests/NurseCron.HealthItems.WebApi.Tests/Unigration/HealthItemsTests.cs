@@ -29,7 +29,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await resp.Content.ReadAsStringAsync();
       var obj = JsonConvert.DeserializeObject<PingResult>(result);
-      Assert.AreEqual($"NRSRx {nameof(HealthItem)} API Microservice Controller", obj.Name);
+      Assert.AreEqual($"NurseCRON {nameof(HealthItem)} API Microservice Controller", obj.Name);
     }
 
     [TestMethod]

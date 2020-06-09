@@ -11,7 +11,7 @@ namespace NurseCron.Competencies.WebApi
 {
   public class Startup : CoreWebApiStartup
   {
-    public override string MicroServiceTitle => $"NRSRx {nameof(Competency)} API Microservice";
+    public override string MicroServiceTitle => $"NurseCRON {nameof(Competency)} API Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
     public Startup(IConfiguration configuration) : base(configuration)
     {

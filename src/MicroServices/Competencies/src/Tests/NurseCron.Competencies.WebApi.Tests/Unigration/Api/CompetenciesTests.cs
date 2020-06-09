@@ -30,7 +30,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
       var result = await resp.Content.ReadAsStringAsync();
 
       var obj = JsonConvert.DeserializeObject<PingResult>(result);
-        Assert.AreEqual("NRSRx Competency API Microservice Controller", obj.Name);
+        Assert.AreEqual("NurseCRON Competency API Microservice Controller", obj.Name);
     }
 
     [TestMethod]

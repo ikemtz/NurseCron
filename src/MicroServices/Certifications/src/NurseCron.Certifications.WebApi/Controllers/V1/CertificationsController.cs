@@ -40,7 +40,7 @@ namespace NurseCron.Certifications.WebApi.Controllers
     {
       var result = new PingResult(apiVersion)
       {
-        Name = $"NRSRx {nameof(Certification)} API Microservice Controller",
+        Name = $"NurseCRON {nameof(Certification)} API Microservice Controller",
         Build = this.GetBuildNumber()
       };
       return Ok(result);

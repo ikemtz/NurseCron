@@ -11,7 +11,7 @@ namespace NurseCron.Competencies.OData
 {
   public class Startup : CoreODataStartup
   {
-    public override string MicroServiceTitle => $"NRSRx {nameof(Competency)} OData Microservice";
+    public override string MicroServiceTitle => $"NurseCRON {nameof(Competency)} OData Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
     public Startup(IConfiguration configuration) : base(configuration)
     {

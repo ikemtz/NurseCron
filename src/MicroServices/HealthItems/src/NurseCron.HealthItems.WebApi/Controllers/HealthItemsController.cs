@@ -38,7 +38,7 @@ namespace NurseCron.HealthItems.WebApi.Controllers
     {
       var result = new PingResult(apiVersion)
       {
-        Name = $"NRSRx {nameof(HealthItem)} API Microservice Controller",
+        Name = $"NurseCRON {nameof(HealthItem)} API Microservice Controller",
         Build = this.GetBuildNumber()
       };
       return Ok(result);

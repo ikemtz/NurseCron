@@ -32,7 +32,7 @@ namespace NurseCron.Certifications.Tests.Integration.Api
       var result = await resp.Content.ReadAsStringAsync();
 
       var obj = JsonConvert.DeserializeObject<Certification>(result);
-      Assert.AreEqual($"NRSRx {nameof(Certification)} API Microservice Controller", obj.Name);
+      Assert.AreEqual($"NurseCRON {nameof(Certification)} API Microservice Controller", obj.Name);
     }
 
     [TestMethod]

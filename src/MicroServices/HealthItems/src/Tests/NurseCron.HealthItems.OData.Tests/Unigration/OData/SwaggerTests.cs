@@ -30,7 +30,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.OData
       var doc = await SwaggerUnitTests.TestJsonDocAsync(srv);
       Assert.IsTrue(doc.Components.Schemas.ContainsKey(nameof(HealthItem)));
       Assert.IsTrue(doc.Components.Schemas.Any(a => a.Key.Contains(nameof(ODataEnvelope<HealthItem>))));
-      Assert.AreEqual($"NRSRx {nameof(HealthItem)} {nameof(OData)} Microservice", doc.Info.Title);
+      Assert.AreEqual($"NurseCRON {nameof(HealthItem)} {nameof(OData)} Microservice", doc.Info.Title);
     }
   }
 }
