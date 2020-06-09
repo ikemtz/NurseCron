@@ -13,9 +13,9 @@
     <None Remove="Unit\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.160.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.161.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NurseCron.Competencies.OData\NurseCron.Competencies.OData.csproj" />
