@@ -5,7 +5,7 @@
     <ProjectGuid>ACCE7A5A-7E5C-4A45-8EB9-9FAD169401AD</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.161.8" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.165.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
     <PackageReference Include="coverlet.collector" Version="1.3.0">
