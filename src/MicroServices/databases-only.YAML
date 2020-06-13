@@ -75,6 +75,9 @@ trigger:
 
 
 pr:
+  branches:
+    include:
+    - master
   paths:
     include:
     - Certifications/src/NurseCron.Certifications.DB/*
