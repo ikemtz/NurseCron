@@ -51,7 +51,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
       _ = resp.EnsureSuccessStatusCode();
       var result = await DeserializeResponseAsync<Employee>(resp);
       Assert.AreEqual(objA.FirstName, result.FirstName);
-      Assert.AreEqual("Integration Tester", result.CreatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.CreatedBy);
 
       var ctx = srv.GetDbContext<EmployeesContext>();
       var emp = await ctx.Employees.FirstOrDefaultAsync(t => t.FirstName == result.FirstName);
@@ -87,7 +87,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
       var resp = await client.PutAsJsonAsync($"api/v1/Employees.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<Employee>(resp);
 
-      Assert.AreEqual("Integration Tester", result.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.UpdatedBy);
       Assert.AreEqual(objA.FirstName, result.FirstName);
 
 
@@ -96,7 +96,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
 
       Assert.IsNotNull(emp);
       Assert.AreEqual(result.UpdatedOnUtc, emp.UpdatedOnUtc);
-      Assert.AreEqual("Integration Tester", emp.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", emp.UpdatedBy);
     }
 
     [TestMethod]
@@ -145,7 +145,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await DeserializeResponseAsync<Employee>(resp);
 
-      Assert.AreEqual("Integration Tester", result.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.UpdatedBy);
       Assert.IsFalse(result.IsEnabled);
     }
 
