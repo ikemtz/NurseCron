@@ -82,20 +82,11 @@ jobs:
       organization: 'ikemtz'
 
   - task: DotNetCoreCLI@2
-    displayName: 'dotnet publish WebApi projects'
+    displayName: 'dotnet publish SignalR projects'
     inputs:
       command: publish
       publishWebProjects: false
-      projects: 'src/MicroServices/$(DomainName)/**/*.WebApi/*.csproj'
-      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-      zipAfterPublish: false
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet publish OData projects'
-    inputs:
-      command: publish
-      publishWebProjects: false
-      projects: 'src/MicroServices/$(DomainName)/**/*.OData/*.csproj'
+      projects: 'src/MicroServices/$(DomainName)/**/*.SignalR/*.csproj'
       arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
       zipAfterPublish: false
 
