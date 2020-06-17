@@ -49,11 +49,6 @@ jobs:
         sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
         # sonar.branch.name=$(Build.SourceBranch)
 
-  - task: VSBuild@1
-    displayName: 'Build solution DB Project'
-    inputs:
-      solution: src/MicroServices/$(DomainName)/**.sqlproj
-
   - task: DotNetCoreCLI@2
     displayName: Build
     inputs:
