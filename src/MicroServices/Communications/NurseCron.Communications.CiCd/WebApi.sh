@@ -21,7 +21,7 @@ export location="eastus"
 export planRgName=$envUpper"-NurseCron"
 export appsRgName=$envUpper"-NurseCron"
 export planName=$envLower"-ap-core-nrcrn"
-export app1Name=$envLower"-wa-hlta-nrcrn"
+export app1Name=$envLower"-wa-cmpa-nrcrn"
 export dockerUrl="https://index.docker.io"
 
 export sqlRgName=$envUpper"-NurseCron"
@@ -34,13 +34,13 @@ export serviceBusRgName=$envUpper"-NurseCron"
 export serviceBusNamespace=$envLower"-sb-core-nrcrn"
 
 # Service specific
-export entityTypes=( "HealthItem" )
+export entityTypes=( "Competency" )
 export eventTypes=( "Created" "Updated" "Deleted" )
-export swaggerClientId="Q53R51fe1DoSek0bbMCHT7exphXdaai1"
-export swaggerAudience=$envUpper"-HltA"
+export swaggerClientId="RAFO6AXB5T6EawgBl6P5M5qEAd4yxD67"
+export swaggerAudience=$envUpper"-CmpA"
 export validAudiences="$envUpper-NurseCron,$swaggerAudience"
 export ainName=$envLower"-ai-core-nrcrn"
-export dockerImageName="ikemtz/nurse-cron-healthitems:webapi_latest"
+export dockerImageName="ikemtz/nurse-cron-competencies:webapi_latest"
 export sqlDbName=$envLower"-db-core-nrcrn"
 
 # New Randomized SQL Password
