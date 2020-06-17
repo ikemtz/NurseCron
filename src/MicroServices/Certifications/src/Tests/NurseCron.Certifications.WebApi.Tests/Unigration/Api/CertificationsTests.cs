@@ -49,7 +49,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
 
       var result = await DeserializeResponseAsync<Certification>(resp);
       Assert.AreEqual(objA.Name, result.Name);
-      Assert.AreEqual("Integration Tester", result.CreatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.CreatedBy);
 
       var dbContext = apiSrv.GetDbContext<CertificationsContext>();
       var dbCert = await dbContext.Certifications.FirstOrDefaultAsync(f => f.Name == objA.Name);
@@ -84,14 +84,14 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
       var resp = await client.PutAsJsonAsync($"api/v1/{nameof(Certification)}s.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<Certification>(resp);
 
-      Assert.AreEqual("Integration Tester", result.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.UpdatedBy);
       Assert.AreEqual(objA.Name, result.Name);
       var ctx = srv.GetDbContext<CertificationsContext>();
       var cert = await ctx.Certifications.FirstOrDefaultAsync(t => t.Name == result.Name);
 
       Assert.IsNotNull(cert);
       Assert.AreEqual(result.UpdatedOnUtc, cert.UpdatedOnUtc);
-      Assert.AreEqual("Integration Tester", cert.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", cert.UpdatedBy);
     }
 
     [TestMethod]
@@ -153,7 +153,7 @@ namespace NurseCron.Certifications.Tests.Unigration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await DeserializeResponseAsync<Certification>(resp);
 
-      Assert.AreEqual("Integration Tester", result.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.UpdatedBy);
       Assert.IsFalse(result.IsEnabled);
     }
 

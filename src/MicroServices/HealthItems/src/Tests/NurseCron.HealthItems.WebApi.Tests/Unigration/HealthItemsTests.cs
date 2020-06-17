@@ -49,7 +49,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var result = await DeserializeResponseAsync<HealthItem>(resp);
       Assert.AreEqual(objA.Name, result.Name);
 
-      Assert.AreEqual("Integration Tester", result.CreatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.CreatedBy);
 
       var ctx = srv.GetDbContext<HealthItemsContext>();
       var item = await ctx.HealthItems.FirstOrDefaultAsync(t => t.Name == result.Name);
@@ -84,7 +84,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       var resp = await client.PutAsJsonAsync($"api/v1/{nameof(HealthItem)}s.json?id={objA.Id}", objA);
       var result = await DeserializeResponseAsync<HealthItem>(resp);
 
-      Assert.AreEqual("Integration Tester", result.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.UpdatedBy);
       Assert.AreEqual(objA.Name, result.Name);
 
       var ctx = srv.GetDbContext<HealthItemsContext>();
@@ -92,7 +92,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
 
       Assert.IsNotNull(item);
       Assert.AreEqual(result.UpdatedOnUtc, item.UpdatedOnUtc);
-      Assert.AreEqual("Integration Tester", item.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", item.UpdatedBy);
     }
 
     [TestMethod]
@@ -140,7 +140,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.Api
       Assert.AreEqual(HttpStatusCode.OK, resp.StatusCode);
       var result = await DeserializeResponseAsync<HealthItem>(resp);
 
-      Assert.AreEqual("Integration Tester", result.UpdatedBy);
+      Assert.AreEqual("IntegrationTester@email.com", result.UpdatedBy);
       Assert.IsFalse(result.IsEnabled);
     }
 
