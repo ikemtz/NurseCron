@@ -135,6 +135,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YAML Build Definitions", "YAML Build Definitions", "{B6A40D0A-AEF2-4C54-BC61-982D84A4B24E}"
 	ProjectSection(SolutionItems) = preProject
 		MicroServices\Certifications.YAML = MicroServices\Certifications.YAML
+		MicroServices\Communications.YAML = MicroServices\Communications.YAML
 		MicroServices\Competencies.YAML = MicroServices\Competencies.YAML
 		MicroServices\databases-only.YAML = MicroServices\databases-only.YAML
 		MicroServices\Employees.YAML = MicroServices\Employees.YAML
@@ -166,6 +167,17 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{032DDB15-C329-43D2-8BDD-0191C9A36372}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Units.OData.Tests", "MicroServices\Units\src\Tests\NurseCron.Units.OData.Tests\NurseCron.Units.OData.Tests.csproj", "{ACCE7A5A-7E5C-4A45-8EB9-9FAD169401AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communications", "Communications", "{B8F871E4-E65D-4A84-84B4-5328BE3A785D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Communications.SignalR", "MicroServices\Communications\NurseCron.Communications.SignalR\NurseCron.Communications.SignalR.csproj", "{1F20C8FD-4FE5-4E61-A3C7-8E5159F3AAFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NurseCron.Communication.SignalR.Tests", "MicroServices\Communications\NurseCron.Communication.SignalR.Tests\NurseCron.Communication.SignalR.Tests.csproj", "{2245022E-51BD-497F-BB02-4629C6FC1856}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CiCd", "CiCd", "{F61D8D61-5080-443B-8DA1-6EDA0558EA4F}"
+	ProjectSection(SolutionItems) = preProject
+		MicroServices\Communications\NurseCron.Communications.CiCd\signal-r.sh = MicroServices\Communications\NurseCron.Communications.CiCd\signal-r.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -313,6 +325,14 @@ Global
 		{ACCE7A5A-7E5C-4A45-8EB9-9FAD169401AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACCE7A5A-7E5C-4A45-8EB9-9FAD169401AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACCE7A5A-7E5C-4A45-8EB9-9FAD169401AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F20C8FD-4FE5-4E61-A3C7-8E5159F3AAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F20C8FD-4FE5-4E61-A3C7-8E5159F3AAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F20C8FD-4FE5-4E61-A3C7-8E5159F3AAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F20C8FD-4FE5-4E61-A3C7-8E5159F3AAFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2245022E-51BD-497F-BB02-4629C6FC1856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2245022E-51BD-497F-BB02-4629C6FC1856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2245022E-51BD-497F-BB02-4629C6FC1856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2245022E-51BD-497F-BB02-4629C6FC1856}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -360,6 +380,9 @@ Global
 		{27C0B225-AC54-45B6-BDC0-0DAD400414A0} = {032DDB15-C329-43D2-8BDD-0191C9A36372}
 		{032DDB15-C329-43D2-8BDD-0191C9A36372} = {0F8E48AB-8BD9-4EE3-BE05-4D65BEC034A0}
 		{ACCE7A5A-7E5C-4A45-8EB9-9FAD169401AD} = {8C90BE53-C5AB-4600-9FA1-867E360EB5BB}
+		{1F20C8FD-4FE5-4E61-A3C7-8E5159F3AAFE} = {B8F871E4-E65D-4A84-84B4-5328BE3A785D}
+		{2245022E-51BD-497F-BB02-4629C6FC1856} = {B8F871E4-E65D-4A84-84B4-5328BE3A785D}
+		{F61D8D61-5080-443B-8DA1-6EDA0558EA4F} = {B8F871E4-E65D-4A84-84B4-5328BE3A785D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {588544EC-C030-4E92-80D1-FCA2B9CE8B96}
