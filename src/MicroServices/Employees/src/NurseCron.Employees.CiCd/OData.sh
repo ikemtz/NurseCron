@@ -70,7 +70,7 @@ echo Plan Group Id: ${planRgId}
 echo
 
 echo Create Web App Plan $planName
-export appPlanId=$(az appservice plan create --resource-group $planRgName --name $planName --is-linux --sku B1 | jq -r '. | .id')
+export appPlanId=$(az appservice plan create --resource-group $planRgName --name $planName --is-linux --sku B2 | jq -r '. | .id')
 echo App Plan Id: ${appPlanId}
 echo
 

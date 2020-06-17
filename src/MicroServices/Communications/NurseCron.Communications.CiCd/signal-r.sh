@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-if [ -z $2 ]; then
+if [ -z $1 ]; then
 echo Bash shell use
 echo $0 [D,Q,U,P] {subscriptionName OR subscriptionId}
 exit 1
