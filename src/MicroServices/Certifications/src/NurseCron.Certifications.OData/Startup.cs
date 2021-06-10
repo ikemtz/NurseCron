@@ -18,17 +18,11 @@ namespace NurseCron.Certifications.OData
     {
     }
 
-    public override void SetupMiscDependencies(IServiceCollection services)
-    {
-      services.AddScoped<ICertificationsContext, CertificationsContext>();
-    }
-
     [ExcludeFromCodeCoverage]
-    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    public override void SetupDatabase(IServiceCollection services, string dbConnectionString)
     {
       services
-      .AddDbContextPool<CertificationsContext>(x => x.UseSqlServer(connectionString))
-      .AddEntityFrameworkSqlServer();
+      .AddDbContextPool<CertificationsContext>(x => x.UseSqlServer(dbConnectionString));
     }
   }
 }

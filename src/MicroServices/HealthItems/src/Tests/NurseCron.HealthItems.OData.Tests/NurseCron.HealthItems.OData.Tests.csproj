@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <ProjectGuid>D2F2D6A6-7847-41C0-A08C-031FEA30ADD3</ProjectGuid>
   </PropertyGroup>
@@ -13,9 +13,9 @@
     <None Remove="Unit\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.168.11" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="5.0.161.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NurseCron.HealthItems.OData\NurseCron.HealthItems.OData.csproj" />

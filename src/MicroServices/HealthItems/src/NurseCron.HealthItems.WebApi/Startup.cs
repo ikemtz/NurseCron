@@ -19,10 +19,10 @@ namespace NurseCron.HealthItems.WebApi
     }
 
     [ExcludeFromCodeCoverage]
-    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    public override void SetupDatabase(IServiceCollection services, string dbConnectionString)
     {
       services
-      .AddDbContext<HealthItemsContext>(x => x.UseSqlServer(connectionString))
+      .AddDbContext<HealthItemsContext>(x => x.UseSqlServer(dbConnectionString))
       .AddEntityFrameworkSqlServer();
     }
 

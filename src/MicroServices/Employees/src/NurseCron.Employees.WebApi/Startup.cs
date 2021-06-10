@@ -30,10 +30,10 @@ namespace NurseCron.Employees.WebApi
     }
 
     [ExcludeFromCodeCoverage]
-    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    public override void SetupDatabase(IServiceCollection services, string dbConnectionString)
     {
       _ = services
-       .AddDbContext<EmployeesContext>(x => x.UseSqlServer(connectionString))
+       .AddDbContext<EmployeesContext>(x => x.UseSqlServer(dbConnectionString))
        .AddEntityFrameworkSqlServer();
     }
   }

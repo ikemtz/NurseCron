@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>b930fc77-a993-457f-9697-956b5a3ead67</UserSecretsId>
     <IsPackable>false</IsPackable>
     <ProjectGuid>5A01E053-B94B-4F14-8516-5848F11B9A76</ProjectGuid>
@@ -14,9 +14,9 @@
     <None Remove="Unit\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="1.20.168.11" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Unigration" Version="5.0.161.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NurseCron.Certifications.OData\NurseCron.Certifications.OData.csproj" />

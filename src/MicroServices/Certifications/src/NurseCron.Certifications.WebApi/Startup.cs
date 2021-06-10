@@ -30,10 +30,10 @@ namespace NurseCron.Certifications.WebApi
     }
 
     [ExcludeFromCodeCoverage]
-    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    public override void SetupDatabase(IServiceCollection services, string dbConnectionString)
     {
       _ = services
-       .AddDbContext<CertificationsContext>(x => x.UseSqlServer(connectionString))
+       .AddDbContext<CertificationsContext>(x => x.UseSqlServer(dbConnectionString))
        .AddEntityFrameworkSqlServer();
     }
   }

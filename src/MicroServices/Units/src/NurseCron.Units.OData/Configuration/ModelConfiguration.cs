@@ -6,7 +6,7 @@ namespace NurseCron.Units.OData.Configuration
 {
   public class ModelConfiguration : IModelConfiguration
   {
-    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string? routePrefix)
     {
       _ = builder.EntitySet<Building>($"{nameof(Building)}s");
       _ = builder.EntitySet<Unit>($"{nameof(Unit)}s");

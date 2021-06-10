@@ -7,7 +7,7 @@ namespace NurseCron.Certifications.OData.Configuration
 {
   public class CertificationConfiguration : IModelConfiguration
   {
-    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion)
+    public void Apply(ODataModelBuilder builder, ApiVersion apiVersion, string? routePrefix)
     {
       ODataConfigurationBuilder<Certification>.EntitySetBuilder(builder);
     }

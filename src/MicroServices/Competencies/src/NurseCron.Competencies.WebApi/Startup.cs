@@ -18,10 +18,10 @@ namespace NurseCron.Competencies.WebApi
     }
 
     [ExcludeFromCodeCoverage]
-    public override void SetupDatabase(IServiceCollection services, string connectionString)
+    public override void SetupDatabase(IServiceCollection services, string dbConnectionString)
     {
       services
-      .AddDbContext<CompetenciesContext>(x => x.UseSqlServer(connectionString))
+      .AddDbContext<CompetenciesContext>(x => x.UseSqlServer(dbConnectionString))
       .AddEntityFrameworkSqlServer();
     }
 

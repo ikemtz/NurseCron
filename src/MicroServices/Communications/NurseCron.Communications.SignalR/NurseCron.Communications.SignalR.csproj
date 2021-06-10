@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <ProjectGuid>34F97D69-6382-45C6-A470-2F4065C8FB33</ProjectGuid>
+    <TargetFramework>net5.0</TargetFramework>
+    <ProjectGuid>{1F20C8FD-4FE5-4E61-A3C7-8E5159F3AAFE}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Dockerfile" />
@@ -15,6 +15,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.SignalR" Version="1.20.171.5" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.SignalR" Version="5.0.161.4" />
   </ItemGroup>
 </Project>
