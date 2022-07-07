@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NurseCron.Certifications.WebApi.Data
 {
-  public partial class CertificationsContext : AuditableDbContext, ICertificationsContext
+  public partial class CertificationsContext : AuditableDbContext
   {
     public CertificationsContext(DbContextOptions<CertificationsContext> options, IHttpContextAccessor httpContextAccessor)
         : base(options, httpContextAccessor)

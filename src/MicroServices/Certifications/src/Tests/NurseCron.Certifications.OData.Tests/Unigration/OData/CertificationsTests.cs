@@ -140,9 +140,6 @@ namespace NurseCron.Certifications.Tests.Unigration.OData
       var objB = await DeserializeResponseAsync<ODataEnvelope<Certification>>(resp);
 
       Assert.AreEqual(1, objB.Value.Count());
-
-      //TODO: Research bug in EF In Memory Context Or OData
-      Assert.AreEqual(1, objB.Value.First().CreatedOnUtc.Year);
     }
   }
 }

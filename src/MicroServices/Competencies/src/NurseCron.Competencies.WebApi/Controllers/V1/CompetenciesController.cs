@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
+using Azure.Messaging.ServiceBus;
 using IkeMtz.NRSRx.Core.Models.Validation;
 using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Events;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.ServiceBus;
 using Microsoft.EntityFrameworkCore;
 using NurseCron.Competencies.Abstraction.Models;
 using NurseCron.Competencies.WebApi.Data;
@@ -17,15 +17,15 @@ namespace NurseCron.Competencies.WebApi.V1.Controllers
   [ApiController]
   public class CompetenciesController : ControllerBase
   {
-    private readonly ICompetenciesContext _ctx;
-    private readonly IPublisher<Competency, CreatedEvent, Message> _createdPublisher;
-    private readonly IPublisher<Competency, UpdatedEvent, Message> _updatedPublisher;
-    private readonly IPublisher<Competency, DeletedEvent, Message> _deletedPublisher;
+    private readonly DatabaseContext _ctx;
+    private readonly IPublisher<Competency, CreatedEvent, ServiceBusMessage> _createdPublisher;
+    private readonly IPublisher<Competency, UpdatedEvent, ServiceBusMessage> _updatedPublisher;
+    private readonly IPublisher<Competency, DeletedEvent, ServiceBusMessage> _deletedPublisher;
 
-    public CompetenciesController(ICompetenciesContext ctx,
-        IPublisher<Competency, CreatedEvent, Message> createdPublisher,
-        IPublisher<Competency, UpdatedEvent, Message> updatedPublisher,
-        IPublisher<Competency, DeletedEvent, Message> deletedPublisher)
+    public CompetenciesController(DatabaseContext ctx,
+        IPublisher<Competency, CreatedEvent, ServiceBusMessage> createdPublisher,
+        IPublisher<Competency, UpdatedEvent, ServiceBusMessage> updatedPublisher,
+        IPublisher<Competency, DeletedEvent, ServiceBusMessage> deletedPublisher)
     {
       _ctx = ctx;
       _createdPublisher = createdPublisher;

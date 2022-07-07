@@ -1,15 +1,13 @@
 using System;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using NurseCron.Certifications.Abstraction.Models;
-using NurseCron.Certifications.WebApi.Data;
+using Azure.Messaging.ServiceBus;
 using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Events;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.ServiceBus;
 using Microsoft.EntityFrameworkCore;
+using NurseCron.Certifications.Abstraction.Models;
+using NurseCron.Certifications.WebApi.Data;
 
 namespace NurseCron.Certifications.WebApi.Controllers
 {
@@ -18,15 +16,15 @@ namespace NurseCron.Certifications.WebApi.Controllers
   [ApiController]
   public class CertificationsController : ControllerBase
   {
-    private readonly ICertificationsContext _ctx;
-    private readonly IPublisher<Certification, CreatedEvent, Message> _createdPublisher;
-    private readonly IPublisher<Certification, UpdatedEvent, Message> _updatedPublisher;
-    private readonly IPublisher<Certification, DeletedEvent, Message> _deletedPublisher;
+    private readonly CertificationsContext _ctx;
+    private readonly IPublisher<Certification, CreatedEvent, ServiceBusMessage> _createdPublisher;
+    private readonly IPublisher<Certification, UpdatedEvent, ServiceBusMessage> _updatedPublisher;
+    private readonly IPublisher<Certification, DeletedEvent, ServiceBusMessage> _deletedPublisher;
 
-    public CertificationsController(ICertificationsContext ctx,
-        IPublisher<Certification, CreatedEvent, Message> createdPublisher,
-        IPublisher<Certification, UpdatedEvent, Message> updatedPublisher,
-        IPublisher<Certification, DeletedEvent, Message> deletedPublisher)
+    public CertificationsController(CertificationsContext ctx,
+        IPublisher<Certification, CreatedEvent, ServiceBusMessage> createdPublisher,
+        IPublisher<Certification, UpdatedEvent, ServiceBusMessage> updatedPublisher,
+        IPublisher<Certification, DeletedEvent, ServiceBusMessage> deletedPublisher)
     {
       _ctx = ctx;
       _createdPublisher = createdPublisher;

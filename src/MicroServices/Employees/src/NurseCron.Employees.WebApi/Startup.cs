@@ -20,7 +20,7 @@ namespace NurseCron.Employees.WebApi
 
     public override void SetupMiscDependencies(IServiceCollection services)
     {
-      _ = services.AddScoped<IEmployeesContext, EmployeesContext>();
+      _ = services.AddScoped<DatabaseContext, DatabaseContext>();
     }
 
     [ExcludeFromCodeCoverage]
@@ -33,7 +33,7 @@ namespace NurseCron.Employees.WebApi
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       _ = services
-       .AddDbContext<EmployeesContext>(x => x.UseSqlServer(connectionString))
+       .AddDbContext<DatabaseContext>(x => x.UseSqlServer(connectionString))
        .AddEntityFrameworkSqlServer();
     }
   }

@@ -3,7 +3,7 @@ using NurseCron.Services.Schedules.Abstraction;
 
 namespace NurseCron.Services.Schedules.OData.Data
 {
-  public class DatabaseContext : DbContext, IDatabaseContext
+  public class DatabaseContext : DbContext
   {
     public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)

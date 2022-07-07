@@ -1,16 +1,19 @@
+using IkeMtz.NRSRx.Core.EntityFramework;
 using NurseCron.Employees.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
-namespace NurseCron.Employees.OData.Data
+namespace NurseCron.Employees.WebApi.Data
 {
-  public partial class EmployeesContext : DbContext, IEmployeesContext
+  public partial class DatabaseContext : AuditableDbContext
   {
-    public EmployeesContext(DbContextOptions<EmployeesContext> options)
-        : base(options)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options, IHttpContextAccessor httpContextAccessor)
+        : base(options, httpContextAccessor)
     {
     }
 
     public virtual DbSet<Employee> Employees { get; set; }
+
 
     public virtual DbSet<EmployeeCertification> EmployeeCertifications { get; set; }
 
