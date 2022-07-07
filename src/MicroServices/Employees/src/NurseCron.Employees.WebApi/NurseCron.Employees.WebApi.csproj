@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>172092BE-2043-4262-8076-7CCA210C3D80</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsAnnotationResourceId>
     <ProjectGuid>2815C9D0-958D-4F29-B817-B66F37941ED6</ProjectGuid>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="pub\**" />
@@ -33,11 +34,12 @@
     <None Include="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.20.168.11" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="1.20.168.11" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="1.20.168.11" />
-    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="1.20.168.11" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="6.0.184.6" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.0.184.6" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.0.184.6" />
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.ServiceBus" Version="6.0.184.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.16.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NurseCron.Employees.Abstraction\NurseCron.Employees.Abstraction.csproj" />

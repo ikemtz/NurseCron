@@ -1,17 +1,18 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using NurseCron.Certifications.Abstraction.Models;
-using NurseCron.Certifications.WebApi;
-using NurseCron.Certifications.WebApi.Data;
+using Azure.Messaging.ServiceBus;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration.Http;
 using IkeMtz.NRSRx.Events;
 using IkeMtz.NRSRx.Events.Publishers.ServiceBus;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Azure.ServiceBus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NurseCron.Certifications.Abstraction.Models;
+using NurseCron.Certifications.WebApi;
+using NurseCron.Certifications.WebApi.Data;
 
 namespace NurseCron.Certifications.Tests.Integration.Api
 {
@@ -58,7 +59,7 @@ namespace NurseCron.Certifications.Tests.Integration.Api
       Assert.IsNotNull(cert);
       Assert.AreEqual(result.CreatedOnUtc.ToString(), cert.CreatedOnUtc.ToString());
 
-      var publisher = srv.GetTestService<IPublisher<Certification, CreatedEvent, Message>, ServiceBusQueuePublisher<Certification, CreatedEvent>>();
+      var publisher = srv.GetTestService<IPublisher<Certification, CreatedEvent, ServiceBusMessage>, ServiceBusQueuePublisher<Certification, CreatedEvent>>();
       Assert.IsNotNull(publisher);
     }
 
@@ -95,7 +96,7 @@ namespace NurseCron.Certifications.Tests.Integration.Api
       Assert.AreEqual(result.UpdatedOnUtc.ToString(), cert.UpdatedOnUtc.ToString());
       Assert.IsNotNull(cert.UpdatedBy);
 
-      var publisher = srv.GetTestService<IPublisher<Certification, UpdatedEvent, Message>, ServiceBusQueuePublisher<Certification, UpdatedEvent>>();
+      var publisher = srv.GetTestService<IPublisher<Certification, UpdatedEvent, ServiceBusMessage>, ServiceBusQueuePublisher<Certification, UpdatedEvent>>();
       Assert.IsNotNull(publisher);
     }
 
@@ -143,7 +144,7 @@ namespace NurseCron.Certifications.Tests.Integration.Api
       Assert.IsNotNull(result.UpdatedBy);
       Assert.IsFalse(result.IsEnabled);
 
-      var publisher = srv.GetTestService<IPublisher<Certification, DeletedEvent, Message>, ServiceBusQueuePublisher<Certification, DeletedEvent>>();
+      var publisher = srv.GetTestService<IPublisher<Certification, DeletedEvent, ServiceBusMessage>, ServiceBusQueuePublisher<Certification, DeletedEvent>>();
       Assert.IsNotNull(publisher);
     }
 

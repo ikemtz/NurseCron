@@ -1,13 +1,12 @@
 using IkeMtz.NRSRx.Core.Unigration;
-using NurseCron.HealthItems.OData;
-using NurseCron.HealthItems.OData.Configuration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Configuration;
+using NurseCron.HealthItems.OData;
 
 namespace NurseCron.HealthItems.Tests.Integration
 {
   public class IntegrationTestStartup
-      : CoreODataIntegrationTestStartup<Startup, HealthItemConfiguration>
+      : CoreODataIntegrationTestStartup<Startup>
   {
     public IntegrationTestStartup(IConfiguration configuration)
         : base(new Startup(configuration))

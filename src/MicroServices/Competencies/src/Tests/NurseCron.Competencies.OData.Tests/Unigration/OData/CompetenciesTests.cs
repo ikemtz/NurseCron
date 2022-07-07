@@ -29,7 +29,7 @@ namespace NurseCron.Competencies.Tests.Unigration.OData
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
           .ConfigureTestServices(x =>
             {
-              ExecuteOnContext<CompetenciesContext>(x, db =>
+              ExecuteOnContext<DatabaseContext>(x, db =>
                     {
                       db.Competencies.Add(objA);
                     });
@@ -57,7 +57,7 @@ namespace NurseCron.Competencies.Tests.Unigration.OData
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
           .ConfigureTestServices(x =>
           {
-            ExecuteOnContext<CompetenciesContext>(x, db =>
+            ExecuteOnContext<DatabaseContext>(x, db =>
                   {
                     db.Competencies.Add(objA);
                   });

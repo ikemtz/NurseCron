@@ -8,21 +8,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NurseCron.Services.Schedules.Abstraction;
 using NurseCron.Services.Schedules.OData.Data;
+using static IkeMtz.NRSRx.Core.Unigration.TestDataFactory;
 
 namespace NurseCron.Services.Schedules.OData.Tests.Unigration
 {
   [TestClass]
-  public partial class ItemsTests : BaseUnigrationTests
+  public partial class SchedulesTests : BaseUnigrationTests
   {
     [TestMethod]
     [TestCategory("Unigration")]
-    public async Task GetItemsTest()
+    public async Task GetSchedulesTest()
     {
-      var objA = new Schedule()
-      {
-        Id = Guid.NewGuid(),
-        EmployeeName = $"Test- {Guid.NewGuid().ToString().Substring(29)}",
-      };
+      var objA = CreateIdentifiable(CreateAuditable<Schedule>());
+      objA.EmployeeName = $"Test- {StringGenerator(30, true)}";
+      objA.UnitName = StringGenerator(5);
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
           .ConfigureTestServices(x =>
           {

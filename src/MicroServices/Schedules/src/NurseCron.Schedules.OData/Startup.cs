@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NurseCron.Services.Schedules.Abstraction;
+using NurseCron.Services.Schedules.OData.Configuration;
 using NurseCron.Services.Schedules.OData.Data;
 
 namespace NurseCron.Services.Schedules.OData
@@ -13,6 +14,7 @@ namespace NurseCron.Services.Schedules.OData
   {
     public override string MicroServiceTitle => $"{nameof(Schedule)} OData Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
+    public override BaseODataModelProvider ODataModelProvider => new ODataModelProvider();
 
     public Startup(IConfiguration configuration) : base(configuration)
     {
@@ -27,7 +29,7 @@ namespace NurseCron.Services.Schedules.OData
 
     public override void SetupMiscDependencies(IServiceCollection services)
     {
-      _ = services.AddScoped<IDatabaseContext, DatabaseContext>();
+      _ = services.AddScoped<DatabaseContext, DatabaseContext>();
     }
   }
 }

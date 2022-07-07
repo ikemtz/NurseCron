@@ -24,7 +24,7 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       GenerateAuthHeader(client, GenerateTestToken());
 
       //Equivalent EfQuery -- THIS WORKS
-      var dbContext = srv.GetDbContext<EmployeesContext>();
+      var dbContext = srv.GetDbContext<DatabaseContext>();
       var dbItems = await dbContext.Employees
         .Include(t => t.EmployeeCompetencies)
         .Include(t => t.EmployeeCertifications)
@@ -53,7 +53,7 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       GenerateAuthHeader(client, GenerateTestToken());
 
       //Equivalent EfQuery -- THIS WORKS
-      var dbContext = srv.GetDbContext<EmployeesContext>();
+      var dbContext = srv.GetDbContext<DatabaseContext>();
       var dbItems = await dbContext.Employees
         .Include(t => t.EmployeeCompetencies)
         .Include(t => t.EmployeeHealthItems)
@@ -82,7 +82,7 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       GenerateAuthHeader(client, GenerateTestToken());
 
       //Equivalent EfQuery -- THIS WORKS
-      var dbContext = srv.GetDbContext<EmployeesContext>();
+      var dbContext = srv.GetDbContext<DatabaseContext>();
       var dbItems = await dbContext.Employees
         .Include(t => t.EmployeeCertifications)
         .Include(t => t.EmployeeCompetencies)
@@ -112,7 +112,7 @@ namespace NurseCron.Employees.OData.Tests.Integration.OData
       GenerateAuthHeader(client, GenerateTestToken());
 
       //Equivalent EfQuery -- THIS WORKS
-      var dbContext = srv.GetDbContext<EmployeesContext>();
+      var dbContext = srv.GetDbContext<DatabaseContext>();
       var dbItems = await dbContext.Employees
         .Include(t => t.EmployeeCompetencies)
         .Include(t => t.EmployeeCertifications)

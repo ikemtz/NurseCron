@@ -2,15 +2,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProjectGuid>{777F41B2-2F1C-4CDE-B960-9B87BFEBB731}</ProjectGuid>
-  </PropertyGroup>
+    <AnalysisLevel>6.0-recommended</AnalysisLevel>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup> 
   <ItemGroup>
-    <None Remove="1fqxer0i.mbn~" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="1.20.168.11" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.184.6" />
   </ItemGroup>
 </Project>

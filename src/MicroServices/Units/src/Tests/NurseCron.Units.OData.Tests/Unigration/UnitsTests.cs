@@ -9,6 +9,7 @@ using NurseCron.Units.OData.Data;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using static IkeMtz.NRSRx.Core.Unigration.TestDataFactory;
 
 namespace NurseCron.Units.Tests.Unigration.OData
 {
@@ -19,11 +20,8 @@ namespace NurseCron.Units.Tests.Unigration.OData
     [TestCategory("Unigration")]
     public async Task GetUnitsTest()
     {
-      var objA = new Unit()
-      {
-        Id = Guid.NewGuid(),
-        Name = $"Test- {Guid.NewGuid().ToString().Substring(29)}",
-      };
+      var objA = CreateIdentifiable(CreateAuditable<Unit>());
+      objA.Name = $"Test- {Guid.NewGuid().ToString()[29..]}";
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
           .ConfigureTestServices(x =>
           {
@@ -33,6 +31,8 @@ namespace NurseCron.Units.Tests.Unigration.OData
             });
           })
        );
+
+      Guid x = Guid.NewGuid();
       var client = srv.CreateClient();
       GenerateAuthHeader(client, GenerateTestToken());
 
@@ -41,7 +41,7 @@ namespace NurseCron.Units.Tests.Unigration.OData
       //Validate OData Result
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Unit>>(resp);
-      Assert.AreEqual(objA.Name, envelope.Value.First().Name);
+      Assert.AreEqual(objA.Name, envelope?.Value.First().Name);
     }
   }
 }

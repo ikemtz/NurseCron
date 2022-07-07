@@ -22,13 +22,13 @@ namespace NurseCron.HealthItems.WebApi
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
       services
-      .AddDbContext<HealthItemsContext>(x => x.UseSqlServer(connectionString))
+      .AddDbContext<DatabaseContext>(x => x.UseSqlServer(connectionString))
       .AddEntityFrameworkSqlServer();
     }
 
     public override void SetupMiscDependencies(IServiceCollection services)
     {
-      services.AddScoped<IHealthItemsContext, HealthItemsContext>();
+      services.AddScoped<DatabaseContext, DatabaseContext>();
     }
 
     [ExcludeFromCodeCoverage]

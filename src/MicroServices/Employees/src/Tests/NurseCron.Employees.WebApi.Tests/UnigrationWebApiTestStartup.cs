@@ -3,7 +3,7 @@ using IkeMtz.NRSRx.Core.Unigration.WebApi;
 using NurseCron.Employees.Models;
 using NurseCron.Employees.WebApi;
 using NurseCron.Employees.WebApi.Data;
-using Microsoft.Azure.ServiceBus;
+using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,12 +17,12 @@ namespace NurseCron.Employees.Tests
 
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
-      services.SetupTestDbContext<EmployeesContext>();
+      services.SetupTestDbContext<DatabaseContext>();
     }
 
     public override void SetupPublishers(IServiceCollection services)
     {
-      var pubTester = new PublisherUnigrationTester<Employee, Message>();
+      var pubTester = new PublisherUnigrationTester<Employee, ServiceBusMessage>();
       pubTester.RegisterDependencies(services);
     }
   }

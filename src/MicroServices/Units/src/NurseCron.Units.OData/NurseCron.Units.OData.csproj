@@ -1,20 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>A61AC368-75D8-4C35-8B43-9F4DFFE947D4</UserSecretsId>
     <ProjectGuid>218E4B14-A12A-4EC5-BF6A-59741D4E323D</ProjectGuid>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;CA1707</NoWarn>
+    <NoWarn>1701;1702;CA1707;CS8618</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="1.20.168.11" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="6.0.184.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.16.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NurseCron.Units.Abstraction\NurseCron.Units.Abstraction.csproj" />

@@ -22,7 +22,13 @@ namespace NurseCron.Units.Tests.Unigration.OData
       var objA = new Building()
       {
         Id = Guid.NewGuid(),
-        Name = $"Test- {Guid.NewGuid().ToString().Substring(29)}",
+        Name = $"Test- {Guid.NewGuid().ToString()[29..]}",
+        AddressLine1 = $"100 {TestDataFactory.StringGenerator(10)}",
+        CityOrMunicipality = TestDataFactory.StringGenerator(5),
+        StateOrProvidence = TestDataFactory.StringGenerator(2, characterSet: CharacterSets.UpperCase),
+        Country = "USA",
+        PostalCode = "12345",
+        SiteName = TestDataFactory.StringGenerator(5)
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
           .ConfigureTestServices(x =>
@@ -41,7 +47,7 @@ namespace NurseCron.Units.Tests.Unigration.OData
       //Validate OData Result
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Building>>(resp);
-      Assert.AreEqual(objA.Name, envelope.Value.First().Name);
+      Assert.AreEqual(objA.Name, envelope?.Value.First().Name);
     }
   }
 }

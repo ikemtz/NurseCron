@@ -2,8 +2,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <ProjectGuid>7187E0CF-9233-4879-984D-D00FC654F277</ProjectGuid>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS8618</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CS8618</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="1.20.168.11" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.184.6" />
   </ItemGroup>
 </Project>

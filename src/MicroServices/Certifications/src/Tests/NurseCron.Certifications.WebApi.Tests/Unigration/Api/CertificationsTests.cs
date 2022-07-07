@@ -1,15 +1,16 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using NurseCron.Certifications.Abstraction.Models;
-using NurseCron.Certifications.WebApi;
-using NurseCron.Certifications.WebApi.Data;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration.Http;
 using IkeMtz.NRSRx.Core.WebApi;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NurseCron.Certifications.Abstraction.Models;
+using NurseCron.Certifications.WebApi;
+using NurseCron.Certifications.WebApi.Data;
 
 namespace NurseCron.Certifications.Tests.Unigration.Api
 {

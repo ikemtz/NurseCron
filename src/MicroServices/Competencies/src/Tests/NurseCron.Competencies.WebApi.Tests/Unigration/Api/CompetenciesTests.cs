@@ -1,15 +1,16 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using NurseCron.Competencies.Abstraction.Models;
-using NurseCron.Competencies.WebApi;
-using NurseCron.Competencies.WebApi.Data;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration.Http;
 using IkeMtz.NRSRx.Core.WebApi;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NurseCron.Competencies.Abstraction.Models;
+using NurseCron.Competencies.WebApi;
+using NurseCron.Competencies.WebApi.Data;
 
 namespace NurseCron.Competencies.Tests.Unigration.Api
 {
@@ -30,7 +31,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
       var result = await resp.Content.ReadAsStringAsync();
 
       var obj = JsonConvert.DeserializeObject<PingResult>(result);
-        Assert.AreEqual("NurseCRON Competency API Microservice Controller", obj.Name);
+      Assert.AreEqual("NurseCRON Competency API Microservice Controller", obj.Name);
     }
 
     [TestMethod]
@@ -51,7 +52,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
       Assert.AreEqual(objA.Name, result.Name);
       Assert.AreEqual("IntegrationTester@email.com", result.CreatedBy);
 
-      var ctx = srv.GetDbContext<CompetenciesContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var comp = await ctx.Competencies.FirstOrDefaultAsync(t => t.Name == result.Name);
       Assert.IsNotNull(comp);
       Assert.AreEqual(result.CreatedOnUtc, comp.CreatedOnUtc);
@@ -70,7 +71,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
           {
-            ExecuteOnContext<CompetenciesContext>(x, db =>
+            ExecuteOnContext<DatabaseContext>(x, db =>
             {
               _ = db.Competencies.Add(objA);
             });
@@ -85,7 +86,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
 
       Assert.AreEqual("IntegrationTester@email.com", result.UpdatedBy);
       Assert.AreEqual(objA.Name, result.Name);
-      var ctx = srv.GetDbContext<CompetenciesContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var comp = await ctx.Competencies.FirstOrDefaultAsync(t => t.Name == result.Name);
 
       Assert.IsNotNull(comp);
@@ -124,7 +125,7 @@ namespace NurseCron.Competencies.Tests.Unigration.Api
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
-          ExecuteOnContext<CompetenciesContext>(x, db =>
+          ExecuteOnContext<DatabaseContext>(x, db =>
           {
             _ = db.Competencies.Add(objA);
           });

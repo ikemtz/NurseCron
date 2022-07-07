@@ -2,14 +2,15 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration.Http;
 using IkeMtz.NRSRx.Core.WebApi;
-using NurseCron.Employees.Models;
-using NurseCron.Employees.WebApi;
-using NurseCron.Employees.WebApi.Data;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NurseCron.Employees.Models;
+using NurseCron.Employees.WebApi;
+using NurseCron.Employees.WebApi.Data;
 
 namespace NurseCron.Employees.Tests.Unigration.Api
 {
@@ -53,7 +54,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
       Assert.AreEqual(objA.FirstName, result.FirstName);
       Assert.AreEqual("IntegrationTester@email.com", result.CreatedBy);
 
-      var ctx = srv.GetDbContext<EmployeesContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var emp = await ctx.Employees.FirstOrDefaultAsync(t => t.FirstName == result.FirstName);
 
       Assert.IsNotNull(emp);
@@ -70,11 +71,13 @@ namespace NurseCron.Employees.Tests.Unigration.Api
         HireDate = DateTime.UtcNow.AddMonths(-6),
         FirstName = Guid.NewGuid().ToString(),
         IsEnabled = true,
+        Email = "me@me.com",
+        LastName = TestDataFactory.StringGenerator(20),
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
-          ExecuteOnContext<EmployeesContext>(x, db =>
+          ExecuteOnContext<DatabaseContext>(x, db =>
           {
             _ = db.Employees.Add(objA);
           });
@@ -91,7 +94,7 @@ namespace NurseCron.Employees.Tests.Unigration.Api
       Assert.AreEqual(objA.FirstName, result.FirstName);
 
 
-      var ctx = srv.GetDbContext<EmployeesContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var emp = await ctx.Employees.FirstOrDefaultAsync(t => t.FirstName == result.FirstName);
 
       Assert.IsNotNull(emp);
@@ -127,11 +130,13 @@ namespace NurseCron.Employees.Tests.Unigration.Api
         Id = Guid.NewGuid(),
         FirstName = Guid.NewGuid().ToString(),
         IsEnabled = true,
+        Email = "me@me.com",
+        LastName = TestDataFactory.StringGenerator(20),
       };
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationWebApiTestStartup>()
         .ConfigureTestServices(x =>
         {
-          ExecuteOnContext<EmployeesContext>(x, db =>
+          ExecuteOnContext<DatabaseContext>(x, db =>
           {
             _ = db.Employees.Add(objA);
           });
