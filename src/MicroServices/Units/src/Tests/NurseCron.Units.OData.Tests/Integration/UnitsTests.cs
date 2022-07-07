@@ -25,8 +25,8 @@ namespace NurseCron.Units.Tests.Integration.OData
       var resp = await client.GetStringAsync($"odata/v1/{nameof(Unit)}s?$count=true");
       TestContext.WriteLine($"Server Reponse: {resp}");
       var envelope = JsonConvert.DeserializeObject<ODataEnvelope<Unit>>(resp);
-      Assert.AreEqual(envelope.Count, envelope.Value.Count());
-      envelope.Value.ToList().ForEach(t =>
+      Assert.AreEqual(envelope?.Count, envelope?.Value.Count());
+      envelope?.Value.ToList().ForEach(t =>
       {
         Assert.IsNotNull(t.Name);
         Assert.AreNotEqual(Guid.Empty, t.Id);

@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration.Http;
 using IkeMtz.NRSRx.Core.WebApi;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
@@ -52,7 +53,7 @@ namespace NurseCron.HealthItems.Tests.Integration.WebApi
       Assert.IsTrue(result.IsEnabled);
       Assert.IsNotNull(result.CreatedBy);
 
-      var ctx = srv.GetDbContext<HealthItemsContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var item = await ctx.HealthItems.FirstOrDefaultAsync(t => t.Name == result.Name);
 
       Assert.IsNotNull(item);
@@ -86,7 +87,7 @@ namespace NurseCron.HealthItems.Tests.Integration.WebApi
       Assert.IsNotNull(result.UpdatedBy);
       Assert.AreEqual(objA.Name, result.Name);
 
-      var ctx = srv.GetDbContext<HealthItemsContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var item = await ctx.HealthItems.FirstOrDefaultAsync(t => t.Name == result.Name);
 
       Assert.IsNotNull(item);

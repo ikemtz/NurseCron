@@ -1,13 +1,13 @@
-using IkeMtz.NRSRx.Core.WebApi;
-using IkeMtz.NRSRx.Events;
-using NurseCron.HealthItems.Models;
-using NurseCron.HealthItems.WebApi.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.ServiceBus;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
+using Azure.Messaging.ServiceBus;
+using IkeMtz.NRSRx.Core.WebApi;
+using IkeMtz.NRSRx.Events;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NurseCron.HealthItems.Models;
+using NurseCron.HealthItems.WebApi.Data;
 
 namespace NurseCron.HealthItems.WebApi.Controllers
 {
@@ -16,15 +16,15 @@ namespace NurseCron.HealthItems.WebApi.Controllers
   [ApiController]
   public class HealthItemsController : ControllerBase
   {
-    private readonly IHealthItemsContext _ctx;
-    private readonly IPublisher<HealthItem, CreatedEvent, Message> _createdPublisher;
-    private readonly IPublisher<HealthItem, UpdatedEvent, Message> _updatedPublisher;
-    private readonly IPublisher<HealthItem, DeletedEvent, Message> _deletedPublisher;
+    private readonly DatabaseContext _ctx;
+    private readonly IPublisher<HealthItem, CreatedEvent, ServiceBusMessage> _createdPublisher;
+    private readonly IPublisher<HealthItem, UpdatedEvent, ServiceBusMessage> _updatedPublisher;
+    private readonly IPublisher<HealthItem, DeletedEvent, ServiceBusMessage> _deletedPublisher;
 
-    public HealthItemsController(IHealthItemsContext ctx,
-        IPublisher<HealthItem, CreatedEvent, Message> createdPublisher,
-        IPublisher<HealthItem, UpdatedEvent, Message> updatedPublisher,
-        IPublisher<HealthItem, DeletedEvent, Message> deletedPublisher)
+    public HealthItemsController(DatabaseContext ctx,
+        IPublisher<HealthItem, CreatedEvent, ServiceBusMessage> createdPublisher,
+        IPublisher<HealthItem, UpdatedEvent, ServiceBusMessage> updatedPublisher,
+        IPublisher<HealthItem, DeletedEvent, ServiceBusMessage> deletedPublisher)
     {
       _ctx = ctx;
       _createdPublisher = createdPublisher;

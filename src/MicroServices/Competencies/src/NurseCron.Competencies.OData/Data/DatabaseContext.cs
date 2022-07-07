@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NurseCron.Competencies.OData.Data
 {
-  public partial class CompetenciesContext : DbContext, ICompetenciesContext
+  public partial class DatabaseContext : DbContext
   {
-    public CompetenciesContext(DbContextOptions<CompetenciesContext> options)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)
     {
     }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NurseCron.Certifications.OData.Data
 {
-  public partial class CertificationsContext : DbContext, ICertificationsContext
+  public partial class CertificationsContext : DbContext
   {
     public CertificationsContext(DbContextOptions<CertificationsContext> options)
         : base(options)

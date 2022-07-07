@@ -4,6 +4,7 @@ using IkeMtz.NRSRx.Core.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NurseCron.Units.OData.Configuration;
 using NurseCron.Units.OData.Data;
 
 namespace NurseCron.Units.OData
@@ -12,6 +13,7 @@ namespace NurseCron.Units.OData
   {
     public override string MicroServiceTitle => $"{nameof(Units)} OData Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
+    public override BaseODataModelProvider ODataModelProvider => new ODataModelProvider();
 
     public Startup(IConfiguration configuration) : base(configuration)
     {
@@ -26,7 +28,7 @@ namespace NurseCron.Units.OData
 
     public override void SetupMiscDependencies(IServiceCollection services)
     {
-      _ = services.AddScoped<IDatabaseContext, DatabaseContext>();
+      _ = services.AddScoped<DatabaseContext, DatabaseContext>();
     }
   }
 }

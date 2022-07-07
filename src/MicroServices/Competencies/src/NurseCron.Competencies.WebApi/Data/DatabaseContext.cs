@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NurseCron.Competencies.WebApi.Data
 {
-  public partial class CompetenciesContext : AuditableDbContext, ICompetenciesContext
+  public partial class DatabaseContext : AuditableDbContext
   {
-    public CompetenciesContext(DbContextOptions<CompetenciesContext> options, IHttpContextAccessor httpContextAccessor)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options, IHttpContextAccessor httpContextAccessor)
         : base(options, httpContextAccessor)
     {
     }
