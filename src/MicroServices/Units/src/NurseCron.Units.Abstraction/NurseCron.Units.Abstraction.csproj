@@ -12,6 +12,6 @@
     <NoWarn>1701;1702;CS8618</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.188.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.220.7" />
   </ItemGroup>
 </Project>
