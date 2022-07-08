@@ -6,6 +6,7 @@ using NurseCron.HealthItems.OData.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NurseCron.HealthItems.OData.Configuration;
 
 namespace NurseCron.HealthItems.OData
 {
@@ -13,6 +14,7 @@ namespace NurseCron.HealthItems.OData
   {
     public override string MicroServiceTitle => $"NurseCRON {nameof(HealthItem)} OData Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
+    public override BaseODataModelProvider ODataModelProvider => new ODataModelProvider();
 
     public Startup(IConfiguration configuration) : base(configuration)
     {
@@ -21,14 +23,9 @@ namespace NurseCron.HealthItems.OData
     [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
-      services
-      .AddDbContextPool<HealthItemsContext>(x => x.UseSqlServer(connectionString))
-      .AddEntityFrameworkSqlServer();
-    }
-
-    public override void SetupMiscDependencies(IServiceCollection services)
-    {
-      services.AddScoped<IHealthItemsContext, HealthItemsContext>();
+      _ = services
+         .AddDbContextPool<DatabaseContext>(x => x.UseSqlServer(connectionString))
+         .AddEntityFrameworkSqlServer();
     }
   }
 }

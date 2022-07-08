@@ -29,7 +29,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.OData
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
           .ConfigureTestServices(x =>
             {
-              ExecuteOnContext<HealthItemsContext>(x, db =>
+              ExecuteOnContext<DatabaseContext>(x, db =>
                     {
                       db.HealthItems.Add(objA);
                     });
@@ -57,7 +57,7 @@ namespace NurseCron.HealthItems.Tests.Unigration.OData
       using var srv = new TestServer(TestHostBuilder<Startup, UnigrationODataTestStartup>()
           .ConfigureTestServices(x =>
           {
-            ExecuteOnContext<HealthItemsContext>(x, db =>
+            ExecuteOnContext<DatabaseContext>(x, db =>
                   {
                     db.HealthItems.Add(objA);
                   });

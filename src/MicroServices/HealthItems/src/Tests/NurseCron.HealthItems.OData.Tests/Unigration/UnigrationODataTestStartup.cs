@@ -1,14 +1,13 @@
 using IkeMtz.NRSRx.Core.Unigration;
-using NurseCron.HealthItems.OData;
-using NurseCron.HealthItems.OData.Configuration;
-using NurseCron.HealthItems.OData.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NurseCron.HealthItems.OData;
+using NurseCron.HealthItems.OData.Data;
 
 namespace NurseCron.HealthItems.Tests.Unigration
 {
   public class UnigrationODataTestStartup
-      : CoreODataUnigrationTestStartup<Startup, HealthItemConfiguration>
+      : CoreODataUnigrationTestStartup<Startup>
   {
     public UnigrationODataTestStartup(IConfiguration configuration) : base(new Startup(configuration))
     {
@@ -16,7 +15,7 @@ namespace NurseCron.HealthItems.Tests.Unigration
 
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
-      services.SetupTestDbContext<HealthItemsContext>();
+      services.SetupTestDbContext<DatabaseContext>();
     }
   }
 }

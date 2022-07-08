@@ -1,14 +1,15 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using NurseCron.Competencies.Abstraction.Models;
-using NurseCron.Competencies.WebApi;
-using NurseCron.Competencies.WebApi.Data;
 using IkeMtz.NRSRx.Core.Unigration;
+using IkeMtz.NRSRx.Core.Unigration.Http;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NurseCron.Competencies.Abstraction.Models;
+using NurseCron.Competencies.WebApi;
+using NurseCron.Competencies.WebApi.Data;
 
 namespace NurseCron.Competencies.Tests.Integration.WebApi
 {
@@ -51,7 +52,7 @@ namespace NurseCron.Competencies.Tests.Integration.WebApi
       Assert.IsTrue(result.IsEnabled);
       Assert.IsNotNull(result.CreatedBy);
 
-      var ctx = srv.GetDbContext<CompetenciesContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var comp = await ctx.Competencies.FirstOrDefaultAsync(t => t.Name == result.Name);
 
       Assert.IsNotNull(comp);
@@ -85,7 +86,7 @@ namespace NurseCron.Competencies.Tests.Integration.WebApi
       Assert.IsNotNull(result.UpdatedBy);
       Assert.AreEqual(objA.Name, result.Name);
 
-      var ctx = srv.GetDbContext<CompetenciesContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var comp = await ctx.Competencies.FirstOrDefaultAsync(t => t.Name == result.Name);
 
       Assert.IsNotNull(comp);

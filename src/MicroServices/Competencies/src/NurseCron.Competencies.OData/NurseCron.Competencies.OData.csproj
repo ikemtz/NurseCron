@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>2D7955DC-FB72-4836-81BC-CFD8BF800E71</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/e92419ad-e3e7-488a-81d4-794b498de73e/resourcegroups/Nurser-Dev/providers/microsoft.insights/components/Nurser-Dev</ApplicationInsightsAnnotationResourceId>
     <ProjectGuid>A743F331-EABF-46CE-97E3-B4C58EEA9D0D</ProjectGuid>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="pub\**" />
@@ -33,10 +34,10 @@
     <None Include="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="1.20.168.11" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="1.20.168.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Authorization" Version="6.0.188.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="6.0.188.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.16.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NurseCron.Competencies.Abstraction\NurseCron.Competencies.Abstraction.csproj" />

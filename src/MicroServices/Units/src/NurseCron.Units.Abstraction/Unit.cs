@@ -5,7 +5,7 @@ using IkeMtz.NRSRx.Core.Models.Validation;
 
 namespace NurseCron.Units.Abstraction
 {
-  public partial class Unit : IIdentifiable
+  public partial class Unit : IIdentifiable, IAuditable
   {
     [RequiredNonDefault]
     public Guid Id { get; set; }
@@ -16,13 +16,12 @@ namespace NurseCron.Units.Abstraction
     public string Name { get; set; }
     [Required]
     public decimal RoomCount { get; set; }
-    [Required]
     [MaxLength(250)]
     public string CreatedBy { get; set; }
     [MaxLength(250)]
-    public string UpdatedBy { get; set; }
+    public string? UpdatedBy { get; set; }
     [MaxLength(250)]
-    public string DeletedBy { get; set; }
+    public string? DeletedBy { get; set; }
     [Required]
     public DateTimeOffset CreatedOnUtc { get; set; }
     public DateTimeOffset? UpdatedOnUtc { get; set; }

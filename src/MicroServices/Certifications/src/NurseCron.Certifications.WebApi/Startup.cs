@@ -18,11 +18,6 @@ namespace NurseCron.Certifications.WebApi
     {
     }
 
-    public override void SetupMiscDependencies(IServiceCollection services)
-    {
-      _ = services.AddScoped<ICertificationsContext, CertificationsContext>();
-    }
-
     [ExcludeFromCodeCoverage]
     public override void SetupPublishers(IServiceCollection services)
     {

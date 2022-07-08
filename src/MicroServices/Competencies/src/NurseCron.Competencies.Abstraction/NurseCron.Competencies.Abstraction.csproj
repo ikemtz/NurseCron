@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <ProjectGuid>17EEFA0E-DD5F-4CE0-A6E5-8CD12687BD67</ProjectGuid>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="pub\**" />
@@ -9,6 +10,6 @@
     <None Remove="pub\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="1.20.168.11" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.188.2" />
   </ItemGroup>
 </Project>

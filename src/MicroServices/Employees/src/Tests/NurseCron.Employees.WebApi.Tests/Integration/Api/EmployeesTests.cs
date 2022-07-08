@@ -2,14 +2,15 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using IkeMtz.NRSRx.Core.Unigration;
-using NurseCron.Employees.Models;
-using NurseCron.Employees.WebApi;
-using NurseCron.Employees.WebApi.Data;
+using IkeMtz.NRSRx.Core.Unigration.Http;
+using IkeMtz.NRSRx.Core.WebApi;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using IkeMtz.NRSRx.Core.WebApi;
+using NurseCron.Employees.Models;
+using NurseCron.Employees.WebApi;
+using NurseCron.Employees.WebApi.Data;
 
 namespace NurseCron.Employees.Tests.Integration.Api
 {
@@ -96,7 +97,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       Assert.IsTrue(result.IsEnabled);
       Assert.IsNotNull(result.CreatedBy);
 
-      var ctx = srv.GetDbContext<EmployeesContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var emp = await ctx.Employees.Include(t => t.EmployeeCertifications).FirstOrDefaultAsync(t => t.FirstName == result.FirstName);
 
       Assert.IsNotNull(emp);
@@ -144,7 +145,7 @@ namespace NurseCron.Employees.Tests.Integration.Api
       Assert.IsNotNull(result.UpdatedBy);
       Assert.AreEqual(objA.FirstName, result.FirstName);
 
-      var ctx = srv.GetDbContext<EmployeesContext>();
+      var ctx = srv.GetDbContext<DatabaseContext>();
       var emp = await ctx.Employees.FirstOrDefaultAsync(t => t.FirstName == result.FirstName);
 
       Assert.IsNotNull(emp);

@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
+using Azure.Messaging.ServiceBus;
 using IkeMtz.NRSRx.Core.EntityFramework;
 using IkeMtz.NRSRx.Core.WebApi;
 using IkeMtz.NRSRx.Events;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.ServiceBus;
 using Microsoft.EntityFrameworkCore;
 using NurseCron.Employees.Models;
 using NurseCron.Employees.WebApi.Data;
@@ -17,15 +17,15 @@ namespace NurseCron.Employees.WebApi.Controllers
   [ApiController]
   public class EmployeesController : ControllerBase
   {
-    private readonly IEmployeesContext _ctx;
-    private readonly IPublisher<Employee, CreatedEvent, Message> _createdPublisher;
-    private readonly IPublisher<Employee, UpdatedEvent, Message> _updatedPublisher;
-    private readonly IPublisher<Employee, DeletedEvent, Message> _deletedPublisher;
+    private readonly DatabaseContext _ctx;
+    private readonly IPublisher<Employee, CreatedEvent, ServiceBusMessage> _createdPublisher;
+    private readonly IPublisher<Employee, UpdatedEvent, ServiceBusMessage> _updatedPublisher;
+    private readonly IPublisher<Employee, DeletedEvent, ServiceBusMessage> _deletedPublisher;
 
-    public EmployeesController(IEmployeesContext ctx,
-        IPublisher<Employee, CreatedEvent, Message> createdPublisher,
-        IPublisher<Employee, UpdatedEvent, Message> updatedPublisher,
-        IPublisher<Employee, DeletedEvent, Message> deletedPublisher)
+    public EmployeesController(DatabaseContext ctx,
+        IPublisher<Employee, CreatedEvent, ServiceBusMessage> createdPublisher,
+        IPublisher<Employee, UpdatedEvent, ServiceBusMessage> updatedPublisher,
+        IPublisher<Employee, DeletedEvent, ServiceBusMessage> deletedPublisher)
     {
       _ctx = ctx;
       _createdPublisher = createdPublisher;

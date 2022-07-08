@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NurseCron.HealthItems.WebApi.Data
 {
-  public partial class HealthItemsContext : AuditableDbContext, IHealthItemsContext
+  public partial class DatabaseContext : AuditableDbContext
   {
-    public HealthItemsContext(DbContextOptions<HealthItemsContext> options, IHttpContextAccessor httpContextAccessor)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options, IHttpContextAccessor httpContextAccessor)
         : base(options, httpContextAccessor)
     {
     }

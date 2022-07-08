@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NurseCron.HealthItems.OData.Data
 {
-  public partial class HealthItemsContext : DbContext, IHealthItemsContext
+  public partial class DatabaseContext : DbContext
   {
-    public HealthItemsContext(DbContextOptions<HealthItemsContext> options)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)
     {
     }

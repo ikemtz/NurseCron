@@ -3,7 +3,7 @@ using NurseCron.Certifications.WebApi;
 using NurseCron.Certifications.WebApi.Data;
 using IkeMtz.NRSRx.Core.Unigration;
 using IkeMtz.NRSRx.Core.Unigration.WebApi;
-using Microsoft.Azure.ServiceBus;
+using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,7 +22,7 @@ namespace NurseCron.Certifications.Tests
 
     public override void SetupPublishers(IServiceCollection services)
     {
-      var pubTester = new PublisherUnigrationTester<Certification, Message>();
+      var pubTester = new PublisherUnigrationTester<Certification, ServiceBusMessage>();
       pubTester.RegisterDependencies(services);
     }
   }

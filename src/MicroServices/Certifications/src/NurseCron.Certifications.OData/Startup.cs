@@ -6,6 +6,7 @@ using IkeMtz.NRSRx.Core.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NurseCron.Certifications.OData.Configuration;
 
 namespace NurseCron.Certifications.OData
 {
@@ -13,20 +14,17 @@ namespace NurseCron.Certifications.OData
   {
     public override string MicroServiceTitle => $"NurseCRON {nameof(Certification)} OData Microservice";
     public override Assembly StartupAssembly => typeof(Startup).Assembly;
+    public override BaseODataModelProvider ODataModelProvider => new ODataModelProvider();
 
     public Startup(IConfiguration configuration) : base(configuration)
     {
     }
 
-    public override void SetupMiscDependencies(IServiceCollection services)
-    {
-      services.AddScoped<ICertificationsContext, CertificationsContext>();
-    }
 
     [ExcludeFromCodeCoverage]
     public override void SetupDatabase(IServiceCollection services, string connectionString)
     {
-      services
+      _ = services
       .AddDbContextPool<CertificationsContext>(x => x.UseSqlServer(connectionString))
       .AddEntityFrameworkSqlServer();
     }
