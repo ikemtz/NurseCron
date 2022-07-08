@@ -9,7 +9,7 @@ RUN cd NurseCron.$domain.WebApi/ \
 
 
 FROM mcr.microsoft.com/dotnet/core/aspnet
-WORKDIR /app 
-COPY --from=build /app/pub . 
-EXPOSE 80 
-ENTRYPOINT ["dotnet", "NurseCron.HealthItems.WebApi.dll"] 
+WORKDIR /app
+COPY --from=build /app/pub .
+EXPOSE 80
+ENTRYPOINT ["dotnet", "NurseCron.HealthItems.WebApi.dll"]

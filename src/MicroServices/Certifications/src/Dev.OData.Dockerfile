@@ -9,7 +9,7 @@ RUN cd NurseCron.$domain.OData/ \
 
 
 FROM mcr.microsoft.com/dotnet/core/aspnet
-WORKDIR /app 
-COPY --from=build /app/pub . 
+WORKDIR /app
+COPY --from=build /app/pub .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "NurseCron.Certifications.OData.dll"] 
+ENTRYPOINT ["dotnet", "NurseCron.Certifications.OData.dll"]
