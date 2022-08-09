@@ -16,6 +16,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.SignalR" Version="6.0.188.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.SignalR" Version="6.0.220.7" />
   </ItemGroup>
 </Project>
