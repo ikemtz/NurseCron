@@ -10,8 +10,8 @@
     <NoWarn>1701;1702;CA1707;CS8618</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="6.0.188.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.OData" Version="6.0.220.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.16.1" />
   </ItemGroup>
   <ItemGroup>
